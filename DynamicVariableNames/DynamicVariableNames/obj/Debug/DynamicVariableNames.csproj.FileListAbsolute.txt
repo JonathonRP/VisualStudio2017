@@ -1,0 +1,7 @@
+D:\Documents\Visual Studio 2017\Projects\DynamicVariableNames\DynamicVariableNames\bin\Debug\DynamicVariableNames.exe.config
+D:\Documents\Visual Studio 2017\Projects\DynamicVariableNames\DynamicVariableNames\bin\Debug\DynamicVariableNames.exe
+D:\Documents\Visual Studio 2017\Projects\DynamicVariableNames\DynamicVariableNames\bin\Debug\DynamicVariableNames.pdb
+D:\Documents\Visual Studio 2017\Projects\DynamicVariableNames\DynamicVariableNames\obj\Debug\DynamicVariableNames.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2017\Projects\DynamicVariableNames\DynamicVariableNames\obj\Debug\DynamicVariableNames.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio 2017\Projects\DynamicVariableNames\DynamicVariableNames\obj\Debug\DynamicVariableNames.exe
+D:\Documents\Visual Studio 2017\Projects\DynamicVariableNames\DynamicVariableNames\obj\Debug\DynamicVariableNames.pdb

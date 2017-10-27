@@ -1,0 +1,6 @@
+c:\users\reese\documents\visual studio 2017\Projects\PerryCE1\PerryCE1\bin\Debug\PerryCE1.exe.config
+c:\users\reese\documents\visual studio 2017\Projects\PerryCE1\PerryCE1\bin\Debug\PerryCE1.exe
+c:\users\reese\documents\visual studio 2017\Projects\PerryCE1\PerryCE1\bin\Debug\PerryCE1.pdb
+c:\users\reese\documents\visual studio 2017\Projects\PerryCE1\PerryCE1\obj\Debug\PerryCE1.csprojResolveAssemblyReference.cache
+c:\users\reese\documents\visual studio 2017\Projects\PerryCE1\PerryCE1\obj\Debug\PerryCE1.exe
+c:\users\reese\documents\visual studio 2017\Projects\PerryCE1\PerryCE1\obj\Debug\PerryCE1.pdb

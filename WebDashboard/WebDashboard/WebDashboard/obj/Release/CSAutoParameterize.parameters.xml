@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IvaluaConnectionString-Web.config Connection String" description="IvaluaConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=CORP17INT065\SQLEXPRESS;Initial Catalog=Ivalua;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\qvo7251\\documents\\visual\ studio\ 2017\\Projects\\WebDashboard\\WebDashboard\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='IvaluaConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="ReeseDBConnectionString-Web.config Connection String" description="ReeseDBConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=CORP17INT065\SQLEXPRESS;Initial Catalog=ReeseDB;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\qvo7251\\documents\\visual\ studio\ 2017\\Projects\\WebDashboard\\WebDashboard\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ReeseDBConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

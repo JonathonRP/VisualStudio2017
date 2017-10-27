@@ -1,0 +1,12 @@
+c:\users\reese\documents\visual studio 2017\Projects\Matrix Typing\Matrix Typing\bin\Debug\Matrix Typing.exe.config
+c:\users\reese\documents\visual studio 2017\Projects\Matrix Typing\Matrix Typing\bin\Debug\Matrix Typing.exe
+c:\users\reese\documents\visual studio 2017\Projects\Matrix Typing\Matrix Typing\bin\Debug\Matrix Typing.pdb
+c:\users\reese\documents\visual studio 2017\Projects\Matrix Typing\Matrix Typing\obj\Debug\Matrix Typing.csprojResolveAssemblyReference.cache
+c:\users\reese\documents\visual studio 2017\Projects\Matrix Typing\Matrix Typing\obj\Debug\Matrix Typing.exe
+c:\users\reese\documents\visual studio 2017\Projects\Matrix Typing\Matrix Typing\obj\Debug\Matrix Typing.pdb
+D:\Documents\Visual Studio 2017\Projects\Matrix Typing\Matrix Typing\bin\Debug\Matrix Typing.exe.config
+D:\Documents\Visual Studio 2017\Projects\Matrix Typing\Matrix Typing\bin\Debug\Matrix Typing.exe
+D:\Documents\Visual Studio 2017\Projects\Matrix Typing\Matrix Typing\bin\Debug\Matrix Typing.pdb
+D:\Documents\Visual Studio 2017\Projects\Matrix Typing\Matrix Typing\obj\Debug\Matrix Typing.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2017\Projects\Matrix Typing\Matrix Typing\obj\Debug\Matrix Typing.exe
+D:\Documents\Visual Studio 2017\Projects\Matrix Typing\Matrix Typing\obj\Debug\Matrix Typing.pdb

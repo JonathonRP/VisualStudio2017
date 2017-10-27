@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/WebDashboard" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\qvo7251\\documents\\visual\ studio\ 2017\\Projects\\WebDashboard\\WebDashboard\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\qvo7251\\documents\\visual\ studio\ 2017\\Projects\\WebDashboard\\WebDashboard\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="ReeseDBConnectionString-Web.config Connection String" description="" value="Data Source=CORP17INT065\SQLEXPRESS;Initial Catalog=ReeseDB;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\qvo7251\\documents\\visual\ studio\ 2017\\Projects\\WebDashboard\\WebDashboard\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ReeseDBConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="IvaluaConnectionString-Web.config Connection String" description="" value="Data Source=CORP17INT065\SQLEXPRESS;Initial Catalog=Ivalua;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\qvo7251\\documents\\visual\ studio\ 2017\\Projects\\WebDashboard\\WebDashboard\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='IvaluaConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,10 @@
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\bin\Debug\PerryPA2.exe.config
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\bin\Debug\PerryPA2.exe
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\bin\Debug\PerryPA2.pdb
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\obj\Debug\PerryPA2.csprojResolveAssemblyReference.cache
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\obj\Debug\PerryPA2.Form1.resources
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\obj\Debug\PerryPA2.Properties.Resources.resources
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\obj\Debug\PerryPA2.csproj.GenerateResource.Cache
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\obj\Debug\PerryPA2.csproj.CoreCompileInputs.cache
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\obj\Debug\PerryPA2.exe
+D:\documents\visual studio 2017\Projects\PerryPA2\PerryPA2\obj\Debug\PerryPA2.pdb

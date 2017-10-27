@@ -1,0 +1,7 @@
+D:\documents\visual studio 2017\Projects\PerryPA1\PerryPA1\bin\Debug\PerryPA1.exe.config
+D:\documents\visual studio 2017\Projects\PerryPA1\PerryPA1\bin\Debug\PerryPA1.exe
+D:\documents\visual studio 2017\Projects\PerryPA1\PerryPA1\bin\Debug\PerryPA1.pdb
+D:\documents\visual studio 2017\Projects\PerryPA1\PerryPA1\obj\Debug\PerryPA1.csprojResolveAssemblyReference.cache
+D:\documents\visual studio 2017\Projects\PerryPA1\PerryPA1\obj\Debug\PerryPA1.exe
+D:\documents\visual studio 2017\Projects\PerryPA1\PerryPA1\obj\Debug\PerryPA1.pdb
+D:\documents\visual studio 2017\Projects\PerryPA1\PerryPA1\obj\Debug\PerryPA1.csproj.CoreCompileInputs.cache
