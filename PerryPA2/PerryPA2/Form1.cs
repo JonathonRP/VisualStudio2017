@@ -249,7 +249,7 @@ namespace PerryPA2
         {
             if (_Game.Checked)
             {
-                _Game_Selection.Add(_SubscriptionChoices.SelectedItem);
+                _Game_Selection.Add(_SubscriptionChoices.Text);
             }
             else
             {

@@ -153,7 +153,7 @@
             // 
             // Game1SubscriptionChoices
             // 
-            this.Game1SubscriptionChoices.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Game1SubscriptionChoices.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.Game1SubscriptionChoices.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Game1SubscriptionChoices.CausesValidation = false;
             this.Game1SubscriptionChoices.FormattingEnabled = true;
@@ -171,7 +171,7 @@
             // 
             // Game2SubscriptionChoices
             // 
-            this.Game2SubscriptionChoices.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Game2SubscriptionChoices.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.Game2SubscriptionChoices.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Game2SubscriptionChoices.CausesValidation = false;
             this.Game2SubscriptionChoices.FormattingEnabled = true;
@@ -189,7 +189,7 @@
             // 
             // Game3SubscriptionChoices
             // 
-            this.Game3SubscriptionChoices.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Game3SubscriptionChoices.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.Game3SubscriptionChoices.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.Game3SubscriptionChoices.CausesValidation = false;
             this.Game3SubscriptionChoices.FormattingEnabled = true;
