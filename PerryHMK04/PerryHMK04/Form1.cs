@@ -45,6 +45,7 @@ namespace PerryHMK04
 
         private void ProcessFileCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            string result;
             System.Text.RegularExpressions.Regex numeric = new System.Text.RegularExpressions.Regex("^[0-9](\\.?[0-9])+$");
 
             if ((sender as CheckBox).Checked)
@@ -71,7 +72,13 @@ namespace PerryHMK04
                         count++;
                     }
 
-                    OutputText.Text += String.Format($"{openFileDialog1.FileName} contains {numCount} line(s) of numbers ({(double)numCount/ count:P0})");
+                    result = String.Format($"{openFileDialog1.FileName} contains {numCount} line(s) of numbers ({(double)numCount / count:P0})");
+                    OutputText.Text += result;
+
+                    using (StreamWriter writer = new StreamWriter("Result.txt", true))
+                    {
+                        writer.WriteLine(result + "\n");
+                    }
                 }
 
                 OutputGrouping.Visible = true;
