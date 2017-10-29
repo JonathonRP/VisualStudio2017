@@ -31,7 +31,7 @@ namespace PerryHMK04
         {
             errorProvider1.SetIconPadding((sender as TextBox), 5);
 
-            if(!IsValidPath((sender as TextBox).Text, out string errMsg))
+            if(!IsValidFile((sender as TextBox).Text, out string errMsg))
             {
                 e.Cancel = true;
                 (sender as TextBox).Select(0, (sender as TextBox).Text.Length);
@@ -91,27 +91,21 @@ namespace PerryHMK04
             }
         }
 
-        private bool IsValidPath(string path, out string errMsg)
+        private bool IsValidFile(string path, out string errMsg)
         {
             if (path == "")
             {
-                errMsg = "A path is needed!";
+                errMsg = "Click textbox to open file";
                 return false;
             }
 
-            if (!File.Exists(file.Text))
-            {
-                errMsg = "A path is needed!";
-                return false;
-            }
-
-            if (openFileDialog1.CheckFileExists || File.Exists(file.Text))
+            if (File.Exists(file.Text))
             {
                 errMsg = "";
                 return true;
             }
 
-            errMsg = "not a file";
+            errMsg = "not a file, Click textbox to open file";
             return false;
         }
 
