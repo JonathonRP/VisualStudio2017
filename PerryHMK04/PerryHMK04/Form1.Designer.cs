@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.File = new System.Windows.Forms.TextBox();
+            this.file = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.ProcessFileCheckBox = new System.Windows.Forms.CheckBox();
@@ -39,16 +39,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // File
+            // file
             // 
-            this.File.Location = new System.Drawing.Point(5, 6);
-            this.File.Name = "File";
-            this.File.ReadOnly = true;
-            this.File.Size = new System.Drawing.Size(250, 22);
-            this.File.TabIndex = 0;
-            this.File.Click += new System.EventHandler(this.File_Click);
-            this.File.Validating += new System.ComponentModel.CancelEventHandler(this.OpenFilePath_Validating);
-            this.File.Validated += new System.EventHandler(this.OpenFilePath_Validated);
+            this.file.Location = new System.Drawing.Point(5, 6);
+            this.file.Name = "file";
+            this.file.ReadOnly = true;
+            this.file.Size = new System.Drawing.Size(250, 22);
+            this.file.TabIndex = 0;
+            this.file.Text = "Click to Open File";
+            this.file.Click += new System.EventHandler(this.File_Click);
+            this.file.Validating += new System.ComponentModel.CancelEventHandler(this.OpenFilePath_Validating);
+            this.file.Validated += new System.EventHandler(this.OpenFilePath_Validated);
             // 
             // openFileDialog1
             // 
@@ -95,7 +96,7 @@
             this.ClientSize = new System.Drawing.Size(282, 195);
             this.Controls.Add(this.ProcessFileCheckBox);
             this.Controls.Add(this.OutputText);
-            this.Controls.Add(this.File);
+            this.Controls.Add(this.file);
             this.Controls.Add(this.OutputGrouping);
             this.Name = "Form1";
             this.ShowIcon = false;
@@ -109,7 +110,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox File;
+        private System.Windows.Forms.TextBox file;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.RichTextBox OutputText;

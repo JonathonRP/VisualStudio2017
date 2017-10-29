@@ -16,13 +16,14 @@ namespace PerryHMK04
         public Form1()
         {
             InitializeComponent();
+            ClearFile();
         }
 
         private void File_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                File.Text = openFileDialog1.FileName;
+                file.Text = openFileDialog1.FileName;
             }
         }
 
@@ -50,7 +51,7 @@ namespace PerryHMK04
 
             if ((sender as CheckBox).Checked)
             {
-                using (StreamReader sr = new StreamReader(File.Text))
+                using (StreamReader sr = new StreamReader(file.Text))
                 {
                     // initialize some accumulator variables (for lines of numbers count and average)
                     int numCount = 0;
@@ -97,7 +98,14 @@ namespace PerryHMK04
                 errMsg = "A path is needed!";
                 return false;
             }
-            else if(openFileDialog1.CheckFileExists)
+
+            if (!File.Exists(file.Text))
+            {
+                errMsg = "A path is needed!";
+                return false;
+            }
+
+            if (openFileDialog1.CheckFileExists || File.Exists(file.Text))
             {
                 errMsg = "";
                 return true;
@@ -105,6 +113,12 @@ namespace PerryHMK04
 
             errMsg = "not a file";
             return false;
+        }
+
+        private async void ClearFile()
+        {
+            await Task.Delay(3000);
+            file.Clear();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
