@@ -105,7 +105,7 @@ namespace PerryHMK04
                 return true;
             }
 
-            errMsg = "not a file, Click textbox to open file";
+            errMsg = $"\"{file.Text}\" is not a file. Click textbox to open file";
             return false;
         }
 
