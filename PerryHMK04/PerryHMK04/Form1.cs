@@ -31,7 +31,7 @@ namespace PerryHMK04
         {
             errorProvider1.SetIconPadding((sender as TextBox), 5);
 
-            if(!IsValidFile((sender as TextBox).Text, out string errMsg))
+            if(!A_ValidFile((sender as TextBox).Text, out string errMsg))
             {
                 e.Cancel = true;
                 (sender as TextBox).Select(0, (sender as TextBox).Text.Length);
@@ -91,7 +91,7 @@ namespace PerryHMK04
             }
         }
 
-        private bool IsValidFile(string path, out string errMsg)
+        private bool A_ValidFile(string path, out string errMsg)
         {
             if (path == "")
             {
