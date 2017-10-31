@@ -13,6 +13,7 @@ namespace PerryHMK04
 {
     public partial class Form1 : Form
     {
+        private int Line = 0;
         public Form1()
         {
             InitializeComponent();
@@ -73,8 +74,14 @@ namespace PerryHMK04
                         count++;
                     }
 
+                    if(File.Exists("Result.txt"))
+                    {
+                        Line = File.ReadAllLines(@"Result.txt").Count();
+                    }
+                    
                     result = String.Format($"{openFileDialog1.FileName} contains {numCount} line(s) of numbers ({(double)numCount / count:P0})");
                     OutputText.Text += result;
+                    LineNum.Text += Line - 1;
 
                     using (StreamWriter writer = new StreamWriter("Result.txt", true))
                     {
@@ -82,12 +89,14 @@ namespace PerryHMK04
                     }
                 }
 
+                LineNum.Visible = true;
                 OutputGrouping.Visible = true;
                 OutputText.Visible = true;
             }
             else
             {
                 OutputText.Text += "\n";
+                LineNum.Text += "\n";
             }
         }
 
