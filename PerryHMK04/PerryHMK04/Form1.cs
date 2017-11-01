@@ -151,7 +151,7 @@ namespace PerryHMK04
             LineNum.SelectionAlignment = HorizontalAlignment.Right;
             LineNum.DeselectAll();
             OutputText.SelectAll();
-            OutputText.SelectionAlignment = HorizontalAlignment.Right;
+            OutputText.SelectionAlignment = HorizontalAlignment.Center;
             OutputText.DeselectAll();
         }
 
