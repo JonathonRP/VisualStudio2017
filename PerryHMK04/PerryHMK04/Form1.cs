@@ -8,16 +8,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace PerryHMK04
 {
     public partial class Form1 : Form
     {
-        private int Line = 0;
+        public enum ScrollBarType : uint
+        {
+            SbHorz = 0,
+            SbVert = 1,
+            SbCtl = 2,
+            SbBoth = 3
+        }
+
+        public enum Message : uint
+        {
+            WM_VSCROLL = 0x0115
+        }
+
+        public enum ScrollBarCommands : uint
+        {
+            SB_THUMBPOSITION = 4
+        }
+
+        [DllImport("User32.dll")]
+        public extern static int GetScrollPos(IntPtr hWnd, int nBar);
+
+        [DllImport("User32.dll")]
+        public extern static int SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
+
         public Form1()
         {
             InitializeComponent();
             ClearFile();
+            AlignRight();
         }
 
         private void File_Click(object sender, EventArgs e)
@@ -73,20 +98,16 @@ namespace PerryHMK04
                         line = sr.ReadLine();
                         count++;
                     }
-
-                    if(File.Exists("Result.txt"))
-                    {
-                        Line = File.ReadAllLines(@"Result.txt").Count();
-                    }
                     
                     result = String.Format($"{openFileDialog1.FileName} contains {numCount} line(s) of numbers ({(double)numCount / count:P0})");
                     OutputText.Text += result;
-                    LineNum.Text += Line - 1;
 
                     using (StreamWriter writer = new StreamWriter("Result.txt", true))
                     {
-                        writer.WriteLine(result + "\n");
+                        writer.WriteLine(result);
                     }
+
+                    LineNum.AppendText($"{File.ReadAllLines("Result.txt").Count()}");
                 }
 
                 LineNum.Visible = true;
@@ -122,6 +143,24 @@ namespace PerryHMK04
         {
             await Task.Delay(3000);
             file.Clear();
+        }
+
+        private void AlignRight()
+        {
+            LineNum.SelectAll();
+            LineNum.SelectionAlignment = HorizontalAlignment.Right;
+            LineNum.DeselectAll();
+            OutputText.SelectAll();
+            OutputText.SelectionAlignment = HorizontalAlignment.Right;
+            OutputText.DeselectAll();
+        }
+
+        private void OutputText_VScroll(object sender, EventArgs e)
+        {
+            int nPos = GetScrollPos(OutputText.Handle, (int)ScrollBarType.SbVert);
+            nPos <<= 16;
+            uint wParam = (uint)ScrollBarCommands.SB_THUMBPOSITION | (uint)nPos;
+            SendMessage(LineNum.Handle, (int)Message.WM_VSCROLL, new IntPtr(wParam), new IntPtr(0));
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
