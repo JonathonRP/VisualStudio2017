@@ -77,10 +77,12 @@
             // 
             // OutputText
             // 
+            this.OutputText.BackColor = System.Drawing.SystemColors.Window;
             this.OutputText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.OutputText.Font = new System.Drawing.Font("Century Schoolbook", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OutputText.Location = new System.Drawing.Point(38, 55);
             this.OutputText.Name = "OutputText";
+            this.OutputText.ReadOnly = true;
             this.OutputText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.OutputText.Size = new System.Drawing.Size(390, 128);
             this.OutputText.TabIndex = 2;
