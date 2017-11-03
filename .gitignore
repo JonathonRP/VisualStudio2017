@@ -260,3 +260,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+PerryPA2/PerryPA2/bin/Debug/
+
+PerryPA2/PerryPA2/obj/Debug/
