@@ -168,5 +168,10 @@ namespace PerryHMK04
             e.Cancel = false;
             errorProvider1.Clear();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("Result.txt");
+        }
     }
 }

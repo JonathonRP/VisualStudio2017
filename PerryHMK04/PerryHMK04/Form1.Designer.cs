@@ -37,6 +37,7 @@
             this.OutputText = new System.Windows.Forms.RichTextBox();
             this.OutputGrouping = new System.Windows.Forms.GroupBox();
             this.LineNum = new System.Windows.Forms.RichTextBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.OutputGrouping.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             // OutputGrouping
             // 
+            this.OutputGrouping.Controls.Add(this.linkLabel1);
             this.OutputGrouping.Controls.Add(this.LineNum);
             this.OutputGrouping.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OutputGrouping.Location = new System.Drawing.Point(5, 34);
@@ -116,6 +118,17 @@
             this.LineNum.Text = "";
             this.LineNum.Visible = false;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(351, -2);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(80, 17);
+            this.linkLabel1.TabIndex = 4;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Open File";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -130,6 +143,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.OutputGrouping.ResumeLayout(false);
+            this.OutputGrouping.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,6 +158,7 @@
         private System.Windows.Forms.CheckBox ProcessFileCheckBox;
         private System.Windows.Forms.GroupBox OutputGrouping;
         private System.Windows.Forms.RichTextBox LineNum;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
