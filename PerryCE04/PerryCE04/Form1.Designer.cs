@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.select_file = new System.Windows.Forms.ToolStripMenuItem();
+            this.file_name = new System.Windows.Forms.ToolStripMenuItem();
             this.FoundMatchingCodes = new System.Windows.Forms.RichTextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.AvgIDLabel = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.RoutingNumber = new System.Windows.Forms.ComboBox();
             this.DisplayAvgID = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.file_name = new System.Windows.Forms.ToolStripMenuItem();
             this.AvgID = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -64,6 +64,13 @@
             this.select_file.Size = new System.Drawing.Size(88, 24);
             this.select_file.Text = "Select File";
             this.select_file.Click += new System.EventHandler(this.select_file_Click);
+            // 
+            // file_name
+            // 
+            this.file_name.Name = "file_name";
+            this.file_name.Size = new System.Drawing.Size(83, 24);
+            this.file_name.Text = "file name";
+            this.file_name.Click += new System.EventHandler(this.file_name_Click);
             // 
             // FoundMatchingCodes
             // 
@@ -140,13 +147,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // file_name
-            // 
-            this.file_name.Name = "file_name";
-            this.file_name.Size = new System.Drawing.Size(83, 24);
-            this.file_name.Text = "file name";
-            this.file_name.Click += new System.EventHandler(this.file_name_Click);
             // 
             // AvgID
             // 

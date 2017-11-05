@@ -27,12 +27,13 @@ namespace PerryCE04
         {
             if (!validFile(file, out string errMsg))
             {
-                errorProvider1.SetIconPadding(menuStrip1, -260);
+                errorProvider1.SetIconPadding(menuStrip1, -250);
                 e.Cancel = true;
                 errorProvider1.SetError(menuStrip1, errMsg);
             }
             else if (!validBeginningCode(RoutingNumber.Text, out errMsg))
             {
+                errorProvider1.SetIconPadding(RoutingNumber, 5);
                 e.Cancel = true;
                 errorProvider1.SetError(RoutingNumber, errMsg);
             }
@@ -52,6 +53,7 @@ namespace PerryCE04
         {
             if (!validShippingID(shippingID.Text, out string errMsg))
             {
+                errorProvider1.SetIconPadding(shippingID, 5);
                 e.Cancel = true;
                 errorProvider1.SetError(shippingID, errMsg);
             }
@@ -95,7 +97,7 @@ namespace PerryCE04
             }
         }
 
-        private void DisplayAvgID_CheckedChanged(object sender, EventArgs e)
+        private async void DisplayAvgID_CheckedChanged(object sender, EventArgs e)
         {
             if(DisplayAvgID.Checked)
             {
@@ -111,6 +113,9 @@ namespace PerryCE04
                 shippingID.Focus();
                 FindMatchingCodesButton.Visible = true;
                 FoundMatchingCodes.Visible = true;
+
+                await Task.Delay(3000);
+                shippingID.Clear();
             }
         }
 
@@ -120,17 +125,21 @@ namespace PerryCE04
                             where id.Shipping_id == int.Parse(shippingID.Text)
                             select id.Shipping_code;
 
+            FoundMatchingCodes.Clear();
+
             foreach (var code in find_codes)
             {
-                if (!(code == find_codes.Last()))
+                if (!(code == find_codes.First()))
                 {
-                    FoundMatchingCodes.AppendText($"{code},");
+                    FoundMatchingCodes.AppendText($",{code}");
                 }
                 else
                 {
                     FoundMatchingCodes.AppendText($"{code}");
                 }
             }
+
+            shippingIDs.Clear();
         }
 
         private bool validFile(string file, out string errMsg)
@@ -159,7 +168,7 @@ namespace PerryCE04
 
         private bool validShippingID(string shippingId, out string errMsg)
         {
-            if (double.TryParse(shippingId, out double id))
+            if (int.TryParse(shippingId, out int id))
             {
                 errMsg = "";
                 return true;
@@ -171,7 +180,18 @@ namespace PerryCE04
 
         private void file_name_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(file);
+            if (File.Exists(file))
+            {
+                System.Diagnostics.Process.Start(file);
+                errorProvider1.SetError(menuStrip1, "");
+            }
+            else
+            {
+                CancelEventArgs args = new CancelEventArgs();
+                errorProvider1.SetIconPadding(menuStrip1, -250);
+                args.Cancel = true;
+                errorProvider1.SetError(menuStrip1, "Not a file");
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
