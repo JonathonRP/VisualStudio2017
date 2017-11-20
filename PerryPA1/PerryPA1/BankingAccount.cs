@@ -14,7 +14,7 @@ namespace PerryPA1
 
         public string Username { get => username; }
         public string Password { get => password; }
-        public double Balance { get; set; }
+        public double? Balance { get; set; }
 
         public BankingAccount()
         {
@@ -32,18 +32,18 @@ namespace PerryPA1
                 Environment.Exit(0);
         }
 
-        public BankingAccount(string username, string password, double balance )
+        public BankingAccount(string username, string password, double? balance )
         {
             this.username = username;
             this.password = password;
             Balance = balance;
         }
 
-        public void Deposit(double depositValue)
+        public void Deposit(double? depositValue)
         {
             Balance = Balance + depositValue;
         }
-        public void Withdraw(double withdrawValue)
+        public void Withdraw(double? withdrawValue)
         {
             Balance = Balance - withdrawValue;
         }

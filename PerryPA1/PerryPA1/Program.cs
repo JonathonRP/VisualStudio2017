@@ -17,7 +17,7 @@ namespace PerryPA1
             
             string loginSelection = LoginMenu(Login);
 
-            BankingAccount account = new BankingAccount(null,null,0.0);
+            BankingAccount account = new BankingAccount(null,null,null);
 
             if (loginSelection.Contains("(C)"))
             {
@@ -55,7 +55,7 @@ namespace PerryPA1
 
                     int i = 0;
                     double value;
-                    string responce = "";
+                    string responce;
                     List<string> warningText = new List<string>();
                     warningText.Add("Invalid, try again");
 
@@ -79,7 +79,7 @@ namespace PerryPA1
                             }
 
                             responce = Console.ReadLine();
-                        } while (responce == "");
+                        } while (responce == null);
 
                         parsed = double.TryParse(responce, out value);
                         if (parsed)
@@ -106,7 +106,7 @@ namespace PerryPA1
 
                     int i = 0;
                     double value;
-                    string responce = "";
+                    string responce;
                     List<string> warningText = new List<string>();
                     warningText.Add("Invalid, try again");
 
@@ -130,7 +130,7 @@ namespace PerryPA1
                             }
 
                             responce = Console.ReadLine();
-                        } while (responce == "");
+                        } while (responce == null);
 
                         parsed = double.TryParse(responce, out value);
                         if (parsed)
