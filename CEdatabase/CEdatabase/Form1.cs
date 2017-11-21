@@ -193,7 +193,7 @@ namespace CEdatabase
                 {
                     if (pokemon.Type1 != "")
                     {
-                        monster.Type1 = pokemon.Type1;
+                        monster.Type1 = pokemon?.Type1 ?? null;
                     }
                     else if (pokemon.Type1 == "")
                     {

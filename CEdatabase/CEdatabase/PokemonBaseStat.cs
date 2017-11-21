@@ -31,13 +31,13 @@ namespace Database_Pokedex_
         [Column(UpdateCheck = UpdateCheck.Never)]
         public Int16 Speed { get; set; }
         [StringLength(10, ErrorMessage = "Only 10 characters allowed in Type1")]
-        [WhiteList("Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
-            "Electric", "Fire", "Grass", "Ice", "Psychic", "Water", "Fairy", "", ErrorMessage = "Not a valid pokemon type in Type1")]
+        [PokemonTypesAttribute(ValidTypes = new string[] {"Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
+            "Electric", "Fire", "Grass", "Ice", "Psychic", "Water", "Fairy", ""}, ErrorMessage = "Not a valid pokemon type in Type1")]
         [Column(UpdateCheck = UpdateCheck.WhenChanged, CanBeNull = true)]
         public string Type1 { get; set; }
         [StringLength(10, ErrorMessage = "Only 10 characters allowed in Type2")]
-        [WhiteList("Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
-            "Electric", "Fire", "Grass", "Ice", "Psychic", "Water", "Fairy", "", ErrorMessage = "Not a valid pokemon type in Type2")]
+        [PokemonTypesAttribute(ValidTypes = new string[] {"Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
+            "Electric", "Fire", "Grass", "Ice", "Psychic", "Water", "Fairy", ""}, ErrorMessage = "Not a valid pokemon type in Type2")]
         [Column(UpdateCheck = UpdateCheck.WhenChanged, CanBeNull = true)]
         public string Type2 { get; set; }
     }
@@ -46,25 +46,13 @@ namespace Database_Pokedex_
     /// Define an attribute that validate a property againts a white list
     /// Note that currently it only supports int type
     /// </summary>
-    //[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    sealed public class WhiteListAttribute : ValidationAttribute
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+    sealed public class PokemonTypesAttributeAttribute : ValidationAttribute
     {
         /// <summary>
         /// The White List 
         /// </summary>
-        public IEnumerable<string> WhiteList
-        {
-            get;
-        }
-
-        /// <summary>
-        /// The only constructor
-        /// </summary>
-        /// <param name="whiteList"></param>
-        public WhiteListAttribute(params string[] whiteList)
-        {
-            WhiteList = new List<string>(whiteList);
-        }
+        public string[] ValidTypes { get; set; }
 
         /// <summary>
         /// Validation occurs here
@@ -73,7 +61,14 @@ namespace Database_Pokedex_
         /// <returns></returns>
         public override bool IsValid(object value)
         {
-            return WhiteList.Contains((string)value);
+            if (value == null)
+            {
+                return true;
+            }
+            else
+            {
+                return ValidTypes.Contains(value.ToString());
+            }
         }
     }
 }

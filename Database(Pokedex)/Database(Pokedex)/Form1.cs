@@ -48,9 +48,9 @@ namespace Database_Pokedex_
         {
             pokemon = new PokemonBaseStat()
             {
-                PName = (sender as DataGridView).Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Type1 = (sender as DataGridView).Rows[e.RowIndex].Cells[7].Value.ToString(),
-                Type2 = (sender as DataGridView).Rows[e.RowIndex].Cells[8].Value.ToString()
+                PName = (sender as DataGridView).Rows[e.RowIndex].Cells[0].Value.ToString() == null ? "" : "",
+                Type1 = (sender as DataGridView).Rows[e.RowIndex].Cells[7].Value.ToString() == null ? "" : "",
+                Type2 = (sender as DataGridView).Rows[e.RowIndex].Cells[8].Value.ToString() == null ? "" : ""
             };
 
             //try catch
@@ -145,16 +145,9 @@ namespace Database_Pokedex_
                     string Type1 = string.Empty;
                     string Type2 = string.Empty;
 
-                    try
-                    {
-                        PName = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[0].Value.ToString();
-                        Type1 = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[7].Value.ToString();
-                        Type2 = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[8].Value.ToString();
-                    }
-                    catch
-                    {
-
-                    }
+                    PName = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[0].Value.ToString();
+                    Type1 = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[7].Value.ToString();
+                    Type2 = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[8].Value.ToString();
 
                     var monster = (from p in Pokemon.PokemonBaseStats
                                    where p.PName == PName
