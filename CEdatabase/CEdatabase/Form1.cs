@@ -27,6 +27,8 @@ namespace CEdatabase
         //pokemon entity
         private PokemonEntity pokemonEntity;
 
+        private CancelEvent EventArgs = new CancelEvent();
+
         public Form1()
         {
             InitializeComponent();
@@ -180,51 +182,54 @@ namespace CEdatabase
             //    }
             //}
 
-            //pokemon entity
-            var pokemonToUpdate = from p in pokemonEntity.PokemonBaseStats
-                                    where p.PName == pokemon.PName
-                                    select p;
-
-            foreach (var monster in pokemonToUpdate)
+            if (EventArgs.Cancel != true && pokemon != null)
             {
-                monster.PName = monster.PName;
-                monster.HP = monster.HP;
-                monster.Attack = monster.Attack;
-                monster.Defense = monster.Defense;
-                monster.SPAttack = monster.SPAttack;
-                monster.SPDefense = monster.SPDefense;
-                monster.Speed = monster.Speed;
+                //pokemon entity
+                var pokemonToUpdate = from p in pokemonEntity.PokemonBaseStats
+                                      where p.PName == pokemon.PName
+                                      select p;
 
-                if (pokemon.Type1 != "")
+                foreach (var monster in pokemonToUpdate)
                 {
-                    monster.Type1 = pokemon.Type1;
-                }
-                else if (pokemon.Type1 == "")
-                {
-                    monster.Type1 = null;
+                    if (pokemon.Type1 != "")
+                    {
+                        monster.Type1 = pokemon.Type1;
+                    }
+                    else if (pokemon.Type1 == "")
+                    {
+                        monster.Type1 = null;
+                    }
+
+                    if (pokemon.Type2 != "")
+                    {
+                        monster.Type2 = pokemon.Type2;
+                    }
+                    else if (pokemon.Type2 == "")
+                    {
+                        monster.Type2 = null;
+                    }
                 }
 
-                if (pokemon.Type2 != "")
+                try
                 {
-                    monster.Type2 = pokemon.Type2;
+                    dataGridView3.EndEdit();
+                    //pokemon entity save changes
+                    pokemonEntity.SaveChanges();
                 }
-                else if (pokemon.Type2 == "")
+                catch (Exception ex)
                 {
-                    monster.Type2 = null;
+                    MessageBox.Show($" Data: {ex.Data} \n Source: {ex.Source} \n " +
+                        $"Message: {ex.Message} \n Inner Error: {ex.InnerException} \n Target Site: {ex.TargetSite} \n Stack Trace: {ex.StackTrace} \n " +
+                        $"Result Code: {ex.HResult} \n {ex.HelpLink}");
                 }
             }
-
-            try
+            else if (EventArgs.Cancel == true)
             {
-                dataGridView3.EndEdit();
-                //pokemon entity save changes
-                pokemonEntity.SaveChanges();
+                MessageBox.Show(EventArgs.Error, "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-            catch (Exception ex)
+            else if (pokemon == null)
             {
-                MessageBox.Show($" Data: {ex.Data} \n Source: {ex.Source} \n " +
-                    $"Message: {ex.Message} \n Inner Error: {ex.InnerException} \n Target Site: {ex.TargetSite} \n Stack Trace: {ex.StackTrace} \n " +
-                    $"Result Code: {ex.HResult} \n {ex.HelpLink}");
+                MessageBox.Show("Nothing to update at this time", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -236,39 +241,27 @@ namespace CEdatabase
                 Type1 = (sender as DataGridView).Rows[e.RowIndex].Cells[1].Value.ToString(),
                 Type2 = (sender as DataGridView).Rows[e.RowIndex].Cells[2].Value.ToString()
             };
-        }
 
-        private void dataGridView3_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            PokemonBaseStat monster = new PokemonBaseStat()
-            {
-                PName = (sender as DataGridView).Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Type1 = (sender as DataGridView).Rows[e.RowIndex].Cells[1].Value.ToString(),
-                Type2 = (sender as DataGridView).Rows[e.RowIndex].Cells[2].Value.ToString()
-            };
-
-            ValidationContext Valid = new ValidationContext(monster, null, null);
+            ValidationContext Valid = new ValidationContext(pokemon, null, null);
             IList<ValidationResult> errors = new List<ValidationResult>();
 
-            if (!Validator.TryValidateObject(monster, Valid, errors, true))
+            if (!Validator.TryValidateObject(pokemon, Valid, errors, true))
             {
+                (sender as DataGridView).Rows[e.RowIndex].ErrorText = null;
+                EventArgs.Error = null;
+
                 foreach (ValidationResult result in errors)
                 {
-                    (sender as DataGridView).Rows[e.RowIndex].ErrorText = result.ErrorMessage;
+                    EventArgs.Cancel = true;
+                    EventArgs.Error += $"{result.ErrorMessage}\n";
+                    (sender as DataGridView).Rows[e.RowIndex].ErrorText += $"{result.ErrorMessage}\n";
                 }
-
-                e.Cancel = true;
             }
-        }
-
-        private void dataGridView3_CellValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            (sender as DataGridView).Rows[e.RowIndex].ErrorText = null;
-        }
-
-        private void dataGridView3_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            (sender as DataGridView).Rows[e.RowIndex].ErrorText = null;
+            else
+            {
+                EventArgs.Cancel = false;
+                (sender as DataGridView).Rows[e.RowIndex].ErrorText = null;
+            }
         }
 
         private void dataGridView3_MouseClick(object sender, MouseEventArgs e)
@@ -301,7 +294,8 @@ namespace CEdatabase
                     }
                 }
 
-                if ((sender as DataGridView).HitTest(e.X, e.Y).RowIndex < dataGridView3.RowCount - 1 && pokemon != null)
+                if ((sender as DataGridView).HitTest(e.X, e.Y).RowIndex < dataGridView3.RowCount - 1 && pokemon != null 
+                    && dataGridView3.Rows[dataGridView3.HitTest(e.X, e.Y).RowIndex].ErrorText == string.Empty)
                 {
                     PokemonBaseStat monster;
 
@@ -331,7 +325,8 @@ namespace CEdatabase
                     }
                 }
 
-                if ((sender as DataGridView).HitTest(e.X, e.Y).RowIndex < dataGridView3.RowCount - 1)
+                if ((sender as DataGridView).HitTest(e.X, e.Y).RowIndex < dataGridView3.RowCount - 1 
+                    && dataGridView3.Rows[dataGridView3.HitTest(e.X, e.Y).RowIndex].ErrorText == string.Empty)
                 {
                     var PName = dataGridView3.Rows[dataGridView3.HitTest(e.X, e.Y).RowIndex].Cells[0].Value.ToString();
                     var Type1 = dataGridView3.Rows[dataGridView3.HitTest(e.X, e.Y).RowIndex].Cells[1].Value.ToString();
@@ -365,7 +360,7 @@ namespace CEdatabase
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -390,5 +385,12 @@ namespace CEdatabase
             //dispose of pokemon entity
             pokemonEntity.Dispose();
         }
+    }
+
+    public class CancelEvent : EventArgs
+    {
+        public bool Cancel { get; set; }
+
+        public string Error { get; set; }
     }
 }

@@ -5,18 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Linq;
 using System.Data;
+using System.Data.Entity;
 
 namespace Database_Pokedex_
 {
-    public class Pokemon : DataContext
+    public class Pokemon : DbContext
     {
-        public Table<PokemonBaseStat> PokemonBaseStats { get; set; }
-        public Table<PokemonCapRate> PokemonCapRates { get; set; }
+        public DbSet<PokemonBaseStat> PokemonBaseStats { get; set; }
 
-        public Pokemon (IDbConnection connection) : base (connection)
+        public Pokemon() : base()
         {
-            PokemonBaseStats = GetTable<PokemonBaseStat>();
-            PokemonCapRates = GetTable<PokemonCapRate>();
+            Database.SetInitializer<Pokemon>(null);
         }
     }
 }

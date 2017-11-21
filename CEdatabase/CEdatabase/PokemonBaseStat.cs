@@ -13,7 +13,7 @@ namespace Database_Pokedex_
     [Table(Name = "PokemonBaseStats")]
     public partial class PokemonBaseStat
     {
-        [Required]
+        [Required(ErrorMessage = "Pokemon name is required to save")]
         [StringLength(15, ErrorMessage = "Only 15 characters allowed in pokemon name")]
         [Column(IsPrimaryKey = true, UpdateCheck = UpdateCheck.Never, CanBeNull = false)]
         [Key]
@@ -30,15 +30,50 @@ namespace Database_Pokedex_
         public Int16 SPDefense { get; set; }
         [Column(UpdateCheck = UpdateCheck.Never)]
         public Int16 Speed { get; set; }
-        [StringLength(10, ErrorMessage = "Only 10 characters allowed for type")]
-        //[RegularExpression("Normal" || "Bug" || "Fighting" || "Flying" || "Ghost" || "Ground" || "Rock" || "Steel" || "Dark" || "Dragon" || 
-        //                        "Electric" || "Fire" || "Grass" || "Ice" || "Psychic" || "Water" || "Fairy", ErrorMessage = "Must enter a valid pokemon type")]
+        [StringLength(10, ErrorMessage = "Only 10 characters allowed in Type1")]
+        [WhiteList("Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
+            "Electric", "Fire", "Grass", "Ice", "Psychic", "Water", "Fairy", "", ErrorMessage = "Not a valid pokemon type in Type1")]
         [Column(UpdateCheck = UpdateCheck.WhenChanged, CanBeNull = true)]
         public string Type1 { get; set; }
-        [StringLength(10, ErrorMessage = "Only 10 characters allowed for type")]
-        //[RegularExpression(@"Normal Or Bug Or Fighting Or Flying Or Ghost Or Ground Or Rock Or Steel Or Dark Or Dragon Or 
-        //                        Electric Or Fire Or Grass Or Ice Or Psychic Or Water Or Fairy", ErrorMessage = "Must enter a valid pokemon type")]
+        [StringLength(10, ErrorMessage = "Only 10 characters allowed in Type2")]
+        [WhiteList("Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
+            "Electric", "Fire", "Grass", "Ice", "Psychic", "Water", "Fairy", "", ErrorMessage = "Not a valid pokemon type in Type2")]
         [Column(UpdateCheck = UpdateCheck.WhenChanged, CanBeNull = true)]
         public string Type2 { get; set; }
+    }
+
+    /// <summary>
+    /// Define an attribute that validate a property againts a white list
+    /// Note that currently it only supports int type
+    /// </summary>
+    //[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+    sealed public class WhiteListAttribute : ValidationAttribute
+    {
+        /// <summary>
+        /// The White List 
+        /// </summary>
+        public IEnumerable<string> WhiteList
+        {
+            get;
+        }
+
+        /// <summary>
+        /// The only constructor
+        /// </summary>
+        /// <param name="whiteList"></param>
+        public WhiteListAttribute(params string[] whiteList)
+        {
+            WhiteList = new List<string>(whiteList);
+        }
+
+        /// <summary>
+        /// Validation occurs here
+        /// </summary>
+        /// <param name="value">Value to be validate</param>
+        /// <returns></returns>
+        public override bool IsValid(object value)
+        {
+            return WhiteList.Contains((string)value);
+        }
     }
 }

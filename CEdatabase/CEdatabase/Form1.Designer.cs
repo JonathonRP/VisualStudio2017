@@ -75,20 +75,23 @@
             // 
             // HPvalue
             // 
-            this.HPvalue.Location = new System.Drawing.Point(87, 12);
+            this.HPvalue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HPvalue.Location = new System.Drawing.Point(94, 12);
             this.HPvalue.Name = "HPvalue";
-            this.HPvalue.Size = new System.Drawing.Size(56, 22);
+            this.HPvalue.Size = new System.Drawing.Size(49, 24);
             this.HPvalue.TabIndex = 3;
             // 
             // AttackValue
             // 
-            this.AttackValue.Location = new System.Drawing.Point(87, 42);
+            this.AttackValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AttackValue.Location = new System.Drawing.Point(94, 42);
             this.AttackValue.Name = "AttackValue";
-            this.AttackValue.Size = new System.Drawing.Size(56, 22);
+            this.AttackValue.Size = new System.Drawing.Size(49, 24);
             this.AttackValue.TabIndex = 4;
             // 
             // Search
             // 
+            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Search.Location = new System.Drawing.Point(479, 37);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(75, 31);
@@ -99,9 +102,10 @@
             // 
             // StartingTextSearch
             // 
+            this.StartingTextSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StartingTextSearch.Location = new System.Drawing.Point(390, 13);
             this.StartingTextSearch.Name = "StartingTextSearch";
-            this.StartingTextSearch.Size = new System.Drawing.Size(164, 22);
+            this.StartingTextSearch.Size = new System.Drawing.Size(164, 24);
             this.StartingTextSearch.TabIndex = 6;
             // 
             // label1
@@ -113,12 +117,14 @@
             this.label1.Size = new System.Drawing.Size(123, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Search for Name";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // HP
             // 
+            this.HP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HP.Location = new System.Drawing.Point(12, 13);
             this.HP.Name = "HP";
-            this.HP.Size = new System.Drawing.Size(48, 21);
+            this.HP.Size = new System.Drawing.Size(68, 21);
             this.HP.TabIndex = 10;
             this.HP.TabStop = true;
             this.HP.Text = "HP";
@@ -126,9 +132,10 @@
             // 
             // Attack
             // 
+            this.Attack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Attack.Location = new System.Drawing.Point(12, 42);
             this.Attack.Name = "Attack";
-            this.Attack.Size = new System.Drawing.Size(68, 21);
+            this.Attack.Size = new System.Drawing.Size(76, 21);
             this.Attack.TabIndex = 11;
             this.Attack.TabStop = true;
             this.Attack.Text = "Attack";
@@ -136,9 +143,10 @@
             // 
             // Compare
             // 
-            this.Compare.Location = new System.Drawing.Point(173, 13);
+            this.Compare.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Compare.Location = new System.Drawing.Point(149, 13);
             this.Compare.Name = "Compare";
-            this.Compare.Size = new System.Drawing.Size(75, 51);
+            this.Compare.Size = new System.Drawing.Size(99, 51);
             this.Compare.TabIndex = 12;
             this.Compare.Text = "Compare";
             this.Compare.UseVisualStyleBackColor = true;
@@ -169,21 +177,20 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView3.GridColor = System.Drawing.SystemColors.Window;
-            this.dataGridView3.Location = new System.Drawing.Point(12, 70);
+            this.dataGridView3.Location = new System.Drawing.Point(0, 77);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(542, 271);
+            this.dataGridView3.Size = new System.Drawing.Size(566, 271);
             this.dataGridView3.TabIndex = 14;
             this.dataGridView3.Visible = false;
-            this.dataGridView3.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellEndEdit);
-            this.dataGridView3.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellValidated);
-            this.dataGridView3.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView3_CellValidating);
             this.dataGridView3.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellValueChanged);
             this.dataGridView3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView3_MouseClick);
             // 
             // UpdateButton
             // 
+            this.UpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateButton.Location = new System.Drawing.Point(390, 37);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(75, 31);
