@@ -336,12 +336,12 @@ namespace CEdatabase
                                    where p.PName == PName
                                    select p).First();
 
-                    if(Type1 == "")
+                    if(Type1 is "")
                     {
                         Type1 = null;
                     }
 
-                    if(Type2 == "")
+                    if(Type2 is "")
                     {
                         Type2 = null;
                     }
