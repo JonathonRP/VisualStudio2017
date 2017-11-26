@@ -12,10 +12,19 @@ namespace Database_Pokedex_
     public class Pokemon : DbContext
     {
         public DbSet<PokemonBaseStat> PokemonBaseStats { get; set; }
+        public DbSet<PokemonCapRate> PokemonCapRates { get; set; }
 
         public Pokemon() : base()
         {
             Database.SetInitializer<Pokemon>(null);
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PokemonBaseStat>()
+                .HasKey(e => e.PName);
+            modelBuilder.Entity<PokemonCapRate>()
+                .HasRequired(e => e.PokemonBaseStat);
         }
     }
 }

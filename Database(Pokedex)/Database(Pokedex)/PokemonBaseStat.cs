@@ -38,6 +38,8 @@ namespace Database_Pokedex_
             "Electric", "Fire", "Grass", "Ice", "Psychic", "Water", "Fairy", ""}, ErrorMessage = "Not a valid pokemon type in Type2")]
         [Column(UpdateCheck = UpdateCheck.WhenChanged, CanBeNull = true)]
         public string Type2 { get; set; }
+
+        public virtual PokemonCapRate PokemonCapRate { get; set; }
     }
 
     /// <summary>

@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Web;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
+using Controls = System.Windows.Controls;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,170 +15,175 @@ using System.Windows.Forms;
 using System.Data.Linq;
 using System.Data.OleDb;
 using System.Data.Entity;
-using System.ComponentModel.DataAnnotations;
-using Database_Pokedex_;
+using Data = System.ComponentModel.DataAnnotations;
+using WPFdataGrid;
+
 
 namespace Database_Pokedex_
 {
     public partial class Form1 : Form
     {
-        private PokemonBaseStat pokemon;
+        public PokemonBaseStat pokemon;
 
         private Pokemon Pokemon;
 
         private CancelEvent EventArgs = new CancelEvent();
 
+        public ContextMenuStrip contextMenu;
+
         public Form1()
         {
             InitializeComponent();
+
+            contextMenu = contextMenuStrip;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Pokemon = new Pokemon();
-            bindingSource1.DataSource = Pokemon.PokemonBaseStats.Local.ToBindingList();
 
-
-            using (Pokemon db = new Pokemon())
-            {
-                var pokemon = (from p in db.PokemonBaseStats
-                                select p).ToList();
-
-                bindingSource1.DataSource = pokemon;
-                dataGridView.DataSource = bindingSource1;
-            }
         }
 
         private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            pokemon = new PokemonBaseStat()
-            {
-                PName = (sender as DataGridView).Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Type1 = (sender as DataGridView).Rows[e.RowIndex].Cells[7].Value?.ToString(),
-                Type2 = (sender as DataGridView).Rows[e.RowIndex].Cells[8].Value?.ToString()
-            };
+            //WPFdataGrid.UserControl1 wPFdataGrid = elementHost1.Child as WPFdataGrid.UserControl1;
+            //var dataGridView = wPFdataGrid.grid;
+
+            //pokemon = new PokemonBaseStat()
+            //{
+            //    PName = dataGridView.SelectedCells[0].Item.ToString(),
+            //    Type1 = dataGridView.SelectedCells[7].Item?.ToString(),
+            //    Type2 = dataGridView.SelectedCells[8].Item?.ToString()
+            //};
 
             //try catch
 
-            ValidationContext Valid = new ValidationContext(pokemon, null, null);
-            IList<ValidationResult> errors = new List<ValidationResult>();
+            //Data.ValidationContext Valid = new Data.ValidationContext(pokemon, null, null);
+            //IList<Data.ValidationResult> errors = new List<Data.ValidationResult>();
 
-            if (!Validator.TryValidateObject(pokemon, Valid, errors, true))
-            {
-                (sender as DataGridView).Rows[e.RowIndex].ErrorText = null;
-                EventArgs.Error = null;
+            //if (!Data.Validator.TryValidateObject(pokemon, Valid, errors, true))
+            //{
+            //    dataGridView.Items[e.RowIndex].ErrorText = null;
+            //    EventArgs.Error = null;
 
-                foreach (ValidationResult result in errors)
-                {
-                    EventArgs.Cancel = true;
-                    EventArgs.Error += $"{result.ErrorMessage}\n";
-                    (sender as DataGridView).Rows[e.RowIndex].ErrorText += $"{result.ErrorMessage}\n";
-                }
-            }
-            else
-            {
-                EventArgs.Cancel = false;
-                (sender as DataGridView).Rows[e.RowIndex].ErrorText = null;
-            }
+            //    foreach (Data.ValidationResult result in errors)
+            //    {
+            //        EventArgs.Cancel = true;
+            //        EventArgs.Error += $"{result.ErrorMessage}\n";
+            //        dataGridView.Items[e.RowIndex].ErrorText += $"{result.ErrorMessage}\n";
+            //    }
+            //}
+            //else
+            //{
+            //    EventArgs.Cancel = false;
+            //    dataGridView.Items[e.RowIndex].ErrorText = null;
+            //}
         }
 
-        private void dataGridView_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                if ((sender as DataGridView).HitTest(e.X, e.Y).RowIndex == dataGridView.RowCount - 2 && pokemon != null)
-                {
-                    PokemonBaseStat monster;
+        //private void dataGridView_MouseClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    WPFdataGrid.UserControl1 wPFdataGrid = elementHost1.Child as WPFdataGrid.UserControl1;
+        //    var dataGridView = wPFdataGrid.dataGrid;
 
-                    var PName = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[0].Value.ToString();
+        //    DependencyObject Hit = (DependencyObject)e.OriginalSource;
+        //    Controls.DataGridRow dataRow = Hit as Controls.DataGridRow;
 
-                    try
-                    {
-                        monster = (from p in Pokemon.PokemonBaseStats
-                                   where p.PName == PName
-                                   select p).First();
-                    }
-                    catch
-                    {
-                        monster = null;
-                    }
+        //    if (e.RightButton == MouseButtonState.Pressed)
+        //    {
+        //        if (dataRow.GetIndex() == dataGridView.Items.Count - 2 && pokemon != null)
+        //        {
+        //            PokemonBaseStat monster;
 
-                    if (monster == null)
-                    {
-                        contextMenuStrip.Items[0].Visible = true;
-                        contextMenuStrip.Items[1].Visible = false;
-                        contextMenuStrip.Items[2].Visible = false;
-                        contextMenuStrip.Show(Cursor.Position);
-                    }
-                }
+        //            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-                if ((sender as DataGridView).HitTest(e.X, e.Y).RowIndex < dataGridView.RowCount - 1 && pokemon != null
-                    && dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].ErrorText == string.Empty)
-                {
-                    PokemonBaseStat monster;
+        //            var PName = properties["PName"].GetValue(dataRow.Item).ToString();
 
-                    var PName = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[0].Value.ToString();
-                    var Type1 = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[7].Value?.ToString();
-                    var Type2 = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[8].Value?.ToString();
+        //            try
+        //            {
+        //                monster = (from p in Pokemon.PokemonBaseStats
+        //                           where p.PName == PName
+        //                           select p).First();
+        //            }
+        //            catch
+        //            {
+        //                monster = null;
+        //            }
 
-                    try
-                    {
-                        monster = (from p in Pokemon.PokemonBaseStats
-                                   where p.PName == PName
-                                   select p).First();
-                    }
-                    catch
-                    {
-                        monster = null;
-                        return;
-                    }
+        //            if (monster == null)
+        //            {
+        //                contextMenuStrip.Items[0].Visible = true;
+        //                contextMenuStrip.Items[1].Visible = false;
+        //                contextMenuStrip.Items[2].Visible = false;
+        //                contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+        //            }
+        //        }
 
-                    if (monster.PName == pokemon.PName
-                        && (monster.Type1 != pokemon.Type1 || monster.Type2 != pokemon.Type2))
-                    {
-                        contextMenuStrip.Items[0].Visible = false;
-                        contextMenuStrip.Items[1].Visible = true;
-                        contextMenuStrip.Items[2].Visible = false;
-                        contextMenuStrip.Show(Cursor.Position);
-                    }
-                }
+        //        if (dataRow.GetIndex() < dataGridView.Items.Count - 1 && pokemon != null
+        //            && System.Windows.Controls.Validation.GetHasError(dataGridView) == false)
+        //        {
+        //            PokemonBaseStat monster;
 
-                if ((sender as DataGridView).HitTest(e.X, e.Y).RowIndex < dataGridView.RowCount - 1
-                    && dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].ErrorText == string.Empty)
-                {
-                    string PName = string.Empty;
-                    string Type1 = string.Empty;
-                    string Type2 = string.Empty;
+        //            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-                    PName = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[0].Value.ToString();
-                    Type1 = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[7].Value?.ToString();
-                    Type2 = dataGridView.Rows[dataGridView.HitTest(e.X, e.Y).RowIndex].Cells[8].Value?.ToString();
+        //            var PName = properties["PName"].GetValue(dataRow.Item).ToString();
+        //            var Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
+        //            var Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
 
-                    var monster = (from p in Pokemon.PokemonBaseStats
-                                   where p.PName == PName
-                                   select p).First();
+        //            try
+        //            {
+        //                monster = (from p in Pokemon.PokemonBaseStats
+        //                           where p.PName == PName
+        //                           select p).First();
+        //            }
+        //            catch
+        //            {
+        //                monster = null;
+        //                return;
+        //            }
 
-                    if (Type1 == "")
-                    {
-                        Type1 = null;
-                    }
+        //            if (monster.PName == pokemon.PName
+        //                && (monster.Type1 != pokemon.Type1 || monster.Type2 != pokemon.Type2))
+        //            {
+        //                contextMenuStrip.Items[0].Visible = false;
+        //                contextMenuStrip.Items[1].Visible = true;
+        //                contextMenuStrip.Items[2].Visible = false;
+        //                contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+        //            }
+        //        }
 
-                    if (Type2 == "")
-                    {
-                        Type2 = null;
-                    }
+        //        if (dataRow.GetIndex() < dataGridView.Items.Count - 1
+        //            && System.Windows.Controls.Validation.GetHasError(dataGridView) == false)
+        //        {
+        //            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-                    if (monster.PName == PName
-                        && monster.Type1 == Type1 && monster.Type2 == Type2)
-                    {
-                        contextMenuStrip.Items[0].Visible = false;
-                        contextMenuStrip.Items[1].Visible = false;
-                        contextMenuStrip.Items[2].Visible = true;
-                        contextMenuStrip.Show(Cursor.Position);
-                    }
-                }
-            }
-        }
+        //            var PName = properties["PName"].GetValue(dataRow.Item).ToString();
+        //            var Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
+        //            var Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
+
+        //            var monster = (from p in Pokemon.PokemonBaseStats
+        //                           where p.PName == PName
+        //                           select p).First();
+
+        //            if (Type1 == "")
+        //            {
+        //                Type1 = null;
+        //            }
+
+        //            if (Type2 == "")
+        //            {
+        //                Type2 = null;
+        //            }
+
+        //            if (monster.PName == PName
+        //                && monster.Type1 == Type1 && monster.Type2 == Type2)
+        //            {
+        //                contextMenuStrip.Items[0].Visible = false;
+        //                contextMenuStrip.Items[1].Visible = false;
+        //                contextMenuStrip.Items[2].Visible = true;
+        //                contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+        //            }
+        //        }
+        //    }
+        //}
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -182,6 +192,11 @@ namespace Database_Pokedex_
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //WPFdataGrid.UserControl1 wPFdataGrid = elementHost1.Child as WPFdataGrid.UserControl1;
+            //var dataGridView = wPFdataGrid.grid;
+
+            Pokemon = new Pokemon();
+
             if (EventArgs.Cancel != true)
             {
                 //pokemon entity
@@ -212,20 +227,20 @@ namespace Database_Pokedex_
 
                 try
                 {
-                    dataGridView.EndEdit();
+                    //dataGridView.CommitEdit();
                     //pokemon entity save changes
                     Pokemon.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($" Data: {ex.Data} \n Source: {ex.Source} \n " +
+                    System.Windows.Forms.MessageBox.Show($" Data: {ex.Data} \n Source: {ex.Source} \n " +
                         $"Message: {ex.Message} \n Inner Error: {ex.InnerException} \n Target Site: {ex.TargetSite} \n Stack Trace: {ex.StackTrace} \n " +
                         $"Result Code: {ex.HResult} \n {ex.HelpLink}");
                 }
             }
             else
             {
-                MessageBox.Show(EventArgs.Error, "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                System.Windows.Forms.MessageBox.Show(EventArgs.Error, "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
