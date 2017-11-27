@@ -145,18 +145,18 @@ namespace CEdatabase
                                                      select p.Type2;
 
             pokemons.Columns.Add("PName", typeof(string));
-                    pokemons.Columns.Add("Type1", typeof(string));
-                    pokemons.Columns.Add("Type2", typeof(string));
+            pokemons.Columns.Add("Type1", typeof(string));
+            pokemons.Columns.Add("Type2", typeof(string));
 
-                    for (int i = 0; i < pokemon_name.Count(); i++)
-                    {
-                        DataRow row = pokemons.NewRow();
-                        row["PName"] = pokemon_name.ElementAt(i);
-                        row["Type1"] = pokemon_firstType.ElementAt(i);
-                        row["Type2"] = pokemon_secondType.ElementAt(i);
+            for (int i = 0; i < pokemon_name.Count(); i++)
+            {
+                DataRow row = pokemons.NewRow();
+                row["PName"] = pokemon_name.ElementAt(i);
+                row["Type1"] = pokemon_firstType.ElementAt(i);
+                row["Type2"] = pokemon_secondType.ElementAt(i);
 
-                        pokemons.Rows.Add(row);
-                    }
+                pokemons.Rows.Add(row);
+            }
 
             bindingSource1.DataSource = pokemons;
 

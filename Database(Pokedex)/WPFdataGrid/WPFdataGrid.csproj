@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Database%28Pokedex%29">
-      <HintPath>..\Database(Pokedex)\bin\Debug\Database(Pokedex).exe</HintPath>
+    <Reference Include="Database%28Pokedex%29, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database(Pokedex)\obj\x86\Debug\Database(Pokedex).exe</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -89,6 +90,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Database_Pokedex_.Pokemon.datasource" />
+    <None Include="Properties\DataSources\Database_Pokedex_.PokemonBaseStat.datasource" />
+    <None Include="Properties\DataSources\Database_Pokedex_.PokemonCapRate.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

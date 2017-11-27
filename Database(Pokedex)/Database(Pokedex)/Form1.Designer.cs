@@ -44,6 +44,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.dataGridControl1 = new WPFdataGrid.DataGridControl();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -143,7 +144,7 @@
             this.elementHost1.Size = new System.Drawing.Size(964, 573);
             this.elementHost1.TabIndex = 19;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = null;
+            this.elementHost1.Child = this.dataGridControl1;
             // 
             // Form1
             // 
@@ -184,6 +185,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.BindingSource bindingSource2;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private WPFdataGrid.DataGridControl dataGridControl1;
     }
 }
 

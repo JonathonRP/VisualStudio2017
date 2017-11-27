@@ -5,8 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFdataGrid"
              x:Class="WPFdataGrid.DataGridControl"
-             Height="400" Width="600">
-    <Grid Loaded="Grid_Loaded">
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="580" Margin="10,10,0,0" MouseUp="dataGrid_MouseUp" CanUserDeleteRows="False" RowDetailsVisibilityMode="Collapsed"/>
+             Height="500" Width="600" Loaded="OnLoad">
+    <Grid>
+        <DataGrid Name="dataGrid" Margin="0" CanUserDeleteRows="False" RowDetailsVisibilityMode="Collapsed" Height="501" VerticalContentAlignment="Stretch" ColumnWidth="2*" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="PName" Binding="{Binding PName}"/>
+                <DataGridTextColumn Header="HP" Binding="{Binding HP}"/>
+                <DataGridTextColumn Header="Attack" Binding="{Binding Attack}"/>
+                <DataGridTextColumn Header="Defense" Binding="{Binding Defense}"/>
+                <DataGridTextColumn Header="Special Attack" Binding="{Binding SPAttack}"/>
+                <DataGridTextColumn Header="Special Defense" Binding="{Binding SPDefense}"/>
+                <DataGridTextColumn Header="Speed" Binding="{Binding Speed}"/>
+                <DataGridTextColumn Header="First Type" Binding="{Binding Type1}"/>
+                <DataGridTextColumn Header="Second Type" Binding="{Binding Type2}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DataGrid Name="details" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ColumnWidth="2*">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Cap Rate" Binding="{Binding CapRate}"/>
+                            <DataGridTextColumn Header="Exp Drop" Binding="{Binding ExpDrop}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
     </Grid>
 </UserControl>

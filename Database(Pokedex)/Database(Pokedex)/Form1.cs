@@ -29,40 +29,37 @@ namespace Database_Pokedex_
 
         private CancelEvent EventArgs = new CancelEvent();
 
-        public ContextMenuStrip contextMenu;
-
         public Form1()
         {
             InitializeComponent();
-
-            contextMenu = contextMenuStrip;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            Controls.DataGrid grid = dataGrid.grid;
+            grid.MouseRightButtonUp += new MouseButtonEventHandler(dataGrid_MouseClick);
+            grid.CurrentCellChanged += new EventHandler<EventArgs>(dataGrid_CellValueChanged);
         }
 
-        private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void dataGrid_CellValueChanged(object sender, EventArgs e)
         {
-            //WPFdataGrid.UserControl1 wPFdataGrid = elementHost1.Child as WPFdataGrid.UserControl1;
-            //var dataGridView = wPFdataGrid.grid;
+            WPFdataGrid.DataGridControl wPFdataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            var dataGridView = wPFdataGrid.grid;
 
-            //pokemon = new PokemonBaseStat()
-            //{
-            //    PName = dataGridView.SelectedCells[0].Item.ToString(),
-            //    Type1 = dataGridView.SelectedCells[7].Item?.ToString(),
-            //    Type2 = dataGridView.SelectedCells[8].Item?.ToString()
-            //};
-
-            //try catch
+            pokemon = new PokemonBaseStat()
+            {
+                PName = dataGridView.SelectedCells[0].Item.ToString(),
+                Type1 = dataGridView.SelectedCells[7].Item?.ToString(),
+                Type2 = dataGridView.SelectedCells[8].Item?.ToString()
+            };
 
             //Data.ValidationContext Valid = new Data.ValidationContext(pokemon, null, null);
             //IList<Data.ValidationResult> errors = new List<Data.ValidationResult>();
 
             //if (!Data.Validator.TryValidateObject(pokemon, Valid, errors, true))
             //{
-            //    dataGridView.Items[e.RowIndex].ErrorText = null;
+            //    dataGridView.Items[].ErrorText = null;
             //    EventArgs.Error = null;
 
             //    foreach (Data.ValidationResult result in errors)
@@ -75,115 +72,112 @@ namespace Database_Pokedex_
             //else
             //{
             //    EventArgs.Cancel = false;
-            //    dataGridView.Items[e.RowIndex].ErrorText = null;
+            //    dataGridView.Items[].ErrorText = null;
             //}
         }
 
-        //private void dataGridView_MouseClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    WPFdataGrid.UserControl1 wPFdataGrid = elementHost1.Child as WPFdataGrid.UserControl1;
-        //    var dataGridView = wPFdataGrid.dataGrid;
+        private void dataGrid_MouseClick(object sender, MouseButtonEventArgs e)
+        {
+            WPFdataGrid.DataGridControl wPFdataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            var dataGridView = wPFdataGrid.grid;
 
-        //    DependencyObject Hit = (DependencyObject)e.OriginalSource;
-        //    Controls.DataGridRow dataRow = Hit as Controls.DataGridRow;
+            DependencyObject Hit = (DependencyObject)e.OriginalSource;
+            Controls.DataGridRow dataRow = Hit as Controls.DataGridRow;
 
-        //    if (e.RightButton == MouseButtonState.Pressed)
-        //    {
-        //        if (dataRow.GetIndex() == dataGridView.Items.Count - 2 && pokemon != null)
-        //        {
-        //            PokemonBaseStat monster;
+            if (dataRow.GetIndex() == dataGridView.Items.Count - 2 && pokemon != null)
+            {
+                PokemonBaseStat monster;
 
-        //            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
+                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-        //            var PName = properties["PName"].GetValue(dataRow.Item).ToString();
+                var PName = properties["PName"].GetValue(dataRow.Item).ToString();
 
-        //            try
-        //            {
-        //                monster = (from p in Pokemon.PokemonBaseStats
-        //                           where p.PName == PName
-        //                           select p).First();
-        //            }
-        //            catch
-        //            {
-        //                monster = null;
-        //            }
+                try
+                {
+                    monster = (from p in Pokemon.PokemonBaseStats
+                                where p.PName == PName
+                                select p).First();
+                }
+                catch
+                {
+                    monster = null;
+                }
 
-        //            if (monster == null)
-        //            {
-        //                contextMenuStrip.Items[0].Visible = true;
-        //                contextMenuStrip.Items[1].Visible = false;
-        //                contextMenuStrip.Items[2].Visible = false;
-        //                contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
-        //            }
-        //        }
+                if (monster == null)
+                {
+                    contextMenuStrip.Items[0].Visible = true;
+                    contextMenuStrip.Items[1].Visible = false;
+                    contextMenuStrip.Items[2].Visible = false;
+                    contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+                }
+            }
 
-        //        if (dataRow.GetIndex() < dataGridView.Items.Count - 1 && pokemon != null
-        //            && System.Windows.Controls.Validation.GetHasError(dataGridView) == false)
-        //        {
-        //            PokemonBaseStat monster;
+            if (dataRow.GetIndex() < dataGridView.Items.Count - 1 && pokemon != null
+                && System.Windows.Controls.Validation.GetHasError(dataGridView) == false)
+            {
+                PokemonBaseStat monster;
 
-        //            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
+                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-        //            var PName = properties["PName"].GetValue(dataRow.Item).ToString();
-        //            var Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
-        //            var Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
+                var PName = properties["PName"].GetValue(dataRow.Item).ToString();
+                var Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
+                var Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
 
-        //            try
-        //            {
-        //                monster = (from p in Pokemon.PokemonBaseStats
-        //                           where p.PName == PName
-        //                           select p).First();
-        //            }
-        //            catch
-        //            {
-        //                monster = null;
-        //                return;
-        //            }
+                try
+                {
+                    monster = (from p in Pokemon.PokemonBaseStats
+                                where p.PName == PName
+                                select p).First();
+                }
+                catch
+                {
+                    monster = null;
+                    return;
+                }
 
-        //            if (monster.PName == pokemon.PName
-        //                && (monster.Type1 != pokemon.Type1 || monster.Type2 != pokemon.Type2))
-        //            {
-        //                contextMenuStrip.Items[0].Visible = false;
-        //                contextMenuStrip.Items[1].Visible = true;
-        //                contextMenuStrip.Items[2].Visible = false;
-        //                contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
-        //            }
-        //        }
+                if (monster.PName == pokemon.PName
+                    && (monster.Type1 != pokemon.Type1 || monster.Type2 != pokemon.Type2))
+                {
+                    contextMenuStrip.Items[0].Visible = false;
+                    contextMenuStrip.Items[1].Visible = true;
+                    contextMenuStrip.Items[2].Visible = false;
+                    contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+                }
+            }
 
-        //        if (dataRow.GetIndex() < dataGridView.Items.Count - 1
-        //            && System.Windows.Controls.Validation.GetHasError(dataGridView) == false)
-        //        {
-        //            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
+            if (dataRow.GetIndex() < dataGridView.Items.Count - 1
+                && System.Windows.Controls.Validation.GetHasError(dataGridView) == false)
+            {
+                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-        //            var PName = properties["PName"].GetValue(dataRow.Item).ToString();
-        //            var Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
-        //            var Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
+                var PName = properties["PName"].GetValue(dataRow.Item).ToString();
+                var Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
+                var Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
 
-        //            var monster = (from p in Pokemon.PokemonBaseStats
-        //                           where p.PName == PName
-        //                           select p).First();
+                var monster = (from p in Pokemon.PokemonBaseStats
+                                where p.PName == PName
+                                select p).First();
 
-        //            if (Type1 == "")
-        //            {
-        //                Type1 = null;
-        //            }
+                if (Type1 == "")
+                {
+                    Type1 = null;
+                }
 
-        //            if (Type2 == "")
-        //            {
-        //                Type2 = null;
-        //            }
+                if (Type2 == "")
+                {
+                    Type2 = null;
+                }
 
-        //            if (monster.PName == PName
-        //                && monster.Type1 == Type1 && monster.Type2 == Type2)
-        //            {
-        //                contextMenuStrip.Items[0].Visible = false;
-        //                contextMenuStrip.Items[1].Visible = false;
-        //                contextMenuStrip.Items[2].Visible = true;
-        //                contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
-        //            }
-        //        }
-        //    }
-        //}
+                if (monster.PName == PName
+                    && monster.Type1 == Type1 && monster.Type2 == Type2)
+                {
+                    contextMenuStrip.Items[0].Visible = false;
+                    contextMenuStrip.Items[1].Visible = false;
+                    contextMenuStrip.Items[2].Visible = true;
+                    contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+                }
+            }
+        }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
