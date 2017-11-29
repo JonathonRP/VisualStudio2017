@@ -3,7 +3,7 @@ using System.Web;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using Controls = System.Windows.Controls;
+using Control = System.Windows.Controls;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,43 +37,56 @@ namespace Database_Pokedex_
         private void Form1_Load(object sender, EventArgs e)
         {
             WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
-            Controls.DataGrid grid = dataGrid.grid;
+            Control.DataGrid grid = dataGrid.grid;
+            grid.IsReadOnly = true;
+            grid.Items.IsLiveFiltering = true;
             grid.MouseRightButtonUp += new MouseButtonEventHandler(dataGrid_MouseClick);
-            grid.CurrentCellChanged += new EventHandler<EventArgs>(dataGrid_CellValueChanged);
+            grid.CellEditEnding += new EventHandler<Control.DataGridCellEditEndingEventArgs>(dataGrid_CellValueChanged);
         }
 
-        private void dataGrid_CellValueChanged(object sender, EventArgs e)
+        private void dataGrid_CellValueChanged(object sender, Control.DataGridCellEditEndingEventArgs e)
         {
-            WPFdataGrid.DataGridControl wPFdataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
-            var dataGridView = wPFdataGrid.grid;
+            System.Windows.Forms.MessageBox.Show("Row Edit not committed");
 
-            pokemon = new PokemonBaseStat()
+            if (e.EditAction == Control.DataGridEditAction.Commit)
             {
-                PName = dataGridView.SelectedCells[0].Item.ToString(),
-                Type1 = dataGridView.SelectedCells[7].Item?.ToString(),
-                Type2 = dataGridView.SelectedCells[8].Item?.ToString()
-            };
+                WPFdataGrid.DataGridControl wPFdataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+                var dataGridView = wPFdataGrid.grid;
 
-            //Data.ValidationContext Valid = new Data.ValidationContext(pokemon, null, null);
-            //IList<Data.ValidationResult> errors = new List<Data.ValidationResult>();
+                Control.DataGridRow dataRow = e.Row as Control.DataGridRow;
 
-            //if (!Data.Validator.TryValidateObject(pokemon, Valid, errors, true))
-            //{
-            //    dataGridView.Items[].ErrorText = null;
-            //    EventArgs.Error = null;
+                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-            //    foreach (Data.ValidationResult result in errors)
-            //    {
-            //        EventArgs.Cancel = true;
-            //        EventArgs.Error += $"{result.ErrorMessage}\n";
-            //        dataGridView.Items[e.RowIndex].ErrorText += $"{result.ErrorMessage}\n";
-            //    }
-            //}
-            //else
-            //{
-            //    EventArgs.Cancel = false;
-            //    dataGridView.Items[].ErrorText = null;
-            //}
+                pokemon = new PokemonBaseStat()
+                {
+                    PName = properties["PName"].GetValue(dataRow.Item).ToString(),
+                    Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString(),
+                    Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString()
+                };
+
+                System.Windows.Forms.MessageBox.Show("Row Edit Ending!");
+
+                //Data.ValidationContext Valid = new Data.ValidationContext(pokemon, null, null);
+                //IList<Data.ValidationResult> errors = new List<Data.ValidationResult>();
+
+                //if (!Data.Validator.TryValidateObject(pokemon, Valid, errors, true))
+                //{
+                //    dataGridView.Items[].ErrorText = null;
+                //    EventArgs.Error = null;
+
+                //    foreach (Data.ValidationResult result in errors)
+                //    {
+                //        EventArgs.Cancel = true;
+                //        EventArgs.Error += $"{result.ErrorMessage}\n";
+                //        dataGridView.Items[e.RowIndex].ErrorText += $"{result.ErrorMessage}\n";
+                //    }
+                //}
+                //else
+                //{
+                //    EventArgs.Cancel = false;
+                //    dataGridView.Items[].ErrorText = null;
+                //}
+            }
         }
 
         private void dataGrid_MouseClick(object sender, MouseButtonEventArgs e)
@@ -82,7 +95,15 @@ namespace Database_Pokedex_
             var dataGridView = wPFdataGrid.grid;
 
             DependencyObject Hit = (DependencyObject)e.OriginalSource;
-            Controls.DataGridRow dataRow = Hit as Controls.DataGridRow;
+
+            while(Hit == null || !(Hit is Control.DataGridRow))
+            {
+                Hit = VisualTreeHelper.GetParent(Hit);
+            }
+
+            Control.DataGridRow dataRow = Hit as Control.DataGridRow;
+
+            Pokemon = new Pokemon();
 
             if (dataRow.GetIndex() == dataGridView.Items.Count - 2 && pokemon != null)
             {
@@ -186,8 +207,8 @@ namespace Database_Pokedex_
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //WPFdataGrid.UserControl1 wPFdataGrid = elementHost1.Child as WPFdataGrid.UserControl1;
-            //var dataGridView = wPFdataGrid.grid;
+            WPFdataGrid.DataGridControl wPFdataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            var dataGridView = wPFdataGrid.grid;
 
             Pokemon = new Pokemon();
 
@@ -221,7 +242,7 @@ namespace Database_Pokedex_
 
                 try
                 {
-                    //dataGridView.CommitEdit();
+                    dataGridView.CommitEdit();
                     //pokemon entity save changes
                     Pokemon.SaveChanges();
                 }
@@ -247,6 +268,13 @@ namespace Database_Pokedex_
         {
             //dispose of pokemon entity
             Pokemon.Dispose();
+        }
+
+        private void EditDatabase_Click(object sender, EventArgs e)
+        {
+            WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            Control.DataGrid grid = dataGrid.grid;
+            grid.IsReadOnly = false;
         }
     }
 

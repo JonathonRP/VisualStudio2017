@@ -20,7 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Database_Pokedex_;
+using System.Diagnostics;
 
 namespace WPFdataGrid
 {
@@ -35,8 +35,6 @@ namespace WPFdataGrid
 
         private Pokemon Pokemon;
 
-        private CancelEvent EventArgs = new CancelEvent();
-
         public DataGridControl()
         {
             InitializeComponent();
@@ -45,7 +43,7 @@ namespace WPFdataGrid
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            if (DesignerProperties.GetIsInDesignMode(this) == false)
+            if (!(Process.GetCurrentProcess().ProcessName == "devenv"))
             {
                 InitControl();
             }
@@ -54,6 +52,7 @@ namespace WPFdataGrid
         protected virtual void InitControl()
         {
             Pokemon = new Pokemon();
+            Pokemon.PokemonBaseStats.Load();
             Pokemon.PokemonBaseStats.Local.ToBindingList();
 
             using (Pokemon db = new Pokemon())
@@ -62,6 +61,24 @@ namespace WPFdataGrid
                                select p).ToList();
 
                 dataGrid.ItemsSource = monster;
+            }
+        }
+
+        private void dataGrid_RowDetailsVisibilityChanged(object sender, Controls.DataGridRowDetailsEventArgs e)
+        {
+            Controls.DataGrid data = e.DetailsElement.FindName("details") as Controls.DataGrid;
+
+            using (Pokemon db = new Pokemon())
+            {
+                
+                var monsterDetails = (from p in db.PokemonBaseStats
+                                      select p.PokemonCapRate).ToList();
+
+                data.Items.Clear();
+                if (e.Row.GetIndex() < grid.Items.Count - 2)
+                {
+                    data.Items.Add(monsterDetails.ElementAt(e.Row.GetIndex()));
+                }
             }
         }
     }

@@ -45,6 +45,7 @@
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.dataGridControl1 = new WPFdataGrid.DataGridControl();
+            this.EditDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -69,7 +70,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.refreshToolStripMenuItem});
+            this.refreshToolStripMenuItem,
+            this.EditDatabase});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 28);
             this.fileToolStripMenuItem.Text = "File";
@@ -77,20 +79,20 @@
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.refreshToolStripMenuItem.Text = "Refresh";
             // 
             // toolStripComboBox1
             // 
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 28);
-            this.toolStripComboBox1.Text = "Query";
+            this.toolStripComboBox1.Text = "Search";
             // 
             // clearQueryHistoryToolStripMenuItem
             // 
             this.clearQueryHistoryToolStripMenuItem.Name = "clearQueryHistoryToolStripMenuItem";
-            this.clearQueryHistoryToolStripMenuItem.Size = new System.Drawing.Size(149, 28);
-            this.clearQueryHistoryToolStripMenuItem.Text = "Clear Query History";
+            this.clearQueryHistoryToolStripMenuItem.Size = new System.Drawing.Size(154, 28);
+            this.clearQueryHistoryToolStripMenuItem.Text = "Clear Search History";
             // 
             // fileNameToolStripMenuItem
             // 
@@ -146,6 +148,13 @@
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.dataGridControl1;
             // 
+            // EditDatabase
+            // 
+            this.EditDatabase.Name = "EditDatabase";
+            this.EditDatabase.Size = new System.Drawing.Size(181, 26);
+            this.EditDatabase.Text = "Edit Database";
+            this.EditDatabase.Click += new System.EventHandler(this.EditDatabase_Click);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -186,6 +195,7 @@
         private System.Windows.Forms.BindingSource bindingSource2;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private WPFdataGrid.DataGridControl dataGridControl1;
+        private System.Windows.Forms.ToolStripMenuItem EditDatabase;
     }
 }
 
