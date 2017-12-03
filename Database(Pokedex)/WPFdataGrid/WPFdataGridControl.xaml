@@ -5,30 +5,110 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFdataGrid"
              x:Class="WPFdataGrid.DataGridControl"
-             Height="459" Width="600" Loaded="OnLoad">
+             Loaded="OnLoad">
     <Grid>
-        <DataGrid Name="dataGrid" Margin="0" CanUserDeleteRows="False" Height="460" VerticalContentAlignment="Stretch" ColumnWidth="2*" AutoGenerateColumns="False" RowDetailsVisibilityChanged="dataGrid_RowDetailsVisibilityChanged">
+        <DataGrid Name="dataGrid" Margin="0" CanUserDeleteRows="False" VerticalContentAlignment="Stretch" ColumnWidth="SizeToHeader" AutoGenerateColumns="False" RowDetailsVisibilityChanged="dataGrid_RowDetailsVisibilityChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="PName" Binding="{Binding PName}"/>
-                <DataGridTextColumn Header="HP" Binding="{Binding HP}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Attack" Binding="{Binding Attack}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Defense" Binding="{Binding Defense}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Special Attack" Binding="{Binding SPAttack}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Special Defense" Binding="{Binding SPDefense}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Speed" Binding="{Binding Speed}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="First Type" Binding="{Binding Type1}"/>
-                <DataGridTextColumn Header="Second Type" Binding="{Binding Type2}"/>
+                <DataGridTextColumn Header="PName" Binding="{Binding PName, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
+                <DataGridTextColumn Header="HP" Binding="{Binding HP, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
+                <DataGridTextColumn Header="Attack" Binding="{Binding Attack, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
+                <DataGridTextColumn Header="Defense" Binding="{Binding Defense, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
+                <DataGridTextColumn Header="Special Attack" Binding="{Binding SPAttack, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+                <DataGridTextColumn Header="Special Defense" Binding="{Binding SPDefense, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+                <DataGridTextColumn Header="Speed" Binding="{Binding Speed, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
+                <DataGridTextColumn Header="First Type" Binding="{Binding Type1, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
+                <DataGridTextColumn Header="Second Type" Binding="{Binding Type2, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <DataGrid Name="details" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ColumnWidth="Auto" Margin="21,0,10,0">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Cap Rate" Binding="{Binding CapRate}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Exp Drop" Binding="{Binding ExpDrop}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="CapRate" Header="Cap Rate" Binding="{Binding CapRate, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+                            <DataGridTextColumn x:Name="ExpDrop" Header="Exp Drop" Binding="{Binding ExpDrop, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
                         </DataGrid.Columns>
+
+                        <DataGrid.Style>
+                            <Style TargetType="{x:Type DataGrid}">
+                                <Style.Triggers>
+                                    <Trigger Property="Validation.HasError" Value="true">
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="BorderBrush" Value="Red"/>
+                                        <Setter Property="ToolTip"
+                                        Value="{Binding RelativeSource={RelativeSource Self},
+                                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                                    </Trigger>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard Name="Fade">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                    <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.Style>
+
+                        <DataGrid.RowValidationErrorTemplate>
+                            <ControlTemplate>
+                                <Grid>
+                                    <Ellipse Width="12" Height="12"
+                                    Fill="Red" Stroke="Black"
+                                    StrokeThickness="0.5"/>
+                                                <TextBlock FontWeight="Bold" Padding="4,0,0,0"
+                                    Margin="0" VerticalAlignment="Center" Foreground="White" Text="!"
+                                ToolTip="{ Binding RelativeSource={RelativeSource
+                                 FindAncestor, AncestorType={x:Type DataGridRow}},
+                                 Path=(Validation.Errors)[0].ErrorContent}"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </DataGrid.RowValidationErrorTemplate>
+
                     </DataGrid>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Style.Triggers>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="Red"/>
+                            <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard Name="Fade">
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                        <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                        <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.RowValidationErrorTemplate>
+                <ControlTemplate>
+                    <Grid>
+                        <Ellipse Width="12" Height="12"
+                        Fill="Red" Stroke="Black"
+                        StrokeThickness="0.5"/>
+                        <TextBlock FontWeight="Bold" Padding="4,0,0,0"
+                        Margin="0" VerticalAlignment="Center" Foreground="White" Text="!"
+                                ToolTip="{ Binding RelativeSource={RelativeSource
+                                 FindAncestor, AncestorType={x:Type DataGridRow}},
+                                 Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Grid>
+                </ControlTemplate>
+            </DataGrid.RowValidationErrorTemplate>
+            
         </DataGrid>
     </Grid>
 </UserControl>

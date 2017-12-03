@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.clearQueryHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +46,6 @@
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.dataGridControl1 = new WPFdataGrid.DataGridControl();
-            this.EditDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -81,12 +81,21 @@
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
             this.refreshToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
+            // EditDatabase
+            // 
+            this.EditDatabase.Name = "EditDatabase";
+            this.EditDatabase.Size = new System.Drawing.Size(181, 26);
+            this.EditDatabase.Text = "Edit Database";
+            this.EditDatabase.Click += new System.EventHandler(this.EditDatabase_Click);
             // 
             // toolStripComboBox1
             // 
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 28);
             this.toolStripComboBox1.Text = "Search";
+            this.toolStripComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripComboBox1_KeyPress);
             // 
             // clearQueryHistoryToolStripMenuItem
             // 
@@ -147,13 +156,6 @@
             this.elementHost1.TabIndex = 19;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.dataGridControl1;
-            // 
-            // EditDatabase
-            // 
-            this.EditDatabase.Name = "EditDatabase";
-            this.EditDatabase.Size = new System.Drawing.Size(181, 26);
-            this.EditDatabase.Text = "Edit Database";
-            this.EditDatabase.Click += new System.EventHandler(this.EditDatabase_Click);
             // 
             // Form1
             // 

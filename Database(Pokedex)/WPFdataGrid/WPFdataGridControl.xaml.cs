@@ -31,6 +31,8 @@ namespace WPFdataGrid
     {
         public Controls.DataGrid grid;
 
+        public Controls.ControlTemplate errorTemplate;
+
         public PokemonBaseStat pokemon;
 
         private Pokemon Pokemon;
@@ -59,7 +61,7 @@ namespace WPFdataGrid
             {
                 var monster = (from p in db.PokemonBaseStats
                                select p).ToList();
-
+                grid.Items.Clear();
                 dataGrid.ItemsSource = monster;
             }
         }
@@ -68,16 +70,21 @@ namespace WPFdataGrid
         {
             Controls.DataGrid data = e.DetailsElement.FindName("details") as Controls.DataGrid;
 
+            Controls.DataGridRow dataRow = e.Row as Controls.DataGridRow;
+
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
+
             using (Pokemon db = new Pokemon())
             {
-                
+                var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
+
                 var monsterDetails = (from p in db.PokemonBaseStats
+                                      where p.PName == PName
                                       select p.PokemonCapRate).ToList();
 
-                data.Items.Clear();
-                if (e.Row.GetIndex() < grid.Items.Count - 2)
+                if (!(monsterDetails == null))
                 {
-                    data.Items.Add(monsterDetails.ElementAt(e.Row.GetIndex()));
+                    data.ItemsSource = monsterDetails;
                 }
             }
         }

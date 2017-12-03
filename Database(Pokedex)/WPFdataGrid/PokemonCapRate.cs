@@ -8,8 +8,9 @@ using System.Data.Linq.Mapping;
 
 namespace WPFdataGrid
 {
+    [PropertyChanged.AddINotifyPropertyChangedInterface]
     [Table(Name = "PokemonCapRates")]
-    public class PokemonCapRate
+    public class PokemonCapRate /*: PropertyValidateModel*/
     {
         [Required(ErrorMessage = "Pokemon name is required to save")]
         [StringLength(15, ErrorMessage = "Only 15 characters allowed in pokemon name")]
@@ -17,8 +18,10 @@ namespace WPFdataGrid
         [Key]
         public string PName { get; set; }
         [Column]
+        [Range(0, Int16.MaxValue, ErrorMessage = "Not a valid positive number")]
         public Int16 CapRate { get; set; }
         [Column]
+        [Range(0, Int16.MaxValue, ErrorMessage = "Not a valid positive number")]
         public Int16 ExpDrop { get; set; }
 
         public virtual PokemonBaseStat PokemonBaseStat { get; set; }
