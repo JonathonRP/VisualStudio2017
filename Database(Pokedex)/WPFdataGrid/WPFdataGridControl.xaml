@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFdataGrid"
-             x:Class="WPFdataGrid.DataGridControl"
-             Loaded="OnLoad">
+             x:Class="WPFdataGrid.DataGridControl">
     <Grid>
-        <DataGrid Name="dataGrid" Margin="0" CanUserDeleteRows="False" VerticalContentAlignment="Stretch" ColumnWidth="SizeToHeader" AutoGenerateColumns="False" RowDetailsVisibilityChanged="dataGrid_RowDetailsVisibilityChanged">
+        <DataGrid Name="dataGrid" Margin="0" CanUserDeleteRows="False" VerticalContentAlignment="Stretch" ColumnWidth="SizeToHeader" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="PName" Binding="{Binding PName, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
                 <DataGridTextColumn Header="HP" Binding="{Binding HP, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
@@ -21,7 +20,7 @@
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <DataGrid Name="details" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ColumnWidth="Auto" Margin="21,0,10,0">
+                    <DataGrid x:Name="details" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ColumnWidth="Auto" Margin="21,0,10,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="CapRate" Header="Cap Rate" Binding="{Binding CapRate, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
                             <DataGridTextColumn x:Name="ExpDrop" Header="Exp Drop" Binding="{Binding ExpDrop, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>

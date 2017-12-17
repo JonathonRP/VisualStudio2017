@@ -79,14 +79,14 @@
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // EditDatabase
             // 
             this.EditDatabase.Name = "EditDatabase";
-            this.EditDatabase.Size = new System.Drawing.Size(181, 26);
+            this.EditDatabase.Size = new System.Drawing.Size(177, 26);
             this.EditDatabase.Text = "Edit Database";
             this.EditDatabase.Click += new System.EventHandler(this.EditDatabase_Click);
             // 
@@ -102,6 +102,7 @@
             this.clearQueryHistoryToolStripMenuItem.Name = "clearQueryHistoryToolStripMenuItem";
             this.clearQueryHistoryToolStripMenuItem.Size = new System.Drawing.Size(154, 28);
             this.clearQueryHistoryToolStripMenuItem.Text = "Clear Search History";
+            this.clearQueryHistoryToolStripMenuItem.Click += new System.EventHandler(this.clearQueryHistoryToolStripMenuItem_Click);
             // 
             // fileNameToolStripMenuItem
             // 

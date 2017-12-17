@@ -31,62 +31,10 @@ namespace WPFdataGrid
     {
         public Controls.DataGrid grid;
 
-        public Controls.ControlTemplate errorTemplate;
-
-        public PokemonBaseStat pokemon;
-
-        private Pokemon Pokemon;
-
         public DataGridControl()
         {
             InitializeComponent();
             grid = dataGrid;
-        }
-
-        private void OnLoad(object sender, RoutedEventArgs e)
-        {
-            if (!(Process.GetCurrentProcess().ProcessName == "devenv"))
-            {
-                InitControl();
-            }
-        }
-
-        protected virtual void InitControl()
-        {
-            Pokemon = new Pokemon();
-            Pokemon.PokemonBaseStats.Load();
-            Pokemon.PokemonBaseStats.Local.ToBindingList();
-
-            using (Pokemon db = new Pokemon())
-            {
-                var monster = (from p in db.PokemonBaseStats
-                               select p).ToList();
-                grid.Items.Clear();
-                dataGrid.ItemsSource = monster;
-            }
-        }
-
-        private void dataGrid_RowDetailsVisibilityChanged(object sender, Controls.DataGridRowDetailsEventArgs e)
-        {
-            Controls.DataGrid data = e.DetailsElement.FindName("details") as Controls.DataGrid;
-
-            Controls.DataGridRow dataRow = e.Row as Controls.DataGridRow;
-
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
-
-            using (Pokemon db = new Pokemon())
-            {
-                var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
-
-                var monsterDetails = (from p in db.PokemonBaseStats
-                                      where p.PName == PName
-                                      select p.PokemonCapRate).ToList();
-
-                if (!(monsterDetails == null))
-                {
-                    data.ItemsSource = monsterDetails;
-                }
-            }
         }
     }
 }

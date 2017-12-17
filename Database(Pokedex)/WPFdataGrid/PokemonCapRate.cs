@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 using System.Data.Linq.Mapping;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using PropertyChanged;
 
 namespace WPFdataGrid
 {
@@ -24,6 +26,27 @@ namespace WPFdataGrid
         [Range(0, Int16.MaxValue, ErrorMessage = "Not a valid positive number")]
         public Int16 ExpDrop { get; set; }
 
-        public virtual PokemonBaseStat PokemonBaseStat { get; set; }
+        public PokemonBaseStat PokemonBaseStat { get; set; }
     }
+
+    //[PropertyChanged.AddINotifyPropertyChangedInterface]
+    //public abstract class PropertyValidateModel : IDataErrorInfo
+    //{
+    //    public String Error { get => null; }
+
+    //    public String this[string Column]
+    //    {
+    //        get
+    //        {
+    //            IList<ValidationResult> errors = new List<ValidationResult>();
+
+    //            if (Validator.TryValidateProperty(GetType().GetProperty(Column).GetValue(this), new ValidationContext(this) { MemberName = Column }, errors))
+    //            {
+    //                return null;
+    //            }
+
+    //            return $"{errors[0].ErrorMessage}\n";
+    //        }
+    //    }
+    //}
 }

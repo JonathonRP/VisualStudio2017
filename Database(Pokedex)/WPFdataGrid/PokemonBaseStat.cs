@@ -12,7 +12,7 @@ namespace WPFdataGrid
 {
     [PropertyChanged.AddINotifyPropertyChangedInterface]
     [Table(Name = "PokemonBaseStats")]
-    public partial class PokemonBaseStat /*: PropertyValidateModel*/
+    public partial class PokemonBaseStat
     {
         [Required(ErrorMessage = "Pokemon name is required to save")]
         [StringLength(15, ErrorMessage = "Only 15 characters allowed in pokemon name")]
@@ -38,12 +38,12 @@ namespace WPFdataGrid
         [Range(0, Int16.MaxValue, ErrorMessage = "Not a valid positive number")]
         public Int16 Speed { get; set; }
         [StringLength(10, ErrorMessage = "Only 10 characters allowed in Type1")]
-        [PokemonTypesAttribute(ValidTypes = new string[] {"Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
+        [PokemonTypes(ValidTypes = new string[] {"Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
             "Electric", "Fire", "Grass", "Ice", "Psychic", "Poison", "Water", "Fairy", ""}, ErrorMessage = "Not a valid pokemon type in Type1")]
         [Column(UpdateCheck = UpdateCheck.WhenChanged, CanBeNull = true)]
         public string Type1 { get; set; }
         [StringLength(10, ErrorMessage = "Only 10 characters allowed in Type2")]
-        [PokemonTypesAttribute(ValidTypes = new string[] {"Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
+        [PokemonTypes(ValidTypes = new string[] {"Normal", "Bug", "Fighting", "Flying", "Ghost", "Ground", "Rock", "Steel", "Dark", "Dragon",
             "Electric", "Fire", "Grass", "Ice", "Psychic", "Poison", "Water", "Fairy", ""}, ErrorMessage = "Not a valid pokemon type in Type2")]
         [Column(UpdateCheck = UpdateCheck.WhenChanged, CanBeNull = true)]
         public string Type2 { get; set; }
@@ -51,34 +51,12 @@ namespace WPFdataGrid
         public virtual PokemonCapRate PokemonCapRate { get; set; }
     }
 
-    //[PropertyChanged.AddINotifyPropertyChangedInterface]
-    //public abstract class PropertyValidateModel : IDataErrorInfo
-    //{
-    //    public String Error { get => null; }
-
-    //    public String this[string Column]
-    //    {
-    //        get
-    //        {
-    //            IList<ValidationResult> errors = new List<ValidationResult>();
-
-    //            if (Validator.TryValidateProperty( GetType().GetProperty(Column).GetValue(this), new ValidationContext(this) { MemberName = Column }, errors))
-    //            {
-
-    //                return null;
-    //            }
-
-    //            return $"{errors[0].ErrorMessage}\n";
-    //        }
-    //    }
-    //}
-
     /// <summary>
     /// Define an attribute that validate a property againts a white list
     /// Note that currently it only supports int type
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    sealed public class PokemonTypesAttributeAttribute : ValidationAttribute
+    sealed public class PokemonTypes : ValidationAttribute
     {
         /// <summary>
         /// The White List 

@@ -26,9 +26,12 @@ namespace Database_Pokedex_
     {
         public PokemonBaseStat pokemon;
 
+        public PokemonCapRate pokemonCapRate;
+
         private Pokemon Pokemon;
 
         private CancelEvent EventArgs = new CancelEvent();
+        private ApplicationStorage search = new ApplicationStorage();
 
         public Form1()
         {
@@ -39,11 +42,157 @@ namespace Database_Pokedex_
         {
             WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
             Control.DataGrid grid = dataGrid.grid;
+
+            var detailGrids = FindVisualChildren<Control.DataGrid>(grid);
+
             grid.IsReadOnly = true;
             grid.MouseRightButtonUp += new MouseButtonEventHandler(dataGrid_MouseRightClick);
             grid.CellEditEnding += new EventHandler<Control.DataGridCellEditEndingEventArgs>(dataGrid_CellValueChanged);
+            grid.RowDetailsVisibilityChanged += new EventHandler<Control.DataGridRowDetailsEventArgs>(dataGrid_RowDetailsVisibilityChanged);
+
+            foreach (var detailGrid in detailGrids)
+            {
+                detailGrid.IsReadOnly = true;
+                detailGrid.CellEditEnding += new EventHandler<Control.DataGridCellEditEndingEventArgs>(detailGrid_CellValueChanged);
+            }
+
+            Pokemon = new Pokemon();
+            Pokemon.PokemonBaseStats.Load();
+            Pokemon.PokemonBaseStats.Local.ToBindingList();
+
+            using (Pokemon db = new Pokemon())
+            {
+                var monster = (from p in db.PokemonBaseStats
+                               select p).ToList();
+
+                grid.Items.Clear();
+                grid.ItemsSource = monster;
+            }
+
+            foreach (var value in search.Values)
+            {
+                toolStripComboBox1.Items.Add(value);
+            }
         }
+
+        private void dataGrid_RowDetailsVisibilityChanged(object sender, Control.DataGridRowDetailsEventArgs e)
+        {
+            WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            Control.DataGrid grid = dataGrid.grid;
+
+            Control.DataGrid data = e.DetailsElement.FindName("details") as Control.DataGrid;
+
+            Control.DataGridRow dataRow = e.Row as Control.DataGridRow;
+
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
+
+            using (Pokemon db = new Pokemon())
+            {
+                var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
+
+                var monsterDetails = (from p in db.PokemonBaseStats
+                                        where p.PName == PName
+                                        select p.PokemonCapRate).ToList();
+
+                if (!(monsterDetails == null))
+                {
+                    data.ItemsSource = monsterDetails;
+                }
+            }
+
+            data.IsReadOnly = grid.IsReadOnly;
+            data.CellEditEnding += new EventHandler<Control.DataGridCellEditEndingEventArgs>(detailGrid_CellValueChanged);
+        }
+
         private void dataGrid_CellValueChanged(object sender, Control.DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == Control.DataGridEditAction.Commit)
+            {
+                WPFdataGrid.DataGridControl wPFdataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+                var dataGridView = wPFdataGrid.grid;
+
+                Control.DataGridRow dataRow = e.Row as Control.DataGridRow;
+                DataGridDetailsPresenter presenter = FindVisualChild<DataGridDetailsPresenter>(dataRow);
+
+                DataTemplate detail = presenter.ContentTemplate;
+                Control.DataGrid detailGrid = detail.FindName("details", presenter) as Control.DataGrid;
+
+                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
+                PropertyDescriptorCollection detailProperties = TypeDescriptor.GetProperties(detailGrid.Items.CurrentItem);
+
+                Int16.TryParse(properties["HP"].GetValue(dataRow.Item).ToString(), out Int16 HP);
+                Int16.TryParse(properties["Attack"].GetValue(dataRow.Item).ToString(), out Int16 Attack);
+                Int16.TryParse(properties["Defense"].GetValue(dataRow.Item).ToString(), out Int16 Defense);
+                Int16.TryParse(properties["SPAttack"].GetValue(dataRow.Item).ToString(), out Int16 SPAttack);
+                Int16.TryParse(properties["SPDefense"].GetValue(dataRow.Item).ToString(), out Int16 SPDefense);
+                Int16.TryParse(properties["Speed"].GetValue(dataRow.Item).ToString(), out Int16 Speed);
+
+                Int16.TryParse(detailProperties["CapRate"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out Int16 CapRate);
+                Int16.TryParse(detailProperties["ExpDrop"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out Int16 ExpDrop);
+
+                pokemon = new PokemonBaseStat()
+                {
+                    PName = properties["PName"].GetValue(dataRow.Item)?.ToString(),
+                    HP = HP,
+                    Attack = Attack,
+                    Defense = Defense,
+                    SPAttack = SPAttack,
+                    SPDefense = SPDefense,
+                    Speed = Speed,
+                    Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString(),
+                    Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString(),
+
+                    PokemonCapRate = new PokemonCapRate()
+                    {
+                        PName = properties["PName"].GetValue(dataRow.Item)?.ToString(),
+                        CapRate = CapRate,
+                        ExpDrop = ExpDrop
+                    }
+                };
+
+                ValidationContext validate = new ValidationContext(pokemon, null, null);
+                IList<ValidationResult> errors = new List<ValidationResult>();
+
+                if (!Validator.TryValidateObject(pokemon, validate, errors, true))
+                {
+                    e.Cancel = true;
+                    EventArgs.Cancel = true;
+                    EventArgs.Error = null;
+
+                    Control.DataErrorValidationRule validationRule = new Control.DataErrorValidationRule();
+
+                    Control.ValidationError error = new Control.ValidationError(validationRule, dataRow.BindingGroup.BindingExpressions);
+
+                    EventArgs.Error = $"{errors.First().ErrorMessage}";
+
+                    error.ErrorContent = $"{errors.First().ErrorMessage}";
+
+                    foreach (ValidationResult result in errors.Skip(1))
+                    {
+                        EventArgs.Error += $"\n{result.ErrorMessage}";
+
+                        error.ErrorContent += $"\n{result.ErrorMessage}";
+                    }
+
+                    foreach (var binding in dataRow.BindingGroup.BindingExpressions)
+                    {
+                        Control.Validation.MarkInvalid(dataRow.BindingGroup.BindingExpressions.First(), error);
+                    }
+                }
+                else
+                {
+                    Control.DataErrorValidationRule validationRule = new Control.DataErrorValidationRule();
+
+                    Control.ValidationError error = new Control.ValidationError(validationRule, dataRow.BindingGroup.BindingExpressions);
+
+                    e.Cancel = false;
+                    EventArgs.Cancel = false;
+                    error.ErrorContent = null;
+                }
+            }
+        }
+
+        private void detailGrid_CellValueChanged(object sender, Control.DataGridCellEditEndingEventArgs e)
         {
             if (e.EditAction == Control.DataGridEditAction.Commit)
             {
@@ -54,19 +203,20 @@ namespace Database_Pokedex_
 
                 PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-                pokemon = new PokemonBaseStat()
+                Int16.TryParse(properties["CapRate"]?.GetValue(dataRow.Item)?.ToString(), out Int16 CapRate);
+                Int16.TryParse(properties["ExpDrop"]?.GetValue(dataRow.Item)?.ToString(), out Int16 ExpDrop);
+
+                pokemonCapRate = new PokemonCapRate()
                 {
                     PName = properties["PName"].GetValue(dataRow.Item)?.ToString(),
-                    Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString(),
-                    Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString()
+                    CapRate = CapRate,
+                    ExpDrop = ExpDrop
                 };
 
-                //System.Windows.Forms.MessageBox.Show($"Pokemon Name: {pokemon.PName}");
-
-                //ValidationContext Valid = new ValidationContext(pokemon, null, null);
+                ValidationContext validate = new ValidationContext(pokemonCapRate, null, null);
                 IList<ValidationResult> errors = new List<ValidationResult>();
 
-                if (!Validator.TryValidateProperty(GetType().GetProperty(e.Column.Header.ToString()).GetValue(pokemon), new ValidationContext(pokemon) { MemberName = e.Column.Header.ToString() }, errors))
+                if (!Validator.TryValidateObject(pokemonCapRate, validate, errors, true))
                 {
                     e.Cancel = true;
                     EventArgs.Cancel = true;
@@ -76,18 +226,20 @@ namespace Database_Pokedex_
 
                     Control.ValidationError error = new Control.ValidationError(validationRule, dataRow.BindingGroup.BindingExpressions);
 
-                    foreach (ValidationResult result in errors)
-                    {
-                        EventArgs.Error += $"{result.ErrorMessage}\n";
+                    EventArgs.Error = $"{errors.First().ErrorMessage}";
 
-                        error.ErrorContent += $"{result.ErrorMessage}\n";
+                    error.ErrorContent = $"{errors.First().ErrorMessage}";
+
+                    foreach (ValidationResult result in errors.Skip(1))
+                    {
+                        EventArgs.Error += $"\n{result.ErrorMessage}";
+
+                        error.ErrorContent += $"\n{result.ErrorMessage}";
                     }
 
                     foreach (var binding in dataRow.BindingGroup.BindingExpressions)
                     {
                         Control.Validation.MarkInvalid(dataRow.BindingGroup.BindingExpressions.First(), error);
-
-                        //dataRow.IsEnabled = false;
                     }
                 }
                 else
@@ -97,7 +249,6 @@ namespace Database_Pokedex_
                     Control.ValidationError error = new Control.ValidationError(validationRule, dataRow.BindingGroup.BindingExpressions);
 
                     e.Cancel = false;
-                    dataRow.IsEnabled = true;
                     EventArgs.Cancel = false;
                     error.ErrorContent = null;
                 }
@@ -156,8 +307,6 @@ namespace Database_Pokedex_
                 PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
                 var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
-                var Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
-                var Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
 
                 try
                 {
@@ -172,7 +321,8 @@ namespace Database_Pokedex_
                 }
 
                 if (monster.PName == pokemon.PName
-                    && (monster.Type1 != pokemon.Type1 || monster.Type2 != pokemon.Type2))
+                    && (monster.HP != pokemon.HP || monster.Attack != pokemon.Attack || monster.Defense != pokemon.Defense || monster.SPAttack != pokemon.SPAttack || monster.SPDefense != pokemon.SPDefense ||
+                    monster.Speed != pokemon.Speed || monster.Type1 != pokemon.Type1 || monster.Type2 != pokemon.Type2 || monster.PokemonCapRate.CapRate != pokemon.PokemonCapRate.CapRate || monster.PokemonCapRate.ExpDrop != pokemon.PokemonCapRate.ExpDrop))
                 {
                     contextMenuStrip.Items[0].Visible = false;
                     contextMenuStrip.Items[1].Visible = true;
@@ -184,40 +334,118 @@ namespace Database_Pokedex_
             if (dataRow.GetIndex() <= dataGridView.Items.Count - 2
                 && Control.Validation.GetHasError(dataRow) == false)
             {
+                var detailGrids = FindVisualChildren<Control.DataGrid>(dataGridView);
+
                 PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-                var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
-                var Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
-                var Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
-
-                var monster = (from p in Pokemon.PokemonBaseStats
-                                where p.PName == PName
-                                select p).First();
-
-                if (Type1 == "")
+                if (properties["HP"] != null)
                 {
-                    Type1 = null;
-                }
+                    string PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
+                    Int16.TryParse(properties["HP"].GetValue(dataRow.Item).ToString(), out Int16 HP);
+                    Int16.TryParse(properties["Attack"].GetValue(dataRow.Item).ToString(), out Int16 Attack);
+                    Int16.TryParse(properties["Defense"].GetValue(dataRow.Item).ToString(), out Int16 Defense);
+                    Int16.TryParse(properties["SPAttack"].GetValue(dataRow.Item).ToString(), out Int16 SPAttack);
+                    Int16.TryParse(properties["SPDefense"].GetValue(dataRow.Item).ToString(), out Int16 SPDefense);
+                    Int16.TryParse(properties["Speed"].GetValue(dataRow.Item).ToString(), out Int16 Speed);
+                    string Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
+                    string Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
 
-                if (Type2 == "")
-                {
-                    Type2 = null;
-                }
+                    Int16 CapRate = 0;
+                    Int16 ExpDrop = 0;
 
-                if (monster.PName == PName
-                    && monster.Type1 == Type1 && monster.Type2 == Type2)
-                {
-                    contextMenuStrip.Items[0].Visible = false;
-                    contextMenuStrip.Items[1].Visible = false;
-                    contextMenuStrip.Items[2].Visible = true;
-                    contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+                    foreach (var detailGrid in detailGrids)
+                    {
+                        PropertyDescriptorCollection detailProperties = TypeDescriptor.GetProperties(detailGrid.Items.CurrentItem);
+                        Int16.TryParse(detailProperties["CapRate"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out CapRate);
+                        Int16.TryParse(detailProperties["ExpDrop"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out ExpDrop);
+                    }
+
+                    var monster = (from p in Pokemon.PokemonBaseStats
+                                   where p.PName == PName
+                                   select p).First();
+
+                    pokemon = new PokemonBaseStat()
+                    {
+                        PName = properties["PName"].GetValue(dataRow.Item).ToString(),
+                        HP = HP,
+                        Attack = Attack,
+                        Defense = Defense,
+                        SPAttack = SPAttack,
+                        SPDefense = SPDefense,
+                        Speed = Speed,
+                        Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString(),
+                        Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString(),
+
+                        PokemonCapRate = new PokemonCapRate()
+                        {
+                            PName = properties["PName"].GetValue(dataRow.Item).ToString(),
+                            CapRate = CapRate,
+                            ExpDrop = ExpDrop
+                        }
+                    };
+
+                    if (Type1 == "")
+                    {
+                        Type1 = null;
+                    }
+
+                    if (Type2 == "")
+                    {
+                        Type2 = null;
+                    }
+
+                    if (monster.PName == PName
+                        && monster.HP == HP && monster.Attack == Attack && monster.Defense == Defense && monster.SPAttack == SPAttack && monster.SPDefense == SPDefense &&
+                        monster.Speed == Speed && monster.Type1 == pokemon.Type1 && monster.Type2 == pokemon.Type2 && monster.PokemonCapRate.CapRate == CapRate && monster.PokemonCapRate.ExpDrop == ExpDrop)
+                    {
+                        contextMenuStrip.Items[0].Visible = false;
+                        contextMenuStrip.Items[1].Visible = false;
+                        contextMenuStrip.Items[2].Visible = true;
+                        contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+                    }
                 }
             }
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (EventArgs.Cancel != true)
+            {
+                try
+                {
+                    using (var context = new Pokemon())
+                    {
+
+                        //create Book object
+
+                        PokemonBaseStat pokemonToAdd = new PokemonBaseStat();
+
+                        //assign its properties
+                        pokemonToAdd.PName = pokemon.PName;
+                        pokemonToAdd.HP = pokemon.HP;
+                        pokemonToAdd.Attack = pokemon.Attack;
+                        pokemonToAdd.Defense = pokemon.Defense;
+                        pokemonToAdd.SPAttack = pokemon.SPAttack;
+                        pokemonToAdd.SPDefense = pokemon.SPDefense;
+                        pokemonToAdd.Speed = pokemon.Speed;
+                        pokemonToAdd.Type1 = pokemon.Type1;
+                        pokemonToAdd.Type2 = pokemon.Type2;
+                        pokemonToAdd.PokemonCapRate = pokemon.PokemonCapRate;
+                        //add the Book to the object set Books
+                        context.PokemonBaseStats.Add(pokemonToAdd);
+                        //save change to the database
+                        context.SaveChanges();
+                    }
+
+                    refreshToolStripMenuItem.PerformClick();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show($" Data: {ex.Data} \n Source: {ex.Source} \n " +
+                        $"Message: {ex.Message} \n Inner Error: {ex.InnerException} \n Target Site: {ex.TargetSite} \n Stack Trace: {ex.StackTrace} \n " +
+                        $"Result Code: {ex.HResult} \n {ex.HelpLink}");
+                }
+            }
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,6 +464,13 @@ namespace Database_Pokedex_
 
                 foreach (var monster in pokemonToUpdate)
                 {
+                    monster.HP = pokemon.HP;
+                    monster.Attack = pokemon.Attack;
+                    monster.Defense = pokemon.Defense;
+                    monster.SPAttack = pokemon.SPAttack;
+                    monster.SPDefense = monster.SPDefense;
+                    monster.Speed = pokemon.Speed;
+
                     if (pokemon.Type1 != "")
                     {
                         monster.Type1 = pokemon.Type1;
@@ -253,6 +488,9 @@ namespace Database_Pokedex_
                     {
                         monster.Type2 = null;
                     }
+
+                    monster.PokemonCapRate.CapRate = pokemon.PokemonCapRate.CapRate;
+                    monster.PokemonCapRate.ExpDrop = pokemon.PokemonCapRate.ExpDrop;
                 }
 
                 try
@@ -260,6 +498,8 @@ namespace Database_Pokedex_
                     dataGridView.CommitEdit();
                     //pokemon entity save changes
                     Pokemon.SaveChanges();
+
+                    refreshToolStripMenuItem.PerformClick();
                 }
                 catch (Exception ex)
                 {
@@ -276,7 +516,48 @@ namespace Database_Pokedex_
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            WPFdataGrid.DataGridControl wPFdataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            var dataGridView = wPFdataGrid.grid;
 
+            DialogResult result = System.Windows.Forms.MessageBox.Show("Do you want to delete this record?", "Confirmation", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    using (var context = new Pokemon())
+                    {
+                        var pokemonToDelete = from p in context.PokemonBaseStats
+                                              where p.PName == pokemon.PName
+                                              select p;
+
+                        var pokemonCapRateToDelete = from p in context.PokemonCapRates
+                                                     where p.PName == pokemon.PName
+                                                     select p;
+
+                        foreach (var monster in pokemonToDelete)
+                        {
+                            context.PokemonBaseStats.Remove(monster);
+                        }
+
+                        foreach (var monster in pokemonCapRateToDelete)
+                        {
+                            context.PokemonCapRates.Remove(monster);
+                        }
+
+                        context.SaveChanges();
+
+                    } //delete the record from the Book table
+
+                    refreshToolStripMenuItem.PerformClick();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show($" Data: {ex.Data} \n Source: {ex.Source} \n " +
+                        $"Message: {ex.Message} \n Inner Error: {ex.InnerException} \n Target Site: {ex.TargetSite} \n Stack Trace: {ex.StackTrace} \n " +
+                        $"Result Code: {ex.HResult} \n {ex.HelpLink}");
+                }
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -297,22 +578,30 @@ namespace Database_Pokedex_
             }
         }
 
-        private int count = 0;
-
         private void EditDatabase_Click(object sender, EventArgs e)
         {
-            count++;
-
             WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
             Control.DataGrid grid = dataGrid.grid;
 
-            if (count % 2 == 0)
+            var detailGrids = FindVisualChildren<Control.DataGrid>(grid);
+
+            if (grid.IsReadOnly == false)
             {
                 grid.IsReadOnly = true;
+
+                foreach (var detailGrid in detailGrids)
+                {
+                    detailGrid.IsReadOnly = grid.IsReadOnly;
+                }
             }
             else
             {
                 grid.IsReadOnly = false;
+
+                foreach (var detailGrid in detailGrids)
+                {
+                    detailGrid.IsReadOnly = grid.IsReadOnly;
+                }
             }
         }
 
@@ -343,8 +632,17 @@ namespace Database_Pokedex_
                 if (!(PName == null) && !(toolStripComboBox1.Items.Contains(PName)))
                 {
                     toolStripComboBox1.Items.Add(PName);
+                    search.Add(PName, PName);
+                    search.Save();
                 }
             }
+        }
+
+        private void clearQueryHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripComboBox1.Items.Clear();
+            search.Clear();
+            search.Save();
         }
 
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
@@ -362,6 +660,26 @@ namespace Database_Pokedex_
                 }
             }
             return null;
+        }
+
+        private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
         }
     }
 
