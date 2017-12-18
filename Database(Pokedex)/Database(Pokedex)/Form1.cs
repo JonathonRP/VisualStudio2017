@@ -28,6 +28,8 @@ namespace Database_Pokedex_
 
         public PokemonCapRate pokemonCapRate;
 
+        private List<PokemonCapRate> pokemonCapRates = new List<PokemonCapRate>();
+
         private Pokemon Pokemon;
 
         private CancelEvent EventArgs = new CancelEvent();
@@ -86,18 +88,27 @@ namespace Database_Pokedex_
 
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-            using (Pokemon db = new Pokemon())
+            var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
+
+            if (pokemonCapRates == null || !(pokemonCapRates.Any(p => p.PName == PName)))
             {
-                var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
-
-                var monsterDetails = (from p in db.PokemonBaseStats
-                                        where p.PName == PName
-                                        select p.PokemonCapRate).ToList();
-
-                if (!(monsterDetails == null))
+                using (Pokemon db = new Pokemon())
                 {
-                    data.ItemsSource = monsterDetails;
+                    var monsterDetails = (from p in db.PokemonBaseStats
+                                          where p.PName == PName
+                                          select p.PokemonCapRate).ToList();
+
+                    if (!(monsterDetails == null))
+                    {
+                        data.ItemsSource = monsterDetails;
+                    }
                 }
+            }
+            else
+            {
+                data.ItemsSource = (from p in pokemonCapRates
+                                    where p.PName == PName
+                                    select p).ToList();
             }
 
             data.IsReadOnly = grid.IsReadOnly;
@@ -112,13 +123,10 @@ namespace Database_Pokedex_
                 var dataGridView = wPFdataGrid.grid;
 
                 Control.DataGridRow dataRow = e.Row as Control.DataGridRow;
-                DataGridDetailsPresenter presenter = FindVisualChild<DataGridDetailsPresenter>(dataRow);
-
-                DataTemplate detail = presenter.ContentTemplate;
-                Control.DataGrid detailGrid = detail.FindName("details", presenter) as Control.DataGrid;
-
                 PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
-                PropertyDescriptorCollection detailProperties = TypeDescriptor.GetProperties(detailGrid.Items.CurrentItem);
+
+                DataGridDetailsPresenter presenter = FindVisualChild<DataGridDetailsPresenter>(dataRow);
+                DataTemplate detail = presenter.ContentTemplate;
 
                 Int16.TryParse(properties["HP"].GetValue(dataRow.Item).ToString(), out Int16 HP);
                 Int16.TryParse(properties["Attack"].GetValue(dataRow.Item).ToString(), out Int16 Attack);
@@ -127,8 +135,34 @@ namespace Database_Pokedex_
                 Int16.TryParse(properties["SPDefense"].GetValue(dataRow.Item).ToString(), out Int16 SPDefense);
                 Int16.TryParse(properties["Speed"].GetValue(dataRow.Item).ToString(), out Int16 Speed);
 
-                Int16.TryParse(detailProperties["CapRate"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out Int16 CapRate);
-                Int16.TryParse(detailProperties["ExpDrop"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out Int16 ExpDrop);
+                Int16 CapRate = 0;
+                Int16 ExpDrop = 0;
+
+                try
+                {
+                    Control.DataGrid detailGrid = detail.FindName("details", presenter) as Control.DataGrid;
+
+                    PropertyDescriptorCollection detailProperties = TypeDescriptor.GetProperties(detailGrid.Items.CurrentItem);
+
+                    Int16.TryParse(detailProperties["CapRate"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out CapRate);
+                    Int16.TryParse(detailProperties["ExpDrop"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out ExpDrop);
+                }
+                catch
+                {
+                    using (Pokemon db = new Pokemon())
+                    {
+                        try
+                        {
+                            CapRate = db.PokemonBaseStats.Where(p => p.PName == properties["PName"].GetValue(dataRow.Item).ToString()).Single().PokemonCapRate.CapRate;
+                            ExpDrop = db.PokemonBaseStats.Where(p => p.PName == properties["PName"].GetValue(dataRow.Item).ToString()).Single().PokemonCapRate.ExpDrop;
+                        }
+                        catch
+                        {
+                            CapRate = 0;
+                            ExpDrop = 0;
+                        }
+                    }
+                }
 
                 pokemon = new PokemonBaseStat()
                 {
@@ -251,6 +285,8 @@ namespace Database_Pokedex_
                     e.Cancel = false;
                     EventArgs.Cancel = false;
                     error.ErrorContent = null;
+
+                    pokemonCapRates.Add(pokemonCapRate);
                 }
             }
         }
@@ -268,16 +304,79 @@ namespace Database_Pokedex_
             }
 
             Control.DataGridRow dataRow = Hit as Control.DataGridRow;
+            var detailGrids = FindVisualChildren<Control.DataGrid>(dataGridView);
+
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
             Pokemon = new Pokemon();
+
+            string PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
+            Int16 HP = 0;
+            Int16 Attack = 0;
+            Int16 Defense = 0;
+            Int16 SPAttack = 0;
+            Int16 SPDefense = 0;
+            Int16 Speed = 0;
+            string Type1 = null;
+            string Type2 = null;
+
+            if (properties["HP"] != null && properties["Attack"] != null && properties["Defense"] != null && properties["SPAttack"] != null &&
+                properties["SPDefense"] != null && properties["Speed"] != null)
+            {
+                Int16.TryParse(properties["HP"].GetValue(dataRow.Item).ToString(), out HP);
+                Int16.TryParse(properties["Attack"].GetValue(dataRow.Item).ToString(), out Attack);
+                Int16.TryParse(properties["Defense"].GetValue(dataRow.Item).ToString(), out Defense);
+                Int16.TryParse(properties["SPAttack"].GetValue(dataRow.Item).ToString(), out SPAttack);
+                Int16.TryParse(properties["SPDefense"].GetValue(dataRow.Item).ToString(), out SPDefense);
+                Int16.TryParse(properties["Speed"].GetValue(dataRow.Item).ToString(), out Speed);
+                Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
+                Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
+            }
+            else
+            {
+                using (Pokemon db = new Pokemon())
+                {
+                    HP = db.PokemonBaseStats.Where(p => p.PName == PName).Single().HP;
+                    Attack = db.PokemonBaseStats.Where(p => p.PName == PName).Single().Attack;
+                    Defense = db.PokemonBaseStats.Where(p => p.PName == PName).Single().Defense;
+                    SPAttack = db.PokemonBaseStats.Where(p => p.PName == PName).Single().SPAttack;
+                    SPDefense = db.PokemonBaseStats.Where(p => p.PName == PName).Single().SPDefense;
+                    Speed = db.PokemonBaseStats.Where(p => p.PName == PName).Single().Speed;
+                }
+            }
+
+            Int16 CapRate = 0;
+            Int16 ExpDrop = 0;
+
+            if (detailGrids.Count() > 0)
+            {
+                foreach (var detailGrid in detailGrids)
+                {
+                    PropertyDescriptorCollection detailProperties = TypeDescriptor.GetProperties(detailGrid.Items.CurrentItem);
+                    Int16.TryParse(detailProperties["CapRate"].GetValue(detailGrid.Items.CurrentItem).ToString(), out CapRate);
+                    Int16.TryParse(detailProperties["ExpDrop"].GetValue(detailGrid.Items.CurrentItem).ToString(), out ExpDrop);
+                }
+            }
+            else
+            {
+                using (Pokemon db = new Pokemon())
+                {
+                    try
+                    {
+                        CapRate = db.PokemonBaseStats.Where(p => p.PName == PName).Single().PokemonCapRate.CapRate;
+                        ExpDrop = db.PokemonBaseStats.Where(p => p.PName == PName).Single().PokemonCapRate.ExpDrop;
+                    }
+                    catch
+                    {
+                        CapRate = 0;
+                        ExpDrop = 0;
+                    }
+                }
+            }
 
             if (dataRow.GetIndex() <= dataGridView.Items.Count - 2 && pokemon != null)
             {
                 PokemonBaseStat monster;
-
-                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
-                
-                var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
 
                 try
                 {
@@ -302,107 +401,80 @@ namespace Database_Pokedex_
             if (dataRow.GetIndex() <= dataGridView.Items.Count - 2 && pokemon != null
                 && Control.Validation.GetHasError(dataRow) == false)
             {
-                PokemonBaseStat monster;
-
-                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
-
-                var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
-
-                try
+                if (properties["HP"] != null && properties["Attack"] != null && properties["Defense"] != null && properties["SPAttack"] != null &&
+                    properties["SPDefense"] != null && properties["Speed"] != null)
                 {
-                    monster = (from p in Pokemon.PokemonBaseStats
-                                where p.PName == PName
-                                select p).First();
-                }
-                catch
-                {
-                    monster = null;
-                    return;
-                }
+                    PokemonBaseStat monster;
 
-                if (monster.PName == pokemon.PName
-                    && (monster.HP != pokemon.HP || monster.Attack != pokemon.Attack || monster.Defense != pokemon.Defense || monster.SPAttack != pokemon.SPAttack || monster.SPDefense != pokemon.SPDefense ||
-                    monster.Speed != pokemon.Speed || monster.Type1 != pokemon.Type1 || monster.Type2 != pokemon.Type2 || monster.PokemonCapRate.CapRate != pokemon.PokemonCapRate.CapRate || monster.PokemonCapRate.ExpDrop != pokemon.PokemonCapRate.ExpDrop))
-                {
-                    contextMenuStrip.Items[0].Visible = false;
-                    contextMenuStrip.Items[1].Visible = true;
-                    contextMenuStrip.Items[2].Visible = false;
-                    contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+                    try
+                    {
+                        monster = (from p in Pokemon.PokemonBaseStats
+                                   where p.PName == PName
+                                   select p).Single();
+                    }
+                    catch
+                    {
+                        monster = null;
+                        return;
+                    }
+
+                    if (monster.PName == pokemon.PName
+                        && (monster.HP != pokemon.HP || monster.Attack != pokemon.Attack || monster.Defense != pokemon.Defense || monster.SPAttack != pokemon.SPAttack || monster.SPDefense != pokemon.SPDefense ||
+                        monster.Speed != pokemon.Speed || monster.Type1 != pokemon.Type1 || monster.Type2 != pokemon.Type2 || monster.PokemonCapRate.CapRate != pokemon.PokemonCapRate.CapRate || monster.PokemonCapRate.ExpDrop != pokemon.PokemonCapRate.ExpDrop))
+                    {
+                        contextMenuStrip.Items[0].Visible = false;
+                        contextMenuStrip.Items[1].Visible = true;
+                        contextMenuStrip.Items[2].Visible = false;
+                        contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
+                    }
                 }
             }
 
             if (dataRow.GetIndex() <= dataGridView.Items.Count - 2
                 && Control.Validation.GetHasError(dataRow) == false)
             {
-                var detailGrids = FindVisualChildren<Control.DataGrid>(dataGridView);
+                var monster = (from p in Pokemon.PokemonBaseStats
+                                where p.PName == PName
+                                select p).First();
 
-                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
-
-                if (properties["HP"] != null)
+                pokemon = new PokemonBaseStat()
                 {
-                    string PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
-                    Int16.TryParse(properties["HP"].GetValue(dataRow.Item).ToString(), out Int16 HP);
-                    Int16.TryParse(properties["Attack"].GetValue(dataRow.Item).ToString(), out Int16 Attack);
-                    Int16.TryParse(properties["Defense"].GetValue(dataRow.Item).ToString(), out Int16 Defense);
-                    Int16.TryParse(properties["SPAttack"].GetValue(dataRow.Item).ToString(), out Int16 SPAttack);
-                    Int16.TryParse(properties["SPDefense"].GetValue(dataRow.Item).ToString(), out Int16 SPDefense);
-                    Int16.TryParse(properties["Speed"].GetValue(dataRow.Item).ToString(), out Int16 Speed);
-                    string Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString();
-                    string Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString();
+                    PName = properties["PName"].GetValue(dataRow.Item).ToString(),
+                    HP = HP,
+                    Attack = Attack,
+                    Defense = Defense,
+                    SPAttack = SPAttack,
+                    SPDefense = SPDefense,
+                    Speed = Speed,
+                    Type1 = Type1,
+                    Type2 = Type2,
 
-                    Int16 CapRate = 0;
-                    Int16 ExpDrop = 0;
-
-                    foreach (var detailGrid in detailGrids)
-                    {
-                        PropertyDescriptorCollection detailProperties = TypeDescriptor.GetProperties(detailGrid.Items.CurrentItem);
-                        Int16.TryParse(detailProperties["CapRate"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out CapRate);
-                        Int16.TryParse(detailProperties["ExpDrop"]?.GetValue(detailGrid.Items?.CurrentItem)?.ToString(), out ExpDrop);
-                    }
-
-                    var monster = (from p in Pokemon.PokemonBaseStats
-                                   where p.PName == PName
-                                   select p).First();
-
-                    pokemon = new PokemonBaseStat()
+                    PokemonCapRate = new PokemonCapRate()
                     {
                         PName = properties["PName"].GetValue(dataRow.Item).ToString(),
-                        HP = HP,
-                        Attack = Attack,
-                        Defense = Defense,
-                        SPAttack = SPAttack,
-                        SPDefense = SPDefense,
-                        Speed = Speed,
-                        Type1 = properties["Type1"].GetValue(dataRow.Item)?.ToString(),
-                        Type2 = properties["Type2"].GetValue(dataRow.Item)?.ToString(),
-
-                        PokemonCapRate = new PokemonCapRate()
-                        {
-                            PName = properties["PName"].GetValue(dataRow.Item).ToString(),
-                            CapRate = CapRate,
-                            ExpDrop = ExpDrop
-                        }
-                    };
-
-                    if (Type1 == "")
-                    {
-                        Type1 = null;
+                        CapRate = CapRate,
+                        ExpDrop = ExpDrop
                     }
+                };
 
-                    if (Type2 == "")
-                    {
-                        Type2 = null;
-                    }
+                if (Type1 == "")
+                {
+                    Type1 = null;
+                }
 
-                    if (monster.PName == PName
-                        && monster.HP == HP && monster.Attack == Attack && monster.Defense == Defense && monster.SPAttack == SPAttack && monster.SPDefense == SPDefense &&
-                        monster.Speed == Speed && monster.Type1 == pokemon.Type1 && monster.Type2 == pokemon.Type2 && monster.PokemonCapRate.CapRate == CapRate && monster.PokemonCapRate.ExpDrop == ExpDrop)
-                    {
-                        contextMenuStrip.Items[0].Visible = false;
-                        contextMenuStrip.Items[1].Visible = false;
-                        contextMenuStrip.Items[2].Visible = true;
-                        contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
-                    }
+                if (Type2 == "")
+                {
+                    Type2 = null;
+                }
+
+                if (monster.PName == PName
+                    && monster.HP == HP && monster.Attack == Attack && monster.Defense == Defense && monster.SPAttack == SPAttack && monster.SPDefense == SPDefense &&
+                    monster.Speed == Speed && monster.Type1 == pokemon.Type1 && monster.Type2 == pokemon.Type2 && monster.PokemonCapRate.CapRate == CapRate && monster.PokemonCapRate.ExpDrop == ExpDrop)
+                {
+                    contextMenuStrip.Items[0].Visible = false;
+                    contextMenuStrip.Items[1].Visible = false;
+                    contextMenuStrip.Items[2].Visible = true;
+                    contextMenuStrip.Show(System.Windows.Forms.Cursor.Position);
                 }
             }
         }
@@ -519,7 +591,10 @@ namespace Database_Pokedex_
             WPFdataGrid.DataGridControl wPFdataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
             var dataGridView = wPFdataGrid.grid;
 
-            DialogResult result = System.Windows.Forms.MessageBox.Show("Do you want to delete this record?", "Confirmation", MessageBoxButtons.OKCancel);
+            string recordDeleteConformationMessage = $@"This Record will be Deleted,
+                [ PName: ""{pokemon.PName}"", Type 1: ""{pokemon.Type1}"", Type 2: ""{pokemon.Type2}"" ] ";
+
+            DialogResult result = System.Windows.Forms.MessageBox.Show(recordDeleteConformationMessage, "Confirmation, Do You Still Want to Delete?", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand);
 
             if (result == DialogResult.OK)
             {

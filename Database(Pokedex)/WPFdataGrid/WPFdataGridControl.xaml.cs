@@ -36,5 +36,33 @@ namespace WPFdataGrid
             InitializeComponent();
             grid = dataGrid;
         }
+
+        private void Expander_Collapsed(object sender, RoutedEventArgs e)
+        {
+            DependencyObject Hit = (DependencyObject)e.OriginalSource;
+
+            while (Hit == null || !(Hit is Controls.DataGridRow))
+            {
+                Hit = VisualTreeHelper.GetParent(Hit);
+            }
+
+            Controls.DataGridRow dataRow = Hit as Controls.DataGridRow;
+
+            dataRow.DetailsVisibility = Visibility.Collapsed;
+        }
+
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            DependencyObject Hit = (DependencyObject)e.OriginalSource;
+
+            while (Hit == null || !(Hit is Controls.DataGridRow))
+            {
+                Hit = VisualTreeHelper.GetParent(Hit);
+            }
+
+            Controls.DataGridRow dataRow = Hit as Controls.DataGridRow;
+
+            dataRow.DetailsVisibility = Visibility.Visible;
+        }
     }
 }

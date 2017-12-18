@@ -6,7 +6,17 @@
              xmlns:local="clr-namespace:WPFdataGrid"
              x:Class="WPFdataGrid.DataGridControl">
     <Grid>
-        <DataGrid Name="dataGrid" Margin="0" CanUserDeleteRows="False" VerticalContentAlignment="Stretch" ColumnWidth="SizeToHeader" AutoGenerateColumns="False">
+        <Grid.Resources>
+            <ResourceDictionary Source="Assets/PlusMinusExpanderStyles.xaml" />
+        </Grid.Resources>
+        
+        <DataGrid Name="dataGrid" Margin="0" CanUserDeleteRows="False" VerticalContentAlignment="Stretch" ColumnWidth="SizeToHeader" AutoGenerateColumns="False" RowDetailsVisibilityMode="Collapsed">
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <Expander Collapsed="Expander_Collapsed" Expanded="Expander_Expanded" Style="{StaticResource PlusMinusExpander}"/>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Header="PName" Binding="{Binding PName, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
                 <DataGridTextColumn Header="HP" Binding="{Binding HP, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
@@ -56,7 +66,7 @@
                                     <Ellipse Width="12" Height="12"
                                     Fill="Red" Stroke="Black"
                                     StrokeThickness="0.5"/>
-                                                <TextBlock FontWeight="Bold" Padding="4,0,0,0"
+                                    <TextBlock FontWeight="Bold" Padding="4,0,0,0"
                                     Margin="0" VerticalAlignment="Center" Foreground="White" Text="!"
                                 ToolTip="{ Binding RelativeSource={RelativeSource
                                  FindAncestor, AncestorType={x:Type DataGridRow}},
