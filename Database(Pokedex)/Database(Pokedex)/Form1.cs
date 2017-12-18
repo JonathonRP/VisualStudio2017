@@ -75,6 +75,13 @@ namespace Database_Pokedex_
             {
                 toolStripComboBox1.Items.Add(value);
             }
+
+            fileNameToolStripMenuItem.Text = "PokemonDatabase.accdb";
+            fileNameToolStripMenuItem.ToolTipText = "Click to Open File";
+            fileToolStripMenuItem.ToolTipText = "Refresh, Edit Database";
+            fileNameToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+            menuStrip1.ShowItemToolTips = true;
+            fileNameToolStripMenuItem.Visible = true;
         }
 
         private void dataGrid_RowDetailsVisibilityChanged(object sender, Control.DataGridRowDetailsEventArgs e)
@@ -348,9 +355,9 @@ namespace Database_Pokedex_
             Int16 CapRate = 0;
             Int16 ExpDrop = 0;
 
-            if (detailGrids.Count() > 0)
+            if (detailGrids.Count() > 0 && pokemonCapRates.Count > 0 && dataRow.DetailsVisibility == Visibility.Visible)
             {
-                foreach (var detailGrid in detailGrids)
+                foreach (var detailGrid in detailGrids.Where(g => g.Items.CurrentItem.GetType().GetProperty("PName").GetValue(g.Items.CurrentItem).ToString() == dataRow.Item.GetType().GetProperty("PName").GetValue(dataRow.Item).ToString()))
                 {
                     PropertyDescriptorCollection detailProperties = TypeDescriptor.GetProperties(detailGrid.Items.CurrentItem);
                     Int16.TryParse(detailProperties["CapRate"].GetValue(detailGrid.Items.CurrentItem).ToString(), out CapRate);
@@ -594,7 +601,7 @@ namespace Database_Pokedex_
             string recordDeleteConformationMessage = $@"This Record will be Deleted,
                 [ PName: ""{pokemon.PName}"", Type 1: ""{pokemon.Type1}"", Type 2: ""{pokemon.Type2}"" ] ";
 
-            DialogResult result = System.Windows.Forms.MessageBox.Show(recordDeleteConformationMessage, "Confirmation, Do You Still Want to Delete?", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand);
+            DialogResult result = System.Windows.Forms.MessageBox.Show(recordDeleteConformationMessage, "Confirmation, Do You Still Want to Delete?", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
             if (result == DialogResult.OK)
             {
@@ -689,22 +696,7 @@ namespace Database_Pokedex_
 
                 var PName = (sender as ToolStripComboBox).Text;
 
-                using (Pokemon db = new Pokemon())
-                {
-                    if (!(PName == null))
-                    {
-                        grid.ItemsSource = (from p in db.PokemonBaseStats
-                                            where p.PName.StartsWith(PName)
-                                            select p).ToList();
-                    }
-                    else
-                    {
-                        grid.ItemsSource = (from p in db.PokemonBaseStats
-                                            select p).ToList();
-                    }
-                }
-
-                if (!(PName == null) && !(toolStripComboBox1.Items.Contains(PName)))
+                if (!(PName == null) && !(toolStripComboBox1.Items.Contains(PName)) && !(PName == "Search"))
                 {
                     toolStripComboBox1.Items.Add(PName);
                     search.Add(PName, PName);
@@ -713,11 +705,83 @@ namespace Database_Pokedex_
             }
         }
 
+        private void toolStripComboBox1_TextChanged(object sender, EventArgs e)
+        {
+            WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            Control.DataGrid grid = dataGrid.grid;
+
+            var PName = (sender as ToolStripComboBox).Text;
+
+            using (Pokemon db = new Pokemon())
+            {
+                if (!(PName == null))
+                {
+                    if (PName == "Search")
+                    {
+                        grid.ItemsSource = (from p in db.PokemonBaseStats
+                                            select p).ToList();
+                    }
+                    else
+                    {
+                        grid.ItemsSource = (from p in db.PokemonBaseStats
+                                            where p.PName.StartsWith(PName)
+                                            select p).ToList();
+                    }
+                }
+                else
+                {
+                    grid.ItemsSource = (from p in db.PokemonBaseStats
+                                        select p).ToList();
+                }
+            }
+        }
+
+        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            Control.DataGrid grid = dataGrid.grid;
+
+            var PName = (sender as ToolStripComboBox).Text;
+
+            using (Pokemon db = new Pokemon())
+            {
+                if (!(PName == null))
+                {
+                    if (PName == "Search")
+                    {
+                        grid.ItemsSource = (from p in db.PokemonBaseStats
+                                            select p).ToList();
+                    }
+                    else
+                    {
+                        grid.ItemsSource = (from p in db.PokemonBaseStats
+                                            where p.PName.StartsWith(PName)
+                                            select p).ToList();
+                    }
+                }
+                else
+                {
+                    grid.ItemsSource = (from p in db.PokemonBaseStats
+                                        select p).ToList();
+                }
+            }
+        }
+
+        private void clearSearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripComboBox1.Text = "Search";
+        }
+
         private void clearQueryHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             toolStripComboBox1.Items.Clear();
             search.Clear();
             search.Save();
+        }
+
+        private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("..\\..\\..\\PokemonDatabase.accdb");
         }
 
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject

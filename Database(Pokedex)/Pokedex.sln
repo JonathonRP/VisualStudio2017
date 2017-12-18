@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database(Pokedex)", "Database(Pokedex)\Database(Pokedex).csproj", "{A0821E1E-DEE6-4859-A35E-1573DA187059}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex", "Database(Pokedex)\Pokedex.csproj", "{A0821E1E-DEE6-4859-A35E-1573DA187059}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A9EAB570-9E40-4EFB-8CAE-E21B6FDC20A8} = {A9EAB570-9E40-4EFB-8CAE-E21B6FDC20A8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFdataGrid", "WPFdataGrid\WPFdataGrid.csproj", "{A9EAB570-9E40-4EFB-8CAE-E21B6FDC20A8}"
 EndProject

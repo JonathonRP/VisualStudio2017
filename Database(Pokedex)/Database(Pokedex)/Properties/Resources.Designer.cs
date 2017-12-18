@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Database_Pokedex_.Properties
-{
-
-
+namespace Database_Pokedex_.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,1290 @@ namespace Database_Pokedex_.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Database_Pokedex_.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] EntityFramework {
+            get {
+                object obj = ResourceManager.GetObject("EntityFramework", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] EntityFramework_SqlServer {
+            get {
+                object obj = ResourceManager.GetObject("EntityFramework_SqlServer", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] EntityFramework_SqlServer1 {
+            get {
+                object obj = ResourceManager.GetObject("EntityFramework_SqlServer1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] EntityFramework1 {
+            get {
+                object obj = ResourceManager.GetObject("EntityFramework1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] JetEntityFrameworkProvider {
+            get {
+                object obj = ResourceManager.GetObject("JetEntityFrameworkProvider", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] JetEntityFrameworkProvider1 {
+            get {
+                object obj = ResourceManager.GetObject("JetEntityFrameworkProvider1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_EntityFrameworkCore {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_EntityFrameworkCore", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_EntityFrameworkCore_Relational {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_EntityFrameworkCore_Relational", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_Caching_Abstractions {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_Caching_Abstractions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_Caching_Memory {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_Caching_Memory", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_Configuration_Abstractions {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_Configuration_Abstractions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_DependencyInjection {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_DependencyInjection", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_DependencyInjection_Abstractions {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_DependencyInjection_Abstractions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_Logging {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_Logging", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_Logging_Abstractions {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_Logging_Abstractions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_Options {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_Options", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Extensions_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Extensions_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Microsoft_Win32_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Win32_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] netstandard {
+            get {
+                object obj = ResourceManager.GetObject("netstandard", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Remotion_Linq {
+            get {
+                object obj = ResourceManager.GetObject("Remotion_Linq", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_AppContext {
+            get {
+                object obj = ResourceManager.GetObject("System_AppContext", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Collections {
+            get {
+                object obj = ResourceManager.GetObject("System_Collections", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Collections_Concurrent {
+            get {
+                object obj = ResourceManager.GetObject("System_Collections_Concurrent", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Collections_Immutable {
+            get {
+                object obj = ResourceManager.GetObject("System_Collections_Immutable", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Collections_NonGeneric {
+            get {
+                object obj = ResourceManager.GetObject("System_Collections_NonGeneric", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Collections_Specialized {
+            get {
+                object obj = ResourceManager.GetObject("System_Collections_Specialized", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_ComponentModel {
+            get {
+                object obj = ResourceManager.GetObject("System_ComponentModel", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_ComponentModel_Annotations {
+            get {
+                object obj = ResourceManager.GetObject("System_ComponentModel_Annotations", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_ComponentModel_EventBasedAsync {
+            get {
+                object obj = ResourceManager.GetObject("System_ComponentModel_EventBasedAsync", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_ComponentModel_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("System_ComponentModel_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_ComponentModel_TypeConverter {
+            get {
+                object obj = ResourceManager.GetObject("System_ComponentModel_TypeConverter", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Console {
+            get {
+                object obj = ResourceManager.GetObject("System_Console", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Data_Common {
+            get {
+                object obj = ResourceManager.GetObject("System_Data_Common", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_Contracts {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_Contracts", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_Debug {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_Debug", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_DiagnosticSource {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_DiagnosticSource", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_FileVersionInfo {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_FileVersionInfo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_Process {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_Process", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_StackTrace {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_StackTrace", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_TextWriterTraceListener {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_TextWriterTraceListener", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_Tools {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_Tools", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_TraceSource {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_TraceSource", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Diagnostics_Tracing {
+            get {
+                object obj = ResourceManager.GetObject("System_Diagnostics_Tracing", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Drawing_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("System_Drawing_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Dynamic_Runtime {
+            get {
+                object obj = ResourceManager.GetObject("System_Dynamic_Runtime", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Globalization {
+            get {
+                object obj = ResourceManager.GetObject("System_Globalization", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Globalization_Calendars {
+            get {
+                object obj = ResourceManager.GetObject("System_Globalization_Calendars", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Globalization_Extensions {
+            get {
+                object obj = ResourceManager.GetObject("System_Globalization_Extensions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Interactive_Async {
+            get {
+                object obj = ResourceManager.GetObject("System_Interactive_Async", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO {
+            get {
+                object obj = ResourceManager.GetObject("System_IO", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_Compression {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_Compression", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_Compression_ZipFile {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_Compression_ZipFile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_FileSystem {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_FileSystem", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_FileSystem_DriveInfo {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_FileSystem_DriveInfo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_FileSystem_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_FileSystem_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_FileSystem_Watcher {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_FileSystem_Watcher", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_IsolatedStorage {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_IsolatedStorage", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_MemoryMappedFiles {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_MemoryMappedFiles", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_Pipes {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_Pipes", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_IO_UnmanagedMemoryStream {
+            get {
+                object obj = ResourceManager.GetObject("System_IO_UnmanagedMemoryStream", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Linq {
+            get {
+                object obj = ResourceManager.GetObject("System_Linq", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Linq_Expressions {
+            get {
+                object obj = ResourceManager.GetObject("System_Linq_Expressions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Linq_Parallel {
+            get {
+                object obj = ResourceManager.GetObject("System_Linq_Parallel", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Linq_Queryable {
+            get {
+                object obj = ResourceManager.GetObject("System_Linq_Queryable", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_Http {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_Http", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_NameResolution {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_NameResolution", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_NetworkInformation {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_NetworkInformation", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_Ping {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_Ping", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_Requests {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_Requests", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_Security {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_Security", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_Sockets {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_Sockets", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_WebHeaderCollection {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_WebHeaderCollection", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_WebSockets {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_WebSockets", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Net_WebSockets_Client {
+            get {
+                object obj = ResourceManager.GetObject("System_Net_WebSockets_Client", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_ObjectModel {
+            get {
+                object obj = ResourceManager.GetObject("System_ObjectModel", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Reflection {
+            get {
+                object obj = ResourceManager.GetObject("System_Reflection", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Reflection_Extensions {
+            get {
+                object obj = ResourceManager.GetObject("System_Reflection_Extensions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Reflection_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("System_Reflection_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Resources_Reader {
+            get {
+                object obj = ResourceManager.GetObject("System_Resources_Reader", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Resources_ResourceManager {
+            get {
+                object obj = ResourceManager.GetObject("System_Resources_ResourceManager", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Resources_Writer {
+            get {
+                object obj = ResourceManager.GetObject("System_Resources_Writer", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_CompilerServices_Unsafe {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_CompilerServices_Unsafe", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_CompilerServices_VisualC {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_CompilerServices_VisualC", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_Extensions {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_Extensions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_Handles {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_Handles", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_InteropServices {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_InteropServices", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_InteropServices_RuntimeInformation {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_InteropServices_RuntimeInformation", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_Numerics {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_Numerics", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_Serialization_Formatters {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_Serialization_Formatters", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_Serialization_Json {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_Serialization_Json", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_Serialization_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_Serialization_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Runtime_Serialization_Xml {
+            get {
+                object obj = ResourceManager.GetObject("System_Runtime_Serialization_Xml", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_Claims {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_Claims", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_Cryptography_Algorithms {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_Cryptography_Algorithms", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_Cryptography_Csp {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_Cryptography_Csp", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_Cryptography_Csp1 {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_Cryptography_Csp1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_Cryptography_Encoding {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_Cryptography_Encoding", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_Cryptography_Primitives {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_Cryptography_Primitives", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_Cryptography_X509Certificates {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_Cryptography_X509Certificates", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_Principal {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_Principal", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Security_SecureString {
+            get {
+                object obj = ResourceManager.GetObject("System_Security_SecureString", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Text_Encoding {
+            get {
+                object obj = ResourceManager.GetObject("System_Text_Encoding", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Text_Encoding_Extensions {
+            get {
+                object obj = ResourceManager.GetObject("System_Text_Encoding_Extensions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Text_RegularExpressions {
+            get {
+                object obj = ResourceManager.GetObject("System_Text_RegularExpressions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Threading {
+            get {
+                object obj = ResourceManager.GetObject("System_Threading", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Threading_Overlapped {
+            get {
+                object obj = ResourceManager.GetObject("System_Threading_Overlapped", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Threading_Tasks {
+            get {
+                object obj = ResourceManager.GetObject("System_Threading_Tasks", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Threading_Tasks_Parallel {
+            get {
+                object obj = ResourceManager.GetObject("System_Threading_Tasks_Parallel", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Threading_Thread {
+            get {
+                object obj = ResourceManager.GetObject("System_Threading_Thread", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Threading_ThreadPool {
+            get {
+                object obj = ResourceManager.GetObject("System_Threading_ThreadPool", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Threading_Timer {
+            get {
+                object obj = ResourceManager.GetObject("System_Threading_Timer", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_ValueTuple {
+            get {
+                object obj = ResourceManager.GetObject("System_ValueTuple", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Xml_ReaderWriter {
+            get {
+                object obj = ResourceManager.GetObject("System_Xml_ReaderWriter", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Xml_XDocument {
+            get {
+                object obj = ResourceManager.GetObject("System_Xml_XDocument", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Xml_XmlDocument {
+            get {
+                object obj = ResourceManager.GetObject("System_Xml_XmlDocument", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Xml_XmlSerializer {
+            get {
+                object obj = ResourceManager.GetObject("System_Xml_XmlSerializer", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Xml_XPath {
+            get {
+                object obj = ResourceManager.GetObject("System_Xml_XPath", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] System_Xml_XPath_XDocument {
+            get {
+                object obj = ResourceManager.GetObject("System_Xml_XPath_XDocument", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TenTec_Windows_iGridLib_iGrid_v4_6 {
+            get {
+                object obj = ResourceManager.GetObject("TenTec_Windows_iGridLib_iGrid_v4_6", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] WPFdataGrid {
+            get {
+                object obj = ResourceManager.GetObject("WPFdataGrid", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;configuration&gt;
+        ///  &lt;configSections&gt;
+        ///    &lt;!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 --&gt;
+        ///    &lt;section name=&quot;entityFramework&quot; type=&quot;System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot; requirePermission=&quot;false&quot; /&gt;
+        ///  &lt;/configSections&gt;
+        ///  &lt;entityFramework&gt;
+        ///    &lt;defaultConnectionFactory type=&quot;System.Data.Enti [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string WPFdataGrid_dll {
+            get {
+                return ResourceManager.GetString("WPFdataGrid_dll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] WPFdataGrid1 {
+            get {
+                object obj = ResourceManager.GetObject("WPFdataGrid1", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

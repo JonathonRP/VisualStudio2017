@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,382 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="EntityFramework" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\EntityFramework.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EntityFramework1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\EntityFramework.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EntityFramework_SqlServer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\EntityFramework.SqlServer.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EntityFramework_SqlServer1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\EntityFramework.SqlServer.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="JetEntityFrameworkProvider" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\JetEntityFrameworkProvider.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="JetEntityFrameworkProvider1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\JetEntityFrameworkProvider.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_EntityFrameworkCore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.EntityFrameworkCore.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_EntityFrameworkCore_Relational" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.EntityFrameworkCore.Relational.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_Caching_Abstractions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.Caching.Abstractions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_Caching_Memory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.Caching.Memory.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_Configuration_Abstractions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.Configuration.Abstractions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_DependencyInjection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.DependencyInjection.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_DependencyInjection_Abstractions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.DependencyInjection.Abstractions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_Logging" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.Logging.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_Logging_Abstractions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.Logging.Abstractions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_Options" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.Options.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Extensions_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Extensions.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Win32_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Microsoft.Win32.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="netstandard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\netstandard.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Remotion_Linq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\Remotion.Linq.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_AppContext" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.AppContext.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Collections" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Collections.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Collections_Concurrent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Collections.Concurrent.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Collections_Immutable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Collections.Immutable.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Collections_NonGeneric" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Collections.NonGeneric.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Collections_Specialized" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Collections.Specialized.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_ComponentModel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.ComponentModel.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_ComponentModel_Annotations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.ComponentModel.Annotations.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_ComponentModel_EventBasedAsync" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.ComponentModel.EventBasedAsync.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_ComponentModel_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.ComponentModel.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_ComponentModel_TypeConverter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.ComponentModel.TypeConverter.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Console" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Console.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Data_Common" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Data.Common.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_Contracts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.Contracts.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_Debug" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.Debug.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_DiagnosticSource" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.DiagnosticSource.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_FileVersionInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.FileVersionInfo.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_Process" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.Process.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_StackTrace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.StackTrace.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_TextWriterTraceListener" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.TextWriterTraceListener.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_Tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.Tools.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_TraceSource" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.TraceSource.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Diagnostics_Tracing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Diagnostics.Tracing.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Drawing_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Drawing.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Dynamic_Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Dynamic.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Globalization" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Globalization.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Globalization_Calendars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Globalization.Calendars.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Globalization_Extensions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Globalization.Extensions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Interactive_Async" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Interactive.Async.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_Compression" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.Compression.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_Compression_ZipFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.Compression.ZipFile.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_FileSystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.FileSystem.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_FileSystem_DriveInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.FileSystem.DriveInfo.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_FileSystem_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.FileSystem.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_FileSystem_Watcher" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.FileSystem.Watcher.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_IsolatedStorage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.IsolatedStorage.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_MemoryMappedFiles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.MemoryMappedFiles.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_Pipes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.Pipes.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_IO_UnmanagedMemoryStream" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.IO.UnmanagedMemoryStream.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Linq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Linq.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Linq_Expressions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Linq.Expressions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Linq_Parallel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Linq.Parallel.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Linq_Queryable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Linq.Queryable.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_Http" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.Http.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_NameResolution" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.NameResolution.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_NetworkInformation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.NetworkInformation.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_Ping" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.Ping.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_Requests" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.Requests.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_Security" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.Security.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_Sockets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.Sockets.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_WebHeaderCollection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.WebHeaderCollection.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_WebSockets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.WebSockets.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_WebSockets_Client" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Net.WebSockets.Client.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_ObjectModel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.ObjectModel.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Reflection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Reflection.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Reflection_Extensions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Reflection.Extensions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Reflection_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Reflection.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Resources_Reader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Resources.Reader.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Resources_ResourceManager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Resources.ResourceManager.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Resources_Writer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Resources.Writer.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_CompilerServices_Unsafe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.CompilerServices.Unsafe.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_CompilerServices_VisualC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.CompilerServices.VisualC.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_Extensions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.Extensions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_Handles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.Handles.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_InteropServices" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.InteropServices.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_InteropServices_RuntimeInformation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.InteropServices.RuntimeInformation.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_Numerics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.Numerics.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_Serialization_Formatters" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.Serialization.Formatters.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_Serialization_Json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.Serialization.Json.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_Serialization_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.Serialization.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime_Serialization_Xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Runtime.Serialization.Xml.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_Claims" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.Claims.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_Cryptography_Algorithms" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.Cryptography.Algorithms.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_Cryptography_Csp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.Cryptography.Csp.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_Cryptography_Csp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.Cryptography.Csp.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_Cryptography_Encoding" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.Cryptography.Encoding.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_Cryptography_Primitives" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.Cryptography.Primitives.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_Cryptography_X509Certificates" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.Cryptography.X509Certificates.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_Principal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.Principal.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Security_SecureString" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Security.SecureString.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Text_Encoding" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Text.Encoding.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Text_Encoding_Extensions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Text.Encoding.Extensions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Text_RegularExpressions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Text.RegularExpressions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Threading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Threading.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Threading_Overlapped" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Threading.Overlapped.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Threading_Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Threading.Tasks.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Threading_Tasks_Parallel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Threading.Tasks.Parallel.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Threading_Thread" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Threading.Thread.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Threading_ThreadPool" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Threading.ThreadPool.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Threading_Timer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Threading.Timer.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_ValueTuple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.ValueTuple.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Xml_ReaderWriter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Xml.ReaderWriter.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Xml_XDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Xml.XDocument.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Xml_XmlDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Xml.XmlDocument.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Xml_XmlSerializer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Xml.XmlSerializer.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Xml_XPath" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Xml.XPath.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Xml_XPath_XDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\System.Xml.XPath.XDocument.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TenTec_Windows_iGridLib_iGrid_v4_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\TenTec.Windows.iGridLib.iGrid.v4.6.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WPFdataGrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\WPFdataGrid.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WPFdataGrid1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\WPFdataGrid.pdb;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WPFdataGrid_dll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\x86\Release\WPFdataGrid.dll.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

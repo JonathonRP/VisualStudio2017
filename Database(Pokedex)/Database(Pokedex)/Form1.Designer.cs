@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,16 +40,11 @@
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.clearSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.dataGridControl1 = new WPFdataGrid.DataGridControl();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -59,6 +53,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.toolStripComboBox1,
+            this.clearSearchToolStripMenuItem,
             this.clearQueryHistoryToolStripMenuItem,
             this.fileNameToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -95,7 +90,9 @@
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 28);
             this.toolStripComboBox1.Text = "Search";
+            this.toolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
             this.toolStripComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripComboBox1_KeyPress);
+            this.toolStripComboBox1.TextChanged += new System.EventHandler(this.toolStripComboBox1_TextChanged);
             // 
             // clearQueryHistoryToolStripMenuItem
             // 
@@ -110,6 +107,7 @@
             this.fileNameToolStripMenuItem.Size = new System.Drawing.Size(88, 28);
             this.fileNameToolStripMenuItem.Text = "File Name";
             this.fileNameToolStripMenuItem.Visible = false;
+            this.fileNameToolStripMenuItem.Click += new System.EventHandler(this.fileNameToolStripMenuItem_Click);
             // 
             // contextMenuStrip
             // 
@@ -142,10 +140,12 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // errorProvider1
+            // clearSearchToolStripMenuItem
             // 
-            this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider1.Icon")));
+            this.clearSearchToolStripMenuItem.Name = "clearSearchToolStripMenuItem";
+            this.clearSearchToolStripMenuItem.Size = new System.Drawing.Size(103, 28);
+            this.clearSearchToolStripMenuItem.Text = "Clear Search";
+            this.clearSearchToolStripMenuItem.Click += new System.EventHandler(this.clearSearchToolStripMenuItem_Click);
             // 
             // elementHost1
             // 
@@ -173,9 +173,6 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,16 +186,14 @@
         private System.Windows.Forms.ToolStripMenuItem clearQueryHistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileNameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.BindingSource bindingSource2;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private WPFdataGrid.DataGridControl dataGridControl1;
         private System.Windows.Forms.ToolStripMenuItem EditDatabase;
+        private System.Windows.Forms.ToolStripMenuItem clearSearchToolStripMenuItem;
     }
 }
 
