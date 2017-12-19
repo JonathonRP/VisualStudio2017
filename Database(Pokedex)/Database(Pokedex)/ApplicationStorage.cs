@@ -9,7 +9,7 @@ using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Database_Pokedex_
+namespace Pokedex
 {
     [Serializable]
     public class ApplicationStorage : Hashtable

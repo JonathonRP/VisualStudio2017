@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A0821E1E-DEE6-4859-A35E-1573DA187059}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Database_Pokedex_</RootNamespace>
-    <AssemblyName>Database%28Pokedex%29</AssemblyName>
+    <RootNamespace>Pokedex</RootNamespace>
+    <AssemblyName>Pokedex</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -65,6 +65,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon\PokeBall.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -172,6 +175,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>
@@ -325,6 +329,7 @@
     <None Include="Resources\closed_plasticwrap.png" />
     <None Include="Resources\closed_neonglow.png" />
     <None Include="Resources\closed.png" />
+    <Content Include="Icon\PokeBall.ico" />
     <Content Include="Icon\warning-multi-size.ico" />
   </ItemGroup>
   <ItemGroup>

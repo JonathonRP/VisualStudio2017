@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace Database_Pokedex_
+namespace Pokedex
 {
     static class Program
     {

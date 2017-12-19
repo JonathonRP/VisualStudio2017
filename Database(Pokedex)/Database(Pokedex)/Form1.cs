@@ -17,10 +17,12 @@ using System.Data.Linq;
 using System.Data.OleDb;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.IO;
 using WPFdataGrid;
 
 
-namespace Database_Pokedex_
+namespace Pokedex
 {
     public partial class Form1 : Form
     {
@@ -76,7 +78,7 @@ namespace Database_Pokedex_
                 toolStripComboBox1.Items.Add(value);
             }
 
-            fileNameToolStripMenuItem.Text = "PokemonDatabase.accdb";
+            fileNameToolStripMenuItem.Text = $"{Path.GetFileName(Pokemon.GetFile())}";
             fileNameToolStripMenuItem.ToolTipText = "Click to Open File";
             fileToolStripMenuItem.ToolTipText = "Refresh, Edit Database";
             fileNameToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
@@ -687,6 +689,11 @@ namespace Database_Pokedex_
             }
         }
 
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+            toolStripComboBox1.Text = "";
+        }
+
         private void toolStripComboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -696,7 +703,7 @@ namespace Database_Pokedex_
 
                 var PName = (sender as ToolStripComboBox).Text;
 
-                if (!(PName == null) && !(toolStripComboBox1.Items.Contains(PName)) && !(PName == "Search"))
+                if (!(PName == null) && !(toolStripComboBox1.Items.Contains(PName)) && !(PName == "") && !(PName == "Search"))
                 {
                     toolStripComboBox1.Items.Add(PName);
                     search.Add(PName, PName);
@@ -716,17 +723,9 @@ namespace Database_Pokedex_
             {
                 if (!(PName == null))
                 {
-                    if (PName == "Search")
-                    {
-                        grid.ItemsSource = (from p in db.PokemonBaseStats
-                                            select p).ToList();
-                    }
-                    else
-                    {
                         grid.ItemsSource = (from p in db.PokemonBaseStats
                                             where p.PName.StartsWith(PName)
                                             select p).ToList();
-                    }
                 }
                 else
                 {
@@ -747,17 +746,9 @@ namespace Database_Pokedex_
             {
                 if (!(PName == null))
                 {
-                    if (PName == "Search")
-                    {
-                        grid.ItemsSource = (from p in db.PokemonBaseStats
-                                            select p).ToList();
-                    }
-                    else
-                    {
                         grid.ItemsSource = (from p in db.PokemonBaseStats
                                             where p.PName.StartsWith(PName)
                                             select p).ToList();
-                    }
                 }
                 else
                 {
@@ -769,7 +760,16 @@ namespace Database_Pokedex_
 
         private void clearSearchToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
+            Control.DataGrid grid = dataGrid.grid;
+
             toolStripComboBox1.Text = "Search";
+
+            using (Pokemon db = new Pokemon())
+            {
+                    grid.ItemsSource = (from p in db.PokemonBaseStats
+                                        select p).ToList();
+            }
         }
 
         private void clearQueryHistoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -781,7 +781,7 @@ namespace Database_Pokedex_
 
         private void fileNameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("..\\..\\..\\PokemonDatabase.accdb");
+            System.Diagnostics.Process.Start(Path.GetFullPath($"{Pokemon.GetFile()}"));
         }
 
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject

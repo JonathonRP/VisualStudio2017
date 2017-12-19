@@ -26,5 +26,10 @@ namespace WPFdataGrid
             modelBuilder.Entity<PokemonCapRate>()
                 .HasRequired(e => e.PokemonBaseStat);
         }
+
+        public string GetFile()
+        {
+            return Database.Connection.DataSource;
+        }
     }
 }

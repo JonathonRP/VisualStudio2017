@@ -1,4 +1,4 @@
-﻿namespace Database_Pokedex_
+﻿namespace Pokedex
 {
     partial class Form1
     {
@@ -34,13 +34,13 @@
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.clearSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearQueryHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.dataGridControl1 = new WPFdataGrid.DataGridControl();
             this.menuStrip1.SuspendLayout();
@@ -91,8 +91,16 @@
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 28);
             this.toolStripComboBox1.Text = "Search";
             this.toolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_SelectedIndexChanged);
+            this.toolStripComboBox1.TextUpdate += new System.EventHandler(this.toolStripComboBox1_TextChanged);
             this.toolStripComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripComboBox1_KeyPress);
-            this.toolStripComboBox1.TextChanged += new System.EventHandler(this.toolStripComboBox1_TextChanged);
+            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
+            // 
+            // clearSearchToolStripMenuItem
+            // 
+            this.clearSearchToolStripMenuItem.Name = "clearSearchToolStripMenuItem";
+            this.clearSearchToolStripMenuItem.Size = new System.Drawing.Size(103, 28);
+            this.clearSearchToolStripMenuItem.Text = "Clear Search";
+            this.clearSearchToolStripMenuItem.Click += new System.EventHandler(this.clearSearchToolStripMenuItem_Click);
             // 
             // clearQueryHistoryToolStripMenuItem
             // 
@@ -139,13 +147,6 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // clearSearchToolStripMenuItem
-            // 
-            this.clearSearchToolStripMenuItem.Name = "clearSearchToolStripMenuItem";
-            this.clearSearchToolStripMenuItem.Size = new System.Drawing.Size(103, 28);
-            this.clearSearchToolStripMenuItem.Text = "Clear Search";
-            this.clearSearchToolStripMenuItem.Click += new System.EventHandler(this.clearSearchToolStripMenuItem_Click);
             // 
             // elementHost1
             // 
