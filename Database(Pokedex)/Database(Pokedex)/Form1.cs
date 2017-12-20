@@ -97,7 +97,7 @@ namespace Pokedex
 
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(dataRow.Item);
 
-            var PName = properties["PName"].GetValue(dataRow.Item)?.ToString();
+            var PName = properties["PName"]?.GetValue(dataRow.Item)?.ToString();
 
             if (pokemonCapRates == null || !(pokemonCapRates.Any(p => p.PName == PName)))
             {
@@ -370,15 +370,31 @@ namespace Pokedex
             {
                 using (Pokemon db = new Pokemon())
                 {
-                    try
+                    if (pokemonCapRates.Count > 0)
                     {
-                        CapRate = db.PokemonBaseStats.Where(p => p.PName == PName).Single().PokemonCapRate.CapRate;
-                        ExpDrop = db.PokemonBaseStats.Where(p => p.PName == PName).Single().PokemonCapRate.ExpDrop;
+                        try
+                        {
+                            CapRate = pokemonCapRates.Where(p => p.PName == PName).Single().CapRate;
+                            ExpDrop = pokemonCapRates.Where(p => p.PName == PName).Single().ExpDrop;
+                        }
+                        catch
+                        {
+                            CapRate = db.PokemonBaseStats.Where(p => p.PName == PName).Single().PokemonCapRate.CapRate;
+                            ExpDrop = db.PokemonBaseStats.Where(p => p.PName == PName).Single().PokemonCapRate.ExpDrop;
+                        }
                     }
-                    catch
+                    else
                     {
-                        CapRate = 0;
-                        ExpDrop = 0;
+                        try
+                        {
+                            CapRate = db.PokemonBaseStats.Where(p => p.PName == PName).Single().PokemonCapRate.CapRate;
+                            ExpDrop = db.PokemonBaseStats.Where(p => p.PName == PName).Single().PokemonCapRate.ExpDrop;
+                        }
+                        catch
+                        {
+                            CapRate = 0;
+                            ExpDrop = 0;
+                        }
                     }
                 }
             }
