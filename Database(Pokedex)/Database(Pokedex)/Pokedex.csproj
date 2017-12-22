@@ -211,6 +211,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xaml">
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <Private>True</Private>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using Control = System.Windows.Controls;
@@ -18,6 +19,7 @@ using System.Data.OleDb;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
+using System.Collections.ObjectModel;
 using System.IO;
 using WPFdataGrid;
 
@@ -27,15 +29,16 @@ namespace Pokedex
     public partial class Form1 : Form
     {
         public PokemonBaseStat pokemon;
-
         public PokemonCapRate pokemonCapRate;
 
-        private List<PokemonCapRate> pokemonCapRates = new List<PokemonCapRate>();
+        public List<PokemonCapRate> pokemonCapRates = new List<PokemonCapRate>();
 
         private Pokemon Pokemon;
 
         private CancelEvent EventArgs = new CancelEvent();
         private ApplicationStorage search = new ApplicationStorage();
+        private ObservableCollection<PokemonBaseStat> observable = new ObservableCollection<PokemonBaseStat>();
+        private ObservableCollection<PokemonCapRate> detailsObservable = new ObservableCollection<PokemonCapRate>();
 
         public Form1()
         {
@@ -69,8 +72,13 @@ namespace Pokedex
                 var monster = (from p in db.PokemonBaseStats
                                select p).ToList();
 
+                foreach (var p in monster)
+                {
+                    observable.Add(p);
+                }
+
                 grid.Items.Clear();
-                grid.ItemsSource = monster;
+                grid.ItemsSource = observable;
             }
 
             foreach (var value in search.Values)
@@ -99,28 +107,43 @@ namespace Pokedex
 
             var PName = properties["PName"]?.GetValue(dataRow.Item)?.ToString();
 
-            if (pokemonCapRates == null || !(pokemonCapRates.Any(p => p.PName == PName)))
+            using (Pokemon db = new Pokemon())
             {
-                using (Pokemon db = new Pokemon())
+                if (detailsObservable == null || !(detailsObservable.Any(p => p.PName == PName)) && db.PokemonBaseStats.Any(p => p.PName == PName))
                 {
+
                     var monsterDetails = (from p in db.PokemonBaseStats
-                                          where p.PName == PName
                                           select p.PokemonCapRate).ToList();
+
+                    foreach (var monster in monsterDetails)
+                    {
+                        detailsObservable.Add(monster);
+                    }
+
+                    ListCollectionView detailsView = new ListCollectionView(detailsObservable);
+
+                    detailsView.Filter = (p) => {
+                        PokemonCapRate capRate = p as PokemonCapRate;
+                        if (capRate.PName == PName)
+                            return true;
+                        return false;
+                    };
 
                     if (!(monsterDetails == null))
                     {
-                        data.ItemsSource = monsterDetails;
+                        data.ItemsSource = detailsView;
                     }
                 }
-            }
-            else
-            {
-                data.ItemsSource = (from p in pokemonCapRates
-                                    where p.PName == PName
-                                    select p).ToList();
+                else
+                {
+                    data.ItemsSource = (from p in detailsObservable
+                                        where p.PName == PName
+                                        select p).ToList();
+                }
             }
 
             data.IsReadOnly = grid.IsReadOnly;
+            data.SelectedIndex = -1;
             data.CellEditEnding += new EventHandler<Control.DataGridCellEditEndingEventArgs>(detailGrid_CellValueChanged);
         }
 
@@ -596,7 +619,13 @@ namespace Pokedex
                     //pokemon entity save changes
                     Pokemon.SaveChanges();
 
+                    if (pokemonCapRates.Count > 0)
+                    {
+                        pokemonCapRates.RemoveAll(p => p.PName == pokemonCapRate.PName);
+                    }
+
                     refreshToolStripMenuItem.PerformClick();
+                    dataGridView.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -625,31 +654,32 @@ namespace Pokedex
             {
                 try
                 {
-                    using (var context = new Pokemon())
+                    using (Pokemon db = new Pokemon())
                     {
-                        var pokemonToDelete = from p in context.PokemonBaseStats
+                        var pokemonToDelete = from p in db.PokemonBaseStats
                                               where p.PName == pokemon.PName
                                               select p;
 
-                        var pokemonCapRateToDelete = from p in context.PokemonCapRates
+                        var pokemonCapRateToDelete = from p in db.PokemonCapRates
                                                      where p.PName == pokemon.PName
                                                      select p;
 
                         foreach (var monster in pokemonToDelete)
                         {
-                            context.PokemonBaseStats.Remove(monster);
+                            db.PokemonBaseStats.Remove(monster);
                         }
 
                         foreach (var monster in pokemonCapRateToDelete)
                         {
-                            context.PokemonCapRates.Remove(monster);
+                            db.PokemonCapRates.Remove(monster);
                         }
 
-                        context.SaveChanges();
+                        db.SaveChanges();
 
                     } //delete the record from the Book table
 
                     refreshToolStripMenuItem.PerformClick();
+                    dataGridView.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -671,11 +701,8 @@ namespace Pokedex
             WPFdataGrid.DataGridControl dataGrid = elementHost1.Child as WPFdataGrid.DataGridControl;
             Control.DataGrid grid = dataGrid.grid;
 
-            using (Pokemon db = new Pokemon())
-            {
-                grid.ItemsSource = (from p in db.PokemonBaseStats
-                                    select p).ToList();
-            }
+            grid.Items.Refresh();
+            grid.SelectedIndex = -1;
         }
 
         private void EditDatabase_Click(object sender, EventArgs e)
@@ -687,20 +714,24 @@ namespace Pokedex
 
             if (grid.IsReadOnly == false)
             {
+                grid.SelectedIndex = -1;
                 grid.IsReadOnly = true;
 
                 foreach (var detailGrid in detailGrids)
                 {
                     detailGrid.IsReadOnly = grid.IsReadOnly;
+                    detailGrid.SelectedIndex = -1;
                 }
             }
             else
             {
+                grid.SelectedIndex = -1;
                 grid.IsReadOnly = false;
 
                 foreach (var detailGrid in detailGrids)
                 {
                     detailGrid.IsReadOnly = grid.IsReadOnly;
+                    detailGrid.SelectedIndex = -1;
                 }
             }
         }
@@ -725,6 +756,8 @@ namespace Pokedex
                     search.Add(PName, PName);
                     search.Save();
                 }
+
+                grid.SelectedIndex = -1;
             }
         }
 
@@ -737,11 +770,19 @@ namespace Pokedex
 
             using (Pokemon db = new Pokemon())
             {
+                ListCollectionView view = new ListCollectionView(observable);
+
                 if (!(PName == null))
                 {
-                        grid.ItemsSource = (from p in db.PokemonBaseStats
-                                            where p.PName.StartsWith(PName)
-                                            select p).ToList();
+                    view.Filter = (p) => {
+                        PokemonBaseStat baseStat = p as PokemonBaseStat;
+                        if (baseStat.PName.ToLower().StartsWith(PName.ToLower()))
+                            return true;
+                        return false;
+                    };
+
+                    grid.ItemsSource = view;
+                    grid.SelectedIndex = -1;
                 }
                 else
                 {
@@ -760,11 +801,19 @@ namespace Pokedex
 
             using (Pokemon db = new Pokemon())
             {
+                ListCollectionView view = new ListCollectionView(observable);
+
                 if (!(PName == null))
                 {
-                        grid.ItemsSource = (from p in db.PokemonBaseStats
-                                            where p.PName.StartsWith(PName)
-                                            select p).ToList();
+                    view.Filter = (p) => {
+                        PokemonBaseStat baseStat = p as PokemonBaseStat;
+                        if (baseStat.PName.ToLower().StartsWith(PName.ToLower()))
+                            return true;
+                        return false;
+                    };
+
+                    grid.ItemsSource = view;
+                    grid.SelectedIndex = -1;
                 }
                 else
                 {
@@ -780,12 +829,10 @@ namespace Pokedex
             Control.DataGrid grid = dataGrid.grid;
 
             toolStripComboBox1.Text = "Search";
+            toolStripComboBox1.Focus();
 
-            using (Pokemon db = new Pokemon())
-            {
-                    grid.ItemsSource = (from p in db.PokemonBaseStats
-                                        select p).ToList();
-            }
+            grid.ItemsSource = observable;
+            grid.SelectedIndex = -1;
         }
 
         private void clearQueryHistoryToolStripMenuItem_Click(object sender, EventArgs e)

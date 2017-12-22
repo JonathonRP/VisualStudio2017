@@ -9,8 +9,37 @@
         <Grid.Resources>
             <ResourceDictionary Source="Assets/PlusMinusExpanderStyles.xaml" />
         </Grid.Resources>
-        
+
         <DataGrid Name="dataGrid" Margin="0" CanUserDeleteRows="False" VerticalContentAlignment="Stretch" ColumnWidth="SizeToHeader" AutoGenerateColumns="False" RowDetailsVisibilityMode="Collapsed">
+            <DataGrid.Resources>
+                <StackPanel x:Key="ReadOnly">
+                    <TextBlock FontWeight="Bold"> Pokedex</TextBlock>
+                    <TextBlock> Pokedex is Read-Only</TextBlock>
+                </StackPanel>
+                <StackPanel x:Key="Edit">
+                    <TextBlock FontWeight="Bold"> Pokedex</TextBlock>
+                    <TextBlock> Pokedex is in Edit</TextBlock>
+                </StackPanel>
+            </DataGrid.Resources>
+
+            <DataGrid.Style>
+                <Style TargetType="{x:Type DataGrid}">
+                    <Setter Property="RowBackground" Value="WhiteSmoke"/>
+                    <Setter Property="ToolTip" Value="{StaticResource ReadOnly}"/>
+                    <Style.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsReadOnly" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="RowBackground" Value="White"/>
+                                <Setter Property="ToolTip" Value="{StaticResource Edit}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Style>
+
             <DataGrid.RowHeaderTemplate>
                 <DataTemplate>
                     <Expander Collapsed="Expander_Collapsed" Expanded="Expander_Expanded" Style="{StaticResource PlusMinusExpander}"/>
@@ -18,15 +47,168 @@
             </DataGrid.RowHeaderTemplate>
             
             <DataGrid.Columns>
-                <DataGridTextColumn Header="PName" Binding="{Binding PName, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
-                <DataGridTextColumn Header="HP" Binding="{Binding HP, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
-                <DataGridTextColumn Header="Attack" Binding="{Binding Attack, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
-                <DataGridTextColumn Header="Defense" Binding="{Binding Defense, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
-                <DataGridTextColumn Header="Special Attack" Binding="{Binding SPAttack, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
-                <DataGridTextColumn Header="Special Defense" Binding="{Binding SPDefense, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
-                <DataGridTextColumn Header="Speed" Binding="{Binding Speed, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
-                <DataGridTextColumn Header="First Type" Binding="{Binding Type1, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
-                <DataGridTextColumn Header="Second Type" Binding="{Binding Type2, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Width="1*"/>
+                <DataGridTextColumn Header="PName" Binding="{Binding PName, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Width="1*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="HP" Binding="{Binding HP, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Width="1*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Attack" Binding="{Binding Attack, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Width="1*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Defense" Binding="{Binding Defense, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Width="1*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Special Attack" Binding="{Binding SPAttack, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Special Defense" Binding="{Binding SPDefense, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Speed" Binding="{Binding Speed, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Width="1*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="First Type" Binding="{Binding Type1, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Width="1*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Second Type" Binding="{Binding Type2, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Width="1*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Name="Fade">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
@@ -38,27 +220,73 @@
 
                         <DataGrid.Style>
                             <Style TargetType="{x:Type DataGrid}">
+                                <Setter Property="RowBackground" Value="WhiteSmoke"/>
+                                <Setter Property="ToolTip" Value="{StaticResource ReadOnly}"/>
+                                <Style.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsReadOnly" Value="False"/>
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.Setters>
+                                            <Setter Property="RowBackground" Value="White"/>
+                                            <Setter Property="ToolTip" Value="{StaticResource Edit}"/>
+                                        </MultiTrigger.Setters>
+                                    </MultiTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.Style>
+
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
                                 <Style.Triggers>
                                     <Trigger Property="Validation.HasError" Value="true">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Duration="0:0:2" To="1" Storyboard.TargetProperty="BorderThickness">
+                                                        <ThicknessAnimation.EasingFunction>
+                                                            <BackEase EasingMode="EaseOut" Amplitude="1"/>
+                                                        </ThicknessAnimation.EasingFunction>
+                                                    </ThicknessAnimation>
+                                                    <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Border.BorderBrush).(Opacity)">
+                                                        <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                        <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Duration="00:00:20" To="0" Storyboard.TargetProperty="BorderThickness">
+                                                        <ThicknessAnimation.EasingFunction>
+                                                            <BackEase EasingMode="EaseIn" Amplitude="0"/>
+                                                        </ThicknessAnimation.EasingFunction>
+                                                    </ThicknessAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
                                         <Setter Property="BorderThickness" Value="1"/>
                                         <Setter Property="BorderBrush" Value="Red"/>
                                         <Setter Property="ToolTip"
                                         Value="{Binding RelativeSource={RelativeSource Self},
                                         Path=(Validation.Errors)[0].ErrorContent}"/>
                                     </Trigger>
-                                    <EventTrigger RoutedEvent="Loaded">
-                                        <BeginStoryboard Name="Fade">
-                                            <Storyboard>
-                                                <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
-                                                    <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
-                                                    <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
-                                                </DoubleAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
+                                    <Trigger Property="Visibility" Value="Visible">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard Name="DropIn">
+                                                <Storyboard>
+                                                    <DoubleAnimationUsingKeyFrames Duration="00:00:01" Storyboard.TargetProperty="Height">
+                                                        <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                        <LinearDoubleKeyFrame KeyTime="00:00:00.5" Value="20"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                    </Trigger>
                                 </Style.Triggers>
                             </Style>
-                        </DataGrid.Style>
+                        </DataGrid.RowStyle>
 
                         <DataGrid.RowValidationErrorTemplate>
                             <ControlTemplate>
@@ -72,6 +300,40 @@
                                  FindAncestor, AncestorType={x:Type DataGridRow}},
                                  Path=(Validation.Errors)[0].ErrorContent}"/>
                                 </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="Validation.HasError" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Duration="0:0:2" To=".5" Storyboard.TargetProperty="StrokeThickness">
+                                                        <ThicknessAnimation.EasingFunction>
+                                                            <BackEase EasingMode="EaseOut" Amplitude=".5"/>
+                                                        </ThicknessAnimation.EasingFunction>
+                                                    </ThicknessAnimation>
+                                                    <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                        <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                                        <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Duration="0:0:2" To="0" Storyboard.TargetProperty="StrokeThickness">
+                                                        <ThicknessAnimation.EasingFunction>
+                                                            <BackEase EasingMode="EaseIn" Amplitude="0"/>
+                                                        </ThicknessAnimation.EasingFunction>
+                                                    </ThicknessAnimation>
+                                                    <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                                        <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="1"/>
+                                                        <LinearDoubleKeyFrame KeyTime="00:00:2" Value="0"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </DataGrid.RowValidationErrorTemplate>
 
@@ -83,22 +345,38 @@
                 <Style TargetType="{x:Type DataGridRow}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="true">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Duration="0:0:2" To="1" Storyboard.TargetProperty="BorderThickness">
+                                            <ThicknessAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseOut" Amplitude="1"/>
+                                            </ThicknessAnimation.EasingFunction>
+                                        </ThicknessAnimation>
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Border.BorderBrush).(Opacity)">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                            <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Duration="00:00:20" To="0" Storyboard.TargetProperty="BorderThickness">
+                                            <ThicknessAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseIn" Amplitude="0"/>
+                                            </ThicknessAnimation.EasingFunction>
+                                        </ThicknessAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                             <Setter Property="BorderThickness" Value="1"/>
                             <Setter Property="BorderBrush" Value="Red"/>
                             <Setter Property="ToolTip"
                             Value="{Binding RelativeSource={RelativeSource Self},
                             Path=(Validation.Errors)[0].ErrorContent}"/>
                         </Trigger>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard Name="Fade">
-                                <Storyboard>
-                                    <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
-                                        <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
-                                        <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>
@@ -115,6 +393,32 @@
                                  FindAncestor, AncestorType={x:Type DataGridRow}},
                                  Path=(Validation.Errors)[0].ErrorContent}"/>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Duration="0:0:2" To=".5" Storyboard.TargetProperty="StrokeThickness"/>
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="0"/>
+                                            <LinearDoubleKeyFrame KeyTime="00:00:2" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Duration="0:0:1" To="0" Storyboard.TargetProperty="StrokeThickness"/>
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.0" Value="1"/>
+                                            <LinearDoubleKeyFrame KeyTime="00:00:2" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </DataGrid.RowValidationErrorTemplate>
             
