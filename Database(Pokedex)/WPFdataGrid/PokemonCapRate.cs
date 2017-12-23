@@ -26,7 +26,7 @@ namespace WPFdataGrid
         [Range(0, Int16.MaxValue, ErrorMessage = "Not a valid positive number")]
         public Int16 ExpDrop { get; set; }
 
-        public PokemonBaseStat PokemonBaseStat { get; set; }
+        public virtual PokemonBaseStat PokemonBaseStat { get; set; }
     }
 
     //[PropertyChanged.AddINotifyPropertyChangedInterface]
