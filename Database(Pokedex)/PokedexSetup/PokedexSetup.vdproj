@@ -1971,6 +1971,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E9D1BF78817C4D0AB6C18252C1776040"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E9F2E0F7DBB6FAB8415071E8E9AA36B4"
         "OwnerKey" = "8:_DCAF5F5C14604E309E06DF83CB5C4141"
         "MsmSig" = "8:_UNDEFINED"
@@ -2025,6 +2031,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F07C71CA8A084A0A8F37B8DAF262A105"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F207EC8649EC11BA313B730ED694FAD2"
         "OwnerKey" = "8:_DCAF5F5C14604E309E06DF83CB5C4141"
         "MsmSig" = "8:_UNDEFINED"
@@ -2069,6 +2081,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DCAF5F5C14604E309E06DF83CB5C4141"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F07C71CA8A084A0A8F37B8DAF262A105"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -6476,6 +6494,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E9D1BF78817C4D0AB6C18252C1776040"
+            {
+            "SourcePath" = "8:..\\if database connection fails.txt"
+            "TargetName" = "8:if database connection fails.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_ECF53937B3EB4A1C879096B24EFBCFFB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E9F2E0F7DBB6FAB8415071E8E9AA36B4"
             {
             "AssemblyRegister" = "3:1"
@@ -6629,6 +6667,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F07C71CA8A084A0A8F37B8DAF262A105"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+                "ScatterAssemblies"
+                {
+                    "_F07C71CA8A084A0A8F37B8DAF262A105"
+                    {
+                    "Name" = "8:System.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.5.2\\System.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D29E8F1E834547FDAEEF9E961550B650"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F207EC8649EC11BA313B730ED694FAD2"
@@ -6927,7 +6996,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{4A9B6060-A2C6-4890-AD54-9B1F019D5810}"
-        "PackageCode" = "8:{E714C9EB-2CE8-4E33-9E8E-CC0873BC878B}"
+        "PackageCode" = "8:{D6F99FCB-5D8D-4F8E-9DD8-0FD9C7F94C29}"
         "UpgradeCode" = "8:{957924D4-F615-4728-890E-8551162704CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
