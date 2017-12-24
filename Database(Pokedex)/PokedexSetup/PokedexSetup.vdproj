@@ -237,6 +237,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2680135D906E41979C5359F4C134FCCC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_26DEBCC2706A4F09A9B9C572EE4C0707"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2315,9 +2321,17 @@
             {
             "Enabled" = "11:TRUE"
             "PromptEnabled" = "11:TRUE"
-            "PrerequisitesLocation" = "2:1"
+            "PrerequisitesLocation" = "2:2"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
         "Release"
@@ -2342,6 +2356,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -3081,6 +3103,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2680135D906E41979C5359F4C134FCCC"
+            {
+            "SourcePath" = "8:C:\\Windows\\System32\\msiexec.exe"
+            "TargetName" = "8:msiexec.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_0026AECA9D5046F5AF1E1DA5A20A43AC"
+            "Condition" = "8:"
+            "Transitive" = "11:TRUE"
+            "Vital" = "11:FALSE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:TRUE"
+            "Permanent" = "11:TRUE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_26DEBCC2706A4F09A9B9C572EE4C0707"
@@ -6779,6 +6821,17 @@
         }
         "Folder"
         {
+            "{1525181F-901A-416C-8A58-119130FE478E}:_0026AECA9D5046F5AF1E1DA5A20A43AC"
+            {
+            "Name" = "8:#1914"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:SystemFolder"
+                "Folders"
+                {
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_152DC14F0EAB4B3F9AA5C0FD7D96AD20"
             {
             "Name" = "8:#1916"
@@ -6874,7 +6927,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{4A9B6060-A2C6-4890-AD54-9B1F019D5810}"
-        "PackageCode" = "8:{6793EC04-98EE-4FBB-B711-3AD5FEAB14ED}"
+        "PackageCode" = "8:{52BA9226-ADE7-4ABF-A6E4-62E5F1B2D589}"
         "UpgradeCode" = "8:{957924D4-F615-4728-890E-8551162704CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -6891,7 +6944,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_3B1D07CF6C2B401AA0D0CD8208083D66"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -6996,7 +7049,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_41CAB74B80384532B639B934183B166E"
             {
-            "Name" = "8:Shortcut to Primary output from Pokedex (Active)"
+            "Name" = "8:Pokedex"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -7010,7 +7063,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BE09094C9A9843AAB1A4DB5DA80D5FBE"
             {
-            "Name" = "8:Shortcut to Primary output from Pokedex (Active)"
+            "Name" = "8:Pokedex"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -7020,6 +7073,20 @@
             "Folder" = "8:_ECF53937B3EB4A1C879096B24EFBCFFB"
             "WorkingFolder" = "8:_D29E8F1E834547FDAEEF9E961550B650"
             "Icon" = "8:_3B1D07CF6C2B401AA0D0CD8208083D66"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C679550F7B2541A599EB17A1C3B39671"
+            {
+            "Name" = "8:Uninstall"
+            "Arguments" = "8:/x {4A9B6060-A2C6-4890-AD54-9B1F019D5810} /qr"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_2680135D906E41979C5359F4C134FCCC"
+            "Folder" = "8:_ECF53937B3EB4A1C879096B24EFBCFFB"
+            "WorkingFolder" = "8:_0026AECA9D5046F5AF1E1DA5A20A43AC"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
