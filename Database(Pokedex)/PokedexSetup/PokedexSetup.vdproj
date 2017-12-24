@@ -6927,7 +6927,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{4A9B6060-A2C6-4890-AD54-9B1F019D5810}"
-        "PackageCode" = "8:{52BA9226-ADE7-4ABF-A6E4-62E5F1B2D589}"
+        "PackageCode" = "8:{E714C9EB-2CE8-4E33-9E8E-CC0873BC878B}"
         "UpgradeCode" = "8:{957924D4-F615-4728-890E-8551162704CB}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -7490,7 +7490,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DCAF5F5C14604E309E06DF83CB5C4141"
             {
-            "SourcePath" = "8:..\\Database(Pokedex)\\obj\\x86\\Debug\\Pokedex.exe"
+            "SourcePath" = "8:..\\Database(Pokedex)\\obj\\x86\\Release\\Pokedex.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D29E8F1E834547FDAEEF9E961550B650"
