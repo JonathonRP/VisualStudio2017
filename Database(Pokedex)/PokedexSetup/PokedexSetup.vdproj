@@ -3297,7 +3297,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
@@ -6957,7 +6957,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{3CAF7E7E-82A3-40F0-8231-E551AA7B2326}"
-        "PackageCode" = "8:{B01227B0-9F6F-49E2-8F0F-FE3CEED228DE}"
+        "PackageCode" = "8:{A42D121A-A446-4767-B108-67DE1CD24C60}"
         "UpgradeCode" = "8:{C4A9A7E2-AA99-45D4-ACB6-5217D56F0874}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
