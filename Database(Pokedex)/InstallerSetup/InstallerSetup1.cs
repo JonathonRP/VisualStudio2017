@@ -42,7 +42,7 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    Process.Start("AccessDatabaseEngine.exe");                    
+                    Process.Start(".\\AccessDatabaseEngine.exe");                    
                     base.Commit(savedState);
                 }
                 else
