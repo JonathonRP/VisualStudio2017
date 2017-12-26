@@ -2345,20 +2345,6 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_149676EF62EE41B98E13FC497A66BF3E"
-            {
-            "Name" = "8:InstallerSetup.dll"
-            "Condition" = "8:"
-            "Object" = "8:_C5ABB2AD08594930A6EBEC4850CA176C"
-            "FileType" = "3:1"
-            "InstallAction" = "3:1"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_023DE2DD_44A2_458D_8727_49FDDF3FA0D9"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_1AE23A43187A457B873CF026FB3F4A1E"
             {
             "Name" = "8:InstallerSetup.dll"
@@ -6957,11 +6943,11 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{7FAE1BD5-30B0-4712-A0EF-2C94DD7BDEF9}"
-        "PackageCode" = "8:{63B8DA7B-5288-4532-B217-BB2506ECF99E}"
+        "PackageCode" = "8:{9E06C91E-6553-4D87-AFE4-FB5A5579F026}"
         "UpgradeCode" = "8:{6AED042C-19ED-4025-8C28-F667064B4E0E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:TRUE"
+        "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.1"
