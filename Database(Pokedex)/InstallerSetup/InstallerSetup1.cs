@@ -23,8 +23,6 @@ namespace InstallerSetup
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
         public override void Install(IDictionary savedState)
         {
-            showParameters();
-
             base.Install(savedState);
             //Add custom code here
         }
@@ -41,6 +39,8 @@ namespace InstallerSetup
         {
             try
             {
+                showParameters();
+
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "Checked")
                 {
                     Process.Start("AccessDatabaseEngine.exe");
