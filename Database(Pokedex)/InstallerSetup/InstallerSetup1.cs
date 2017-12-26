@@ -23,7 +23,23 @@ namespace InstallerSetup
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
         public override void Install(IDictionary savedState)
         {
-            base.Install(savedState);
+            try
+            {
+                if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
+                {
+                    Process.Start("AccessDatabaseEngine.exe");
+                    base.Install(savedState);
+                }
+                else
+                {
+                    base.Install(savedState);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+                base.Rollback(savedState);
+            }
             //Add custom code here
         }
 
@@ -37,25 +53,7 @@ namespace InstallerSetup
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
         public override void Commit(IDictionary savedState)
         {
-            try
-            {
-                showParameters();
-
-                if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
-                {
-                    Process.Start("AccessDatabaseEngine.exe");
-                    base.Commit(savedState);
-                }
-                else
-                {
-                    base.Commit(savedState);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-                base.Rollback(savedState);
-            }
+            base.Commit(savedState);
         }
 
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
@@ -64,7 +62,7 @@ namespace InstallerSetup
             Process application = null;
             foreach (var process in Process.GetProcesses())
             {
-                if (!process.ProcessName.ToLower().Contains("Pokedex")) continue;
+                if (!process.ProcessName.ToLower().Contains("Database(Pokedex)")) continue;
                 application = process;
                 break;
             }

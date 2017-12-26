@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:SetupPokedex1"
+"ProjectName" = "8:SetupPokedex"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -105,6 +105,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0B64C24142CE42E8B9B77EF1CEF3C77A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0B75AE53F6834B2C213EB2032BEBEFD1"
         "OwnerKey" = "8:_3370F4DCAC984D2DADE6F3E26813DF4A"
         "MsmSig" = "8:_UNDEFINED"
@@ -191,6 +197,12 @@
         {
         "MsmKey" = "8:_14575B1AC7D65819FD098BC7E7D69EFD"
         "OwnerKey" = "8:_3370F4DCAC984D2DADE6F3E26813DF4A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_15B8413DB78146A485B0DEB6B638905F"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1071,6 +1083,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_55E9BBDBCE674B69A4A74E6F3F7E3A8A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_598C0C8FF41D89B423A607A2D5C6061C"
         "OwnerKey" = "8:_3370F4DCAC984D2DADE6F3E26813DF4A"
         "MsmSig" = "8:_UNDEFINED"
@@ -1491,6 +1509,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9CAA749880F54A9C8193F05F55F3C0E3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9D80FFC508DF4485B40048A66F09F1D3"
         "OwnerKey" = "8:_460593AE32B9894A68B36723937A16BD"
         "MsmSig" = "8:_UNDEFINED"
@@ -1901,6 +1925,12 @@
         {
         "MsmKey" = "8:_E326143A4C85C00FBF3EE35FFA82FB82"
         "OwnerKey" = "8:_3370F4DCAC984D2DADE6F3E26813DF4A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E35D1161CC2A4AC892C4765ED319F39E"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2662,6 +2692,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B64C24142CE42E8B9B77EF1CEF3C77A"
+            {
+            "SourcePath" = "8:..\\Database(Pokedex)\\Icon\\pokemon-go-blog-banner.png"
+            "TargetName" = "8:pokemon-go-blog-banner.png"
+            "Tag" = "8:"
+            "Folder" = "8:_374D9F9FFA0D479097227A59196691F3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0B75AE53F6834B2C213EB2032BEBEFD1"
             {
             "AssemblyRegister" = "3:1"
@@ -2970,6 +3020,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_15B8413DB78146A485B0DEB6B638905F"
+            {
+            "SourcePath" = "8:..\\Database(Pokedex)\\Icon\\splashBanner_pokemon.jpg"
+            "TargetName" = "8:splashBanner_pokemon.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_374D9F9FFA0D479097227A59196691F3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_16233A1B7DE10007FB2D85B4E4E0EFCE"
@@ -4128,6 +4198,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_55E9BBDBCE674B69A4A74E6F3F7E3A8A"
+            {
+            "SourcePath" = "8:..\\Database(Pokedex)\\Icon\\PokeballBanner.png"
+            "TargetName" = "8:PokeballBanner.png"
+            "Tag" = "8:"
+            "Folder" = "8:_374D9F9FFA0D479097227A59196691F3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_598C0C8FF41D89B423A607A2D5C6061C"
             {
             "AssemblyRegister" = "3:1"
@@ -5242,6 +5332,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9CAA749880F54A9C8193F05F55F3C0E3"
+            {
+            "SourcePath" = "8:..\\Database(Pokedex)\\bin\\x86\\Release\\PokemonDatabase.accdb"
+            "TargetName" = "8:PokemonDatabase.accdb"
+            "Tag" = "8:"
+            "Folder" = "8:_3384CA06775F4FA3A443F66841751C8B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9D80FFC508DF4485B40048A66F09F1D3"
             {
             "AssemblyRegister" = "3:1"
@@ -6323,6 +6433,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E35D1161CC2A4AC892C4765ED319F39E"
+            {
+            "SourcePath" = "8:..\\Database(Pokedex)\\Icon\\pokeball-pokemon.jpg"
+            "TargetName" = "8:pokeball-pokemon.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_374D9F9FFA0D479097227A59196691F3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E39FD924AFE6D1A9F72446D816C54CB7"
             {
             "AssemblyRegister" = "3:1"
@@ -6827,7 +6957,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{129F7ADB-CEFF-4AD5-808B-7F0A7A4770D9}"
-        "PackageCode" = "8:{1B2CB8E7-D3A9-455C-B8E7-CFF4F6B1663E}"
+        "PackageCode" = "8:{9D5C5113-9931-4AF5-8DFE-46C02E14E4AA}"
         "UpgradeCode" = "8:{11F6EEBA-A8F3-449C-B65E-45F87E552CE6}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -7022,7 +7152,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_15B8413DB78146A485B0DEB6B638905F"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -7053,7 +7184,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0B64C24142CE42E8B9B77EF1CEF3C77A"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -7097,7 +7229,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_55E9BBDBCE674B69A4A74E6F3F7E3A8A"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -7119,7 +7252,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_E35D1161CC2A4AC892C4765ED319F39E"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -7167,7 +7301,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_E35D1161CC2A4AC892C4765ED319F39E"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ReadmeText"
@@ -7214,7 +7349,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0B64C24142CE42E8B9B77EF1CEF3C77A"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -7245,7 +7381,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_15B8413DB78146A485B0DEB6B638905F"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -7295,7 +7432,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0B64C24142CE42E8B9B77EF1CEF3C77A"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -7339,7 +7477,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_55E9BBDBCE674B69A4A74E6F3F7E3A8A"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -7361,7 +7500,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_0B64C24142CE42E8B9B77EF1CEF3C77A"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -7396,7 +7536,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_E35D1161CC2A4AC892C4765ED319F39E"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "BannerText"
@@ -7652,7 +7793,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_E35D1161CC2A4AC892C4765ED319F39E"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
