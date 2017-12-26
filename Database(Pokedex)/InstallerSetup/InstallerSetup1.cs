@@ -42,11 +42,7 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    WebClient webClient = new WebClient();
-
-                    webClient.DownloadFileAsync(new Uri("https://www.microsoft.com/en-us/download/confirmation.aspx?id=23734"), $"{AppDomain.CurrentDomain.BaseDirectory}\\AccessDatabaseEngine.exe");
-                    webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                    
+                    Process.Start("AccessDatabaseEngine.exe");                    
                     base.Commit(savedState);
                 }
                 else
@@ -76,12 +72,6 @@ namespace InstallerSetup
                 application.Kill();
                 base.Uninstall(savedState);
             }
-        }
-
-        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            MessageBox.Show("File downloaded");
-            Process.Start("AccessDatabaseEngine.exe");
         }
 
         private void showParameters()
