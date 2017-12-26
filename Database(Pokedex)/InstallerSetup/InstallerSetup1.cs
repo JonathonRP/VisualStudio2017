@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -23,23 +24,7 @@ namespace InstallerSetup
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
         public override void Install(IDictionary savedState)
         {
-            try
-            {
-                if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
-                {
-                    Process.Start("AccessDatabaseEngine.exe");
-                    base.Install(savedState);
-                }
-                else
-                {
-                    base.Install(savedState);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-                base.Rollback(savedState);
-            }
+            base.Install(savedState);
             //Add custom code here
         }
 
@@ -53,7 +38,27 @@ namespace InstallerSetup
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
         public override void Commit(IDictionary savedState)
         {
-            base.Commit(savedState);
+            try
+            {
+                if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
+                {
+                    WebClient webClient = new WebClient();
+
+                    webClient.DownloadFileAsync(new Uri("https://www.microsoft.com/en-us/download/confirmation.aspx?id=23734"), "AccessDatabaseEngine.exe");
+                    webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                    
+                    base.Commit(savedState);
+                }
+                else
+                {
+                    base.Commit(savedState);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+                base.Rollback(savedState);
+            }
         }
 
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
@@ -71,6 +76,12 @@ namespace InstallerSetup
                 application.Kill();
                 base.Uninstall(savedState);
             }
+        }
+
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            MessageBox.Show("File downloaded");
+            Process.Start("AccessDatabaseEngine.exe");
         }
 
         private void showParameters()
