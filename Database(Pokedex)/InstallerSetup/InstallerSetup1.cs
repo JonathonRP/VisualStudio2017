@@ -44,7 +44,7 @@ namespace InstallerSetup
                 {
                     WebClient webClient = new WebClient();
 
-                    webClient.DownloadFileAsync(new Uri("https://www.microsoft.com/en-us/download/confirmation.aspx?id=23734"), "AccessDatabaseEngine.exe");
+                    webClient.DownloadFileAsync(new Uri("https://www.microsoft.com/en-us/download/confirmation.aspx?id=23734"), $"{AppDomain.CurrentDomain.BaseDirectory}\\AccessDatabaseEngine.exe");
                     webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
                     
                     base.Commit(savedState);
