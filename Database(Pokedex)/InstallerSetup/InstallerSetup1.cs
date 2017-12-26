@@ -41,9 +41,10 @@ namespace InstallerSetup
             {
                 showParameters();
 
-                if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "Checked")
+                if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
                     Process.Start("AccessDatabaseEngine.exe");
+                    base.Commit(savedState);
                 }
                 else
                 {

@@ -6827,7 +6827,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{129F7ADB-CEFF-4AD5-808B-7F0A7A4770D9}"
-        "PackageCode" = "8:{8AEBDB95-4325-4D21-8209-89A5E08BD3FA}"
+        "PackageCode" = "8:{1B2CB8E7-D3A9-455C-B8E7-CFF4F6B1663E}"
         "UpgradeCode" = "8:{11F6EEBA-A8F3-449C-B65E-45F87E552CE6}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -6958,7 +6958,7 @@
             "Target" = "8:_3370F4DCAC984D2DADE6F3E26813DF4A"
             "Folder" = "8:_212C2EC779374B4384445CF953BA9766"
             "WorkingFolder" = "8:_3384CA06775F4FA3A443F66841751C8B"
-            "Icon" = "8:"
+            "Icon" = "8:_BF9B8B53BB274C1D908995CED9253327"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3DDB4EF8C249440CA6913A929863C67F"
@@ -6986,7 +6986,7 @@
             "Target" = "8:_3370F4DCAC984D2DADE6F3E26813DF4A"
             "Folder" = "8:_B0BF38AC0E834F2DBA350BDBBED5691A"
             "WorkingFolder" = "8:_3384CA06775F4FA3A443F66841751C8B"
-            "Icon" = "8:"
+            "Icon" = "8:_BF9B8B53BB274C1D908995CED9253327"
             "Feature" = "8:"
             }
         }
