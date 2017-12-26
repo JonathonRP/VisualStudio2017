@@ -363,6 +363,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2F417C2D40EF455A82393B4842734AE7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2FB0E9A2934B26439FF934051133DC57"
         "OwnerKey" = "8:_DB12F214E5E7AF973CB5058B55597DA3"
         "MsmSig" = "8:_UNDEFINED"
@@ -3428,6 +3434,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2F417C2D40EF455A82393B4842734AE7"
+            {
+            "SourcePath" = "8:C:\\Users\\Reese\\Downloads\\AccessDatabaseEngine.exe"
+            "TargetName" = "8:AccessDatabaseEngine.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_9E7FB8A5669443A4B2DFF6E25E7DAE36"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2FB0E9A2934B26439FF934051133DC57"
@@ -6931,7 +6957,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{3CAF7E7E-82A3-40F0-8231-E551AA7B2326}"
-        "PackageCode" = "8:{EE28ED6B-1FEC-4250-B2FE-441F9DD933BF}"
+        "PackageCode" = "8:{ABC454AF-ECBA-4FCD-9DC3-23AC73B58A44}"
         "UpgradeCode" = "8:{C4A9A7E2-AA99-45D4-ACB6-5217D56F0874}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
