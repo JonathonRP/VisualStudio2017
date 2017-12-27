@@ -6957,7 +6957,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{3CAF7E7E-82A3-40F0-8231-E551AA7B2326}"
-        "PackageCode" = "8:{A42D121A-A446-4767-B108-67DE1CD24C60}"
+        "PackageCode" = "8:{A3A8CAB4-DC1A-4D87-A838-F32FD1829275}"
         "UpgradeCode" = "8:{C4A9A7E2-AA99-45D4-ACB6-5217D56F0874}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
