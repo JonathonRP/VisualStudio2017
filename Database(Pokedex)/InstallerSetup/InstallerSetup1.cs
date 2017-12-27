@@ -42,12 +42,7 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    Process.Start("AccessDatabaseEngine.exe");                    
-                    base.Commit(savedState);
-                }
-                else
-                {
-                    base.Commit(savedState);
+                    Process.Start("AccessDatabaseEngine.exe");
                 }
             }
             catch (Exception e)
@@ -55,6 +50,8 @@ namespace InstallerSetup
                 MessageBox.Show("Error: " + e.Message);
                 base.Rollback(savedState);
             }
+
+            base.Commit(savedState);
         }
 
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
