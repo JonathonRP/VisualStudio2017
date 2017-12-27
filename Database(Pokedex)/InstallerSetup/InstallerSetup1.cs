@@ -43,7 +43,7 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    Process.Start($"{Assembly.GetExecutingAssembly().Location}\\AccessDatabaseEngine.exe");
+                    Process.Start($"{Environment.CurrentDirectory}\\AccessDatabaseEngine.exe");
                 }
             }
             catch (Exception e)
