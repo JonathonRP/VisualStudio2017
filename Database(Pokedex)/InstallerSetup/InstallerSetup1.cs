@@ -44,14 +44,7 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    //getting the full path including the filename
-                    string assemblyPath = Context.Parameters["assemblyPath"];
-                    //removing the filename from the path
-                    int i = assemblyPath.Length - 1;
-                    while (assemblyPath[i] != '\\') --i;
-                    string path = assemblyPath.Substring(0, i);
-
-                    Process.Start($"{path}AccessDatabaseEngine.exe");
+                    Process.Start($"C:\\ProgramFiles(x86)\\Pokedex\\AccessDatabaseEngine.exe");
                 }
             }
             catch (Exception e)
