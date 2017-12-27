@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    Process.Start($"{Environment.CurrentDirectory}\\AccessDatabaseEngine.exe");
+                    Process.Start($"{Path.GetDirectoryName(Application.ExecutablePath)}\\AccessDatabaseEngine.exe");
                 }
             }
             catch (Exception e)
