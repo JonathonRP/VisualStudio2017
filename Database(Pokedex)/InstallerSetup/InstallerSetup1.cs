@@ -38,6 +38,8 @@ namespace InstallerSetup
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
         public override void Commit(IDictionary savedState)
         {
+            showParameters();
+
             try
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
