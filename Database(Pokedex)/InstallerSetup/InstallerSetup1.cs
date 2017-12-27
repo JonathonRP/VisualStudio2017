@@ -40,6 +40,8 @@ namespace InstallerSetup
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
         public override void Commit(IDictionary savedState)
         {
+            base.Commit(savedState);
+
             try
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
@@ -52,8 +54,6 @@ namespace InstallerSetup
                 MessageBox.Show("Error: " + e.Message);
                 base.Rollback(savedState);
             }
-
-            base.Commit(savedState);
         }
 
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
