@@ -44,7 +44,7 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    Process.Start($"C:\\ProgramFiles(x86)\\Pokedex\\AccessDatabaseEngine.exe");
+                    Process.Start($"C:\\ProgramFiles (x86)\\Pokedex\\AccessDatabaseEngine.exe");
                 }
             }
             catch (Exception e)
