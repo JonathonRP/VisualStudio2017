@@ -26,27 +26,11 @@ namespace InstallerSetup
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
         public override void Install(IDictionary savedState)
         {
-            base.Install(savedState);
-            //Add custom code here
-        }
-
-        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
-        public override void Rollback(IDictionary savedState)
-        {
-            base.Rollback(savedState);
-            //Add custom code here
-        }
-
-        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
-        public override void Commit(IDictionary savedState)
-        {
-            base.Commit(savedState);
-
             try
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    Process.Start($"C:\\ProgramFiles (x86)\\Pokedex\\AccessDatabaseEngine.exe");
+                    Process.Start($".\\AccessDatabaseEngine.exe");
                 }
             }
             catch (Exception e)
@@ -54,6 +38,20 @@ namespace InstallerSetup
                 MessageBox.Show("Error: " + e.Message);
                 base.Rollback(savedState);
             }
+
+            base.Install(savedState);
+        }
+
+        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
+        public override void Rollback(IDictionary savedState)
+        {
+            base.Rollback(savedState);
+        }
+
+        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
+        public override void Commit(IDictionary savedState)
+        {
+            base.Commit(savedState);
         }
 
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.Demand)]
