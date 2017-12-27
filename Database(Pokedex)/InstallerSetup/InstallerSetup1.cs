@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace InstallerSetup
 {
@@ -42,7 +43,7 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    Process.Start($"C:\\AccessDatabaseEngine.exe");
+                    Process.Start($"{Assembly.GetExecutingAssembly().Location}\\AccessDatabaseEngine.exe");
                 }
             }
             catch (Exception e)
