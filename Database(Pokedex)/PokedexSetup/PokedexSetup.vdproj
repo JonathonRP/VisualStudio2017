@@ -2385,7 +2385,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_31B49BCD_7A46_4905_8CC6_7764CAA5707F"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/DATABASECONNECTIONPROVIDER=\"[DATABASECONNECTIONPROVIDER]\""
+            "CustomActionData" = "8:/DATABASECONNECTIONPROVIDER=\"[DATABASECONNECTIONPROVIDER]\" /targetdir=\"[TARGETDIR]\""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_E967BC36AB344D548F2189F564E31EFB"
             {
@@ -6957,7 +6957,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pokedex"
         "ProductCode" = "8:{3CAF7E7E-82A3-40F0-8231-E551AA7B2326}"
-        "PackageCode" = "8:{1925710B-20EB-4ED6-BB10-3C484FDA93C7}"
+        "PackageCode" = "8:{4A6C7D02-C8B1-47B6-A2AA-C1B2BE8BA32D}"
         "UpgradeCode" = "8:{C4A9A7E2-AA99-45D4-ACB6-5217D56F0874}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

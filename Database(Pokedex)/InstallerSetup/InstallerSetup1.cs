@@ -42,7 +42,8 @@ namespace InstallerSetup
             {
                 if (Context.Parameters["DATABASECONNECTIONPROVIDER"] == "1")
                 {
-                    Process.Start("C:\\AccessDatabaseEngine.exe");
+                    string path = this.Context.Parameters["targetdir"];
+                    Process.Start($"{path}\\AccessDatabaseEngine.exe");
                 }
             }
             catch (Exception e)
